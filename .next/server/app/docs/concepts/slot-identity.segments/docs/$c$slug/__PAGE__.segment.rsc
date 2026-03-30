@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[79912,["/_next/static/chunks/c443610f04cfa4c3.js","/_next/static/chunks/36ab2cd0e6f7eb7f.js","/_next/static/chunks/24ac5891ba0c4699.js","/_next/static/chunks/9cafa863efb7e2bf.js","/_next/static/chunks/fe1dc3068e70a23b.js","/_next/static/chunks/cc190b4d23051e3a.js","/_next/static/chunks/10623e2afbf6a84c.js"],"DocContent",1]
+3:I[70582,["/_next/static/chunks/67e7214feabe1636.js","/_next/static/chunks/7f5cc694ea9b4ee4.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"UWGfTDAVxkhJThU2py1Gd","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Slot Identity","description":"How slot identifiers work across your site.","content":"## Slot Identifiers\n\nEach slot has a unique identifier within your site. This ID:\n\n- Must be unique per site\n- Should be descriptive (e.g., `sidebar`, `header-banner`)\n- Is case-sensitive\n- Cannot contain spaces\n\n## Consistency\n\nUse the same slot ID across all pages where that slot appears. This ensures:\n\n- Consistent pricing\n- Unified analytics\n- Proper ad delivery\n\nContent coming soon.","slug":"concepts/slot-identity"}],[["$","script","script-0",{"src":"/_next/static/chunks/10623e2afbf6a84c.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

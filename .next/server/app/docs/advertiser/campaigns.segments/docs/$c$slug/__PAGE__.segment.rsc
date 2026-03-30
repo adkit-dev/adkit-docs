@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[79912,["/_next/static/chunks/c443610f04cfa4c3.js","/_next/static/chunks/36ab2cd0e6f7eb7f.js","/_next/static/chunks/24ac5891ba0c4699.js","/_next/static/chunks/9cafa863efb7e2bf.js","/_next/static/chunks/fe1dc3068e70a23b.js","/_next/static/chunks/cc190b4d23051e3a.js","/_next/static/chunks/10623e2afbf6a84c.js"],"DocContent",1]
+3:I[70582,["/_next/static/chunks/67e7214feabe1636.js","/_next/static/chunks/7f5cc694ea9b4ee4.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"UWGfTDAVxkhJThU2py1Gd","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Campaign Management","description":"Manage your active and upcoming ad campaigns.","content":"## Advertiser Dashboard\n\nAccess your campaigns at [adkit.dev/advertiser](https://adkit.dev/advertiser).\n\n## Campaign Status\n\n- **Pending** - Awaiting publisher approval\n- **Approved** - Scheduled to run\n- **Live** - Currently displaying\n- **Completed** - Campaign ended\n- **Rejected** - Publisher declined\n\nContent coming soon.","slug":"advertiser/campaigns"}],[["$","script","script-0",{"src":"/_next/static/chunks/10623e2afbf6a84c.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

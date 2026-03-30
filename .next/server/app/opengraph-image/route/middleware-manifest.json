@@ -1,0 +1,53 @@
+{
+  "sorted_middleware": [
+    "/opengraph-image/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/opengraph-image/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/server-reference-manifest.js",
+        "server/app/opengraph-image/route_client-reference-manifest.js",
+        "server/edge/chunks/adkit-docs__next-internal_server_app_opengraph-image_route_actions_2fb50a02.js",
+        "server/edge/chunks/[root-of-the-server]__a206e007._.js",
+        "server/edge/chunks/[root-of-the-server]__efae659f._.js",
+        "server/edge/chunks/b2b63_next_dist_compiled_@vercel_og_ef833438._.js",
+        "server/edge/chunks/turbopack-adkit-docs_edge-wrapper_abdba387.js"
+      ],
+      "name": "app/opengraph-image/route",
+      "page": "/opengraph-image/route",
+      "matchers": [
+        {
+          "regexp": "^/opengraph-image(?:/)?$",
+          "originalSource": "/opengraph-image"
+        }
+      ],
+      "wasm": [
+        {
+          "name": "wasm_fdb56e4cc5936d29",
+          "filePath": "server/edge/chunks/b2b63_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
+        },
+        {
+          "name": "wasm_1ccdc983b1fd9f87",
+          "filePath": "server/edge/chunks/b2b63_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
+        }
+      ],
+      "assets": [
+        {
+          "name": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf",
+          "filePath": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf"
+        }
+      ],
+      "env": {
+        "__NEXT_BUILD_ID": "UWGfTDAVxkhJThU2py1Gd",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "cwaUige76lvos999OCuokZ3W8A2uWQkvkC5RfPot1QQ=",
+        "__NEXT_PREVIEW_MODE_ID": "f7c30d0ce6565446222ebc13b1ec3e6b",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "53f89befd1d850fa05b335d5c2496b8a7e1af617f83eba9f9d9becf399c281fe",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "6d6fac69bede75b625e5f829c2c9ca61e1fa440c62c43328e990ee4725a0b468"
+      }
+    }
+  }
+}
