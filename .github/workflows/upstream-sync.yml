@@ -31,18 +31,27 @@ jobs:
       - name: Fetch upstream
         run: git fetch upstream
 
-      - name: Set up dev sync branch
+      - name: Set up upstream-sync branch
         run: |
-          # Create or reset the upstream-sync branch from upstream/main
+          # Reset upstream-sync to match upstream/main
           git checkout -B upstream-sync upstream/main
+          git push origin upstream-sync --force
 
-      - name: Push dev sync branch
-        run: git push origin upstream-sync --force
-
-      - name: Merge sync branch into main
+      - name: Open PR into main (if not already open)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git checkout main
-          git merge upstream-sync --allow-unrelated-histories --no-edit -m "chore: sync upstream changes from adkit-dev/adkit-docs"
+          # Check if a PR already exists for this branch
+          EXISTING=$(gh pr list --head upstream-sync --base main --json number --jq '.[0].number')
+          if [ -z "$EXISTING" ]; then
+            gh pr create \
+              --head upstream-sync \
+              --base main \
+              --title "chore: sync upstream changes from adkit-dev/adkit-docs" \
+              --body "Automated sync of latest changes from [adkit-dev/adkit-docs](https://github.com/adkit-dev/adkit-docs).
 
-      - name: Push main
-        run: git push origin main
+          Review and resolve any conflicts before merging."
+            echo "PR created."
+          else
+            echo "PR #$EXISTING already exists, skipping creation."
+          fi
