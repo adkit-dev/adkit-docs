@@ -42,7 +42,7 @@ jobs:
       - name: Merge sync branch into main
         run: |
           git checkout main
-          git merge upstream-sync --no-edit -m "chore: sync upstream changes from adkit-dev/adkit-docs"
+          git merge upstream-sync --allow-unrelated-histories --no-edit -m "chore: sync upstream changes from adkit-dev/adkit-docs"
 
       - name: Push main
         run: git push origin main
