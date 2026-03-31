@@ -33,8 +33,11 @@ jobs:
 
       - name: Set up upstream-sync branch
         run: |
-          # Reset upstream-sync to match upstream/main
-          git checkout -B upstream-sync upstream/main
+          # Base upstream-sync on main so GitHub can compute a diff for the PR
+          git checkout -B upstream-sync main
+          # Merge upstream changes; prefer upstream on conflicts (-X theirs)
+          git merge upstream/main --allow-unrelated-histories --no-edit \
+            -X theirs -m "chore: merge upstream changes from adkit-dev/adkit-docs"
           git push origin upstream-sync --force
 
       - name: Open PR into main (if not already open)
