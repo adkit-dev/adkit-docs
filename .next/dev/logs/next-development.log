@@ -1,0 +1,1269 @@
+[00:00:00.928] Server  LOG      ✓ Ready in 675ms
+[00:28:00.024] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:00.230] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:28:00.230] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[00:28:00.230] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983754088} /_vercel/insights/view
+[00:28:05.267] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983759132} /_vercel/insights/view
+[00:29:27.989] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983841860} /_vercel/insights/view
+[00:29:32.239] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/how-it-works color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/how-it-works","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983846116} /_vercel/insights/view
+[00:29:33.649] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983847524} /_vercel/insights/view
+[00:30:00.248] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/react color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/react","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983874123} /_vercel/insights/view
+[00:30:08.800] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/nextjs color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/nextjs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983882675} /_vercel/insights/view
+[00:30:11.189] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/astro color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/astro","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983885063} /_vercel/insights/view
+[00:30:11.999] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/nextjs color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/nextjs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983885874} /_vercel/insights/view
+[00:30:13.991] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983887863} /_vercel/insights/view
+[00:30:14.986] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/how-it-works color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/how-it-works","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983888865} /_vercel/insights/view
+[00:30:16.539] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774983890415} /_vercel/insights/view
+[00:34:36.403] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/how-it-works color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/how-it-works","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984150281} /_vercel/insights/view
+[00:34:36.846] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984150723} /_vercel/insights/view
+[00:34:39.867] Server  LOG      ✓ Compiled in 191ms
+[00:34:41.635] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984155510} /_vercel/insights/view
+[00:34:41.999] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/how-it-works color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/how-it-works","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984155878} /_vercel/insights/view
+[00:34:43.420] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984157296} /_vercel/insights/view
+[00:35:41.448] Server  LOG      ✓ Compiled in 329ms
+[00:35:41.844] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:42.586] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <script>
+    <DocsShell>
+      <div className="flex min-h...">
+        <SkipLink>
+        <Topbar>
+        <MobileBreadcrumbBar>
+        ...
+          <Sidebar onSearchClick={function onSearchClick} onAssistantClick={function onAssistantClick}>
+            <aside role="navigation" aria-label="Main navig..." className="flex h-ful...">
+              <div>
+              <nav className="flex-1 ove..." tabIndex={0}>
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_3..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_3..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_366lb_"
+-                                 aria-controls="radix-_R_coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_3..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_366lb_"
+-                                 id="radix-_R_coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_5..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_5..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_566lb_"
+-                                 aria-controls="radix-_R_koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_5..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_566lb_"
+-                                 id="radix-_R_koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_7..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_7..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_766lb_"
+-                                 aria-controls="radix-_R_soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_7..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_766lb_"
+-                                 id="radix-_R_soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_9..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_9..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_966lb_"
+-                                 aria-controls="radix-_R_14oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_9..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_966lb_"
+-                                 id="radix-_R_14oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_b..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_b..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_b66lb_"
+-                                 aria-controls="radix-_R_1coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_b..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_b66lb_"
+-                                 id="radix-_R_1coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_d..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_d..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_d66lb_"
+-                                 aria-controls="radix-_R_1koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_d..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_d66lb_"
+-                                 id="radix-_R_1koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_f..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_f..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_f66lb_"
+-                                 aria-controls="radix-_R_1soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_f..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_f66lb_"
+-                                 id="radix-_R_1soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_h..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_h..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_h66lb_"
+-                                 aria-controls="radix-_R_24oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_h..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_h66lb_"
+-                                 id="radix-_R_24oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+              ...
+        <MobileNav>
+        <CommandPalette open={false} onOpenChange={function bound dispatchSetState}>
+          <CommandDialog open={false} onOpenChange={function bound dispatchSetState} showCloseButton={false}>
+            <Dialog open={false} onOpenChange={function bound dispatchSetState}>
+              <Dialog data-slot="dialog" open={false} onOpenChange={function bound dispatchSetState}>
+                <DialogProvider scope={undefined} triggerRef={{current:null}} contentRef={{current:null}} ...>
+                  <DialogHeader className="sr-only">
+                    <div data-slot="dialog-header" className="flex flex-...">
+                      <DialogTitle>
+                        <DialogTitle data-slot="dialog-title" className="text-lg le...">
+                          <Primitive.h2 id="radix-_R_3..." data-slot="dialog-title" className="text-lg le..." ref={null}>
+                            <h2
++                             id="radix-_R_36lbH1_"
+-                             id="radix-_R_cplbH1_"
+                              data-slot="dialog-title"
+                              className="text-lg leading-none font-semibold"
+                              ref={null}
+                            >
++                             Command Palette
+                      <DialogDescription>
+                        <DialogDescription data-slot="dialog-des..." className="text-muted...">
+                          <Primitive.p id="radix-_R_3..." data-slot="dialog-des..." className="text-muted..." ref={null}>
+                            <p
++                             id="radix-_R_36lbH2_"
+-                             id="radix-_R_cplbH2_"
+                              data-slot="dialog-description"
+                              className="text-muted-foreground text-sm"
+                              ref={null}
+                            >
++                             Search for a command to run...
+                  ...
+    ...
+
+[00:35:42.586] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:35:42.586] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs/quickstart/javascript","route":"/docs/[...slug]"}
+[00:35:42.586] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984215946} /_vercel/insights/view
+[00:36:06.103] Server  LOG      ✓ Compiled in 76ms
+[00:36:39.158] Server  LOG      ✓ Compiled in 119ms
+[00:36:55.471] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/react color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/react","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984289342} /_vercel/insights/view
+[00:37:06.594] Server  LOG      ✓ Compiled in 63ms
+[00:37:11.876] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/nextjs color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/nextjs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984305750} /_vercel/insights/view
+[00:37:49.902] Server  LOG      ✓ Compiled in 148ms
+[00:38:17.694] Server  LOG      ✓ Compiled in 36ms
+[00:38:28.141] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/astro color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/astro","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984382015} /_vercel/insights/view
+[00:38:31.948] Server  LOG      ✓ Compiled in 320ms
+[00:38:32.242] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:32.462] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:38:32.462] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs/quickstart/astro","route":"/docs/[...slug]"}
+[00:38:32.462] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/astro color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/astro","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984386314} /_vercel/insights/view
+[00:39:17.886] Server  LOG      ✓ Compiled in 23.3s
+[00:42:26.655] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/wordpress color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/wordpress","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984619729} /_vercel/insights/view
+[00:45:54.129] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/webflow color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/webflow","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984770815} /_vercel/insights/view
+[00:46:02.111] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774984834903} /_vercel/insights/view
+[00:49:25.460] Server  LOG      ✓ Compiled in 607.6s
+[00:49:26.663] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:27.619] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <script>
+    <DocsShell>
+      <div className="flex min-h...">
+        <SkipLink>
+        <Topbar>
+        <MobileBreadcrumbBar>
+        ...
+          <Sidebar onSearchClick={function onSearchClick} onAssistantClick={function onAssistantClick}>
+            <aside role="navigation" aria-label="Main navig..." className="flex h-ful...">
+              <div>
+              <nav className="flex-1 ove..." tabIndex={0}>
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_3..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_3..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_366lb_"
+-                                 aria-controls="radix-_R_coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_3..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_366lb_"
+-                                 id="radix-_R_coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_5..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_5..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_566lb_"
+-                                 aria-controls="radix-_R_koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_5..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_566lb_"
+-                                 id="radix-_R_koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_7..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_7..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_766lb_"
+-                                 aria-controls="radix-_R_soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_7..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_766lb_"
+-                                 id="radix-_R_soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_9..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_9..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_966lb_"
+-                                 aria-controls="radix-_R_14oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_9..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_966lb_"
+-                                 id="radix-_R_14oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_b..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_b..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_b66lb_"
+-                                 aria-controls="radix-_R_1coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_b..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_b66lb_"
+-                                 id="radix-_R_1coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_d..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_d..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_d66lb_"
+-                                 aria-controls="radix-_R_1koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_d..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_d66lb_"
+-                                 id="radix-_R_1koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_f..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_f..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_f66lb_"
+-                                 aria-controls="radix-_R_1soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_f..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_f66lb_"
+-                                 id="radix-_R_1soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_h..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_h..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_h66lb_"
+-                                 aria-controls="radix-_R_24oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_h..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_h66lb_"
+-                                 id="radix-_R_24oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+              ...
+        <MobileNav>
+        <CommandPalette open={false} onOpenChange={function bound dispatchSetState}>
+          <CommandDialog open={false} onOpenChange={function bound dispatchSetState} showCloseButton={false}>
+            <Dialog open={false} onOpenChange={function bound dispatchSetState}>
+              <Dialog data-slot="dialog" open={false} onOpenChange={function bound dispatchSetState}>
+                <DialogProvider scope={undefined} triggerRef={{current:null}} contentRef={{current:null}} ...>
+                  <DialogHeader className="sr-only">
+                    <div data-slot="dialog-header" className="flex flex-...">
+                      <DialogTitle>
+                        <DialogTitle data-slot="dialog-title" className="text-lg le...">
+                          <Primitive.h2 id="radix-_R_3..." data-slot="dialog-title" className="text-lg le..." ref={null}>
+                            <h2
++                             id="radix-_R_36lbH1_"
+-                             id="radix-_R_cplbH1_"
+                              data-slot="dialog-title"
+                              className="text-lg leading-none font-semibold"
+                              ref={null}
+                            >
++                             Command Palette
+                      <DialogDescription>
+                        <DialogDescription data-slot="dialog-des..." className="text-muted...">
+                          <Primitive.p id="radix-_R_3..." data-slot="dialog-des..." className="text-muted..." ref={null}>
+                            <p
++                             id="radix-_R_36lbH2_"
+-                             id="radix-_R_cplbH2_"
+                              data-slot="dialog-description"
+                              className="text-muted-foreground text-sm"
+                              ref={null}
+                            >
++                             Search for a command to run...
+                  ...
+    ...
+
+[00:49:28.589] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:49:28.589] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[00:49:28.589] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774985041576} /_vercel/insights/view
+[00:51:53.503] Server  LOG      ✓ Compiled in 94ms
+[00:54:13.730] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <SegmentViewNode type="page" pagePath="/adkit-doc...">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function DocsPage} serverProvidedParams={{...}}>
+        <DocsPage params={Promise} searchParams={Promise}>
+          <div className="relative m...">
+            <DecorativeBg>
+            <div>
+            <div className="relative z...">
+              <div>
+              <div>
+              <CodeExampleSection>
+              <div className="mt-24">
+                <h2>
+                <p>
+                <div className="mt-10 grid...">
+                  <FrameworkCard>
+                  <FrameworkCard>
+                  <FrameworkCard>
+                  <FrameworkCard framework="Astro" description="Add Adkit ..." iconComponent={function AstroIcon}>
+                    <div className="group rela...">
+                      <div>
+                      <div>
+                      <div className="relative z...">
+                        <div className="flex h-20 ...">
+                          <AstroIcon className="h-11 w-11">
+                            <svg viewBox="0 0 150 150" className="text-black..." fill="none">
+                              <defs>
+                                <linearGradient
++                                 id="_R_1eeeatqbmq6lb_"
+-                                 id="_R_5pppbn9er8plb_"
+                                  x1="75.54"
+                                  y1="113"
+                                  x2="75.54"
+                                  y2="143.15"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                              <path
+                                d="M57.53 128.19c-5.86-5.34-7.57-16.57-5.13-24.7 4.23 5.13 10.1 6.75 16.17 7.67 10.41 ..."
++                               fill="url(#_R_1eeeatqbmq6lb_)"
+-                               fill="url(#_R_5pppbn9er8plb_)"
+                              >
+                              ...
+                        ...
+                      ...
+                  ...
+              ...
+    ...
+
+[00:54:44.504] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:45.540] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:54:45.540] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[00:54:45.540] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774985358623} /_vercel/insights/view
+[01:03:42.764] Server  LOG      ✓ Compiled in 117ms
+[01:04:13.168] Server  LOG      ✓ Compiled in 54ms
+[01:06:02.860] Server  LOG      ✓ Compiled in 7.1s
+[01:06:06.450] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:06:07.475] Server  LOG      ✓ Compiled in 566ms
+[01:06:07.602] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:06:07.602] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[01:06:07.602] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774986041236} /_vercel/insights/view
+[01:12:01.822] Server  LOG      ✓ Compiled in 47ms
+[01:12:07.805] Server  LOG      ✓ Compiled in 52ms
+[01:12:26.406] Server  LOG      ✓ Compiled in 34ms
+[01:12:36.097] Server  LOG      ✓ Compiled in 32ms
+[01:12:46.276] Server  LOG      ✓ Compiled in 68ms
+[01:12:57.184] Server  LOG      ✓ Compiled in 84ms
+[01:13:28.366] Server  LOG        Reload env: .env.local
+[01:13:33.523] Server  LOG        Reload env: .env.local
+[01:15:09.698] Server  LOG        Reload env: .env.local
+[01:15:21.109] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:21.383] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:15:21.383] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[01:15:21.383] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774986595185} /_vercel/insights/view
+[01:17:00.154] Server  LOG      ✓ Compiled in 45ms
+[01:18:11.739] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:14.668] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <script>
+    <DocsShell>
+      <div className="flex min-h...">
+        <SkipLink>
+        <Topbar>
+        <MobileBreadcrumbBar>
+        ...
+          <Sidebar onSearchClick={function onSearchClick} onAssistantClick={function onAssistantClick}>
+            <aside role="navigation" aria-label="Main navig..." className="flex h-ful...">
+              <div>
+              <nav className="flex-1 ove..." tabIndex={0}>
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_3..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_3..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_366lb_"
+-                                 aria-controls="radix-_R_coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_3..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_366lb_"
+-                                 id="radix-_R_coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_5..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_5..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_566lb_"
+-                                 aria-controls="radix-_R_koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_5..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_566lb_"
+-                                 id="radix-_R_koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_7..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_7..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_766lb_"
+-                                 aria-controls="radix-_R_soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_7..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_766lb_"
+-                                 id="radix-_R_soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_9..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_9..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_966lb_"
+-                                 aria-controls="radix-_R_14oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_9..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_966lb_"
+-                                 id="radix-_R_14oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_b..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_b..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_b66lb_"
+-                                 aria-controls="radix-_R_1coplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_b..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_b66lb_"
+-                                 id="radix-_R_1coplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_d..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_d..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_d66lb_"
+-                                 aria-controls="radix-_R_1koplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_d..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_d66lb_"
+-                                 id="radix-_R_1koplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_f..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_f..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_f66lb_"
+-                                 aria-controls="radix-_R_1soplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_f..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_f66lb_"
+-                                 id="radix-_R_1soplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+                <Collapsible open={true} onOpenChange={function onOpenChange} className="mb-4">
+                  <Collapsible data-slot="collapsible" open={true} onOpenChange={function onOpenChange} className="mb-4">
+                    <CollapsibleProvider scope={undefined} disabled={undefined} contentId="radix-_R_h..." open={true} ...>
+                      <Primitive.div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                        <div data-state="open" data-disabled={undefined} data-slot="collapsible" className="mb-4" ...>
+                          <CollapsibleTrigger className="flex w-ful...">
+                            <CollapsibleTrigger data-slot="collapsibl..." className="flex w-ful...">
+                              <Primitive.button type="button" aria-controls="radix-_R_h..." aria-expanded={true} ...>
+                                <button
+                                  type="button"
++                                 aria-controls="radix-_R_h66lb_"
+-                                 aria-controls="radix-_R_24oplb_"
+                                  aria-expanded={true}
+                                  data-state="open"
+                                  data-disabled={undefined}
+                                  disabled={undefined}
+                                  data-slot="collapsible-trigger"
+                                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 tex..."
+                                  onClick={function handleEvent}
+                                  ref={null}
+                                >
+                          ...
+                            <Presence present={true}>
+                              <Primitive.div data-state="open" data-disabled={undefined} id="radix-_R_h..." ...>
+                                <div
+                                  data-state="open"
+                                  data-disabled={undefined}
++                                 id="radix-_R_h66lb_"
+-                                 id="radix-_R_24oplb_"
+                                  hidden={false}
+                                  data-slot="collapsible-content"
+                                  style={{--radix-collapsible-content-height:undefined, ...}}
+                                  ref={function}
+                                >
+              ...
+        <MobileNav>
+        <CommandPalette open={false} onOpenChange={function bound dispatchSetState}>
+          <CommandDialog open={false} onOpenChange={function bound dispatchSetState} showCloseButton={false}>
+            <Dialog open={false} onOpenChange={function bound dispatchSetState}>
+              <Dialog data-slot="dialog" open={false} onOpenChange={function bound dispatchSetState}>
+                <DialogProvider scope={undefined} triggerRef={{current:null}} contentRef={{current:null}} ...>
+                  <DialogHeader className="sr-only">
+                    <div data-slot="dialog-header" className="flex flex-...">
+                      <DialogTitle>
+                        <DialogTitle data-slot="dialog-title" className="text-lg le...">
+                          <Primitive.h2 id="radix-_R_3..." data-slot="dialog-title" className="text-lg le..." ref={null}>
+                            <h2
++                             id="radix-_R_36lbH1_"
+-                             id="radix-_R_cplbH1_"
+                              data-slot="dialog-title"
+                              className="text-lg leading-none font-semibold"
+                              ref={null}
+                            >
++                             Command Palette
+                      <DialogDescription>
+                        <DialogDescription data-slot="dialog-des..." className="text-muted...">
+                          <Primitive.p id="radix-_R_3..." data-slot="dialog-des..." className="text-muted..." ref={null}>
+                            <p
++                             id="radix-_R_36lbH2_"
+-                             id="radix-_R_cplbH2_"
+                              data-slot="dialog-description"
+                              className="text-muted-foreground text-sm"
+                              ref={null}
+                            >
++                             Search for a command to run...
+                  ...
+    ...
+
+[01:18:14.668] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <SegmentViewNode type="page" pagePath="/adkit-doc...">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function DocsPage} serverProvidedParams={{...}}>
+        <DocsPage params={Promise} searchParams={Promise}>
+          <div className="relative m...">
+            <DecorativeBg>
+            <div>
+            <div className="relative z...">
+              <div>
+              <div>
+              <CodeExampleSection>
+              <div className="mt-24">
+                <h2>
+                <p>
+                <div className="mt-10 grid...">
+                  <FrameworkCard>
+                  <FrameworkCard>
+                  <FrameworkCard>
+                  <FrameworkCard framework="Astro" description="Add Adkit ..." iconComponent={function AstroIcon}>
+                    <div className="group rela...">
+                      <div>
+                      <div>
+                      <div className="relative z...">
+                        <div className="flex h-20 ...">
+                          <AstroIcon className="h-11 w-11">
+                            <svg viewBox="0 0 150 150" className="text-black..." fill="none">
+                              <defs>
+                                <linearGradient
++                                 id="_R_1eeeatqbmq6lb_"
+-                                 id="_R_5pppbn9er8plb_"
+                                  x1="75.54"
+                                  y1="113"
+                                  x2="75.54"
+                                  y2="143.15"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                              <path
+                                d="M57.53 128.19c-5.86-5.34-7.57-16.57-5.13-24.7 4.23 5.13 10.1 6.75 16.17 7.67 10.41 ..."
++                               fill="url(#_R_1eeeatqbmq6lb_)"
+-                               fill="url(#_R_5pppbn9er8plb_)"
+                              >
+                              ...
+                        ...
+                      ...
+                  ...
+              ...
+    ...
+
+[01:18:14.670] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:18:14.671] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[01:18:14.671] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774986768393} /_vercel/insights/view
+[01:18:29.550] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:31.467] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:18:31.467] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs","route":"/docs"}
+[01:18:31.467] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs color: rgb(120, 120, 120) color: inherit {"dp":"/docs","o":"http://localhost:3000/docs","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774986785304} /_vercel/insights/view
+[01:24:21.664] Server  LOG      ✓ Compiled in 70ms
+[01:24:28.996] Server  LOG      ✓ Compiled in 56ms
+[01:25:22.555] Server  LOG      ✓ Compiled in 690ms
+[01:25:44.327] Server  LOG      ✓ Compiled in 1205ms
+[01:25:57.139] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774987230918} /_vercel/insights/view
+[01:40:47.448] Server  LOG      ✓ Compiled in 83ms
+[01:41:41.405] Server  LOG      ✓ Compiled in 26ms
+[01:50:44.227] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:50:46.437] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:50:46.437] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs/quickstart/javascript","route":"/docs/[...slug]"}
+[01:50:46.437] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774988720189} /_vercel/insights/view
+[01:52:04.397] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/react/provider color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/react/provider","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774988797999} /_vercel/insights/view
+[01:52:42.918] Server  LOG      ✓ Compiled in 50ms
+[01:53:07.047] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/react color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/react","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774988860899} /_vercel/insights/view
+[01:53:12.550] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/how-it-works color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/how-it-works","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774988866405} /_vercel/insights/view
+[01:53:15.307] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774988869140} /_vercel/insights/view
+[01:55:27.730] Server  LOG      ✓ Compiled in 71ms
+[01:55:28.586] Browser ERROR   uncaughtError: ReferenceError: isVisible is not defined
+[01:57:45.895] Server  LOG      ✓ Compiled in 57ms
+[01:57:46.585] Browser ERROR   ./adkit-docs/components/assistant/assistant-dock.tsx:806:1
+Parsing ecmascript source code failed
+  804 |     </div>
+  805 |   )
+> 806 | }
+      | ^
+  807 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./adkit-docs/components/assistant/assistant-dock.tsx [Client Component Browser]
+    ./adkit-docs/components/layout/docs-shell.tsx [Client Component Browser]
+    ./adkit-docs/components/layout/docs-shell.tsx [Server Component]
+    ./adkit-docs/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./adkit-docs/components/assistant/assistant-dock.tsx [Client Component SSR]
+    ./adkit-docs/components/layout/docs-shell.tsx [Client Component SSR]
+    ./adkit-docs/components/layout/docs-shell.tsx [Server Component]
+    ./adkit-docs/app/layout.tsx [Server Component]
+[01:57:46.585] Browser ERROR   ./adkit-docs/components/assistant/assistant-dock.tsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/adkit-docs/components/assistant/assistant-dock.tsx [app-ssr] (ecmascript)
+
+Caused by:
+- CJS module can't be async.
+
+Debug info:
+- An error occurred while generating the chunk item [project]/adkit-docs/components/assistant/assistant-dock.tsx [app-ssr] (ecmascript)
+- Execution of <ModuleChunkItem as EcmascriptChunkItem>::content_with_async_module_info failed
+- Execution of EcmascriptChunkItemContent::new failed
+- CJS module can't be async.
+
+Import traces:
+  Client Component Browser:
+    ./adkit-docs/components/assistant/assistant-dock.tsx [Client Component Browser]
+    ./adkit-docs/components/layout/docs-shell.tsx [Client Component Browser]
+    ./adkit-docs/components/layout/docs-shell.tsx [Server Component]
+    ./adkit-docs/app/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./adkit-docs/components/assistant/assistant-dock.tsx [Client Component SSR]
+    ./adkit-docs/components/layout/docs-shell.tsx [Client Component SSR]
+    ./adkit-docs/components/layout/docs-shell.tsx [Server Component]
+    ./adkit-docs/app/layout.tsx [Server Component]
+[01:57:53.205] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:57:53.228] Server  LOG      ✓ Compiled in 62ms
+[01:57:53.783] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:57:54.587] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:57:54.587] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/docs/quickstart/javascript","route":"/docs/[...slug]"}
+[01:57:54.587] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/docs/quickstart/javascript color: rgb(120, 120, 120) color: inherit {"dp":"/docs/[...slug]","o":"http://localhost:3000/docs/quickstart/javascript","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1774989147938} /_vercel/insights/view
+[01:59:12.385] Server  LOG      ✓ Compiled in 65ms

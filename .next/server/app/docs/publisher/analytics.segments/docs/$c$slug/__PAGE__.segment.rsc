@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[79912,["/_next/static/chunks/ccf93c344c59b10d.js","/_next/static/chunks/c0662c918a2af466.js","/_next/static/chunks/24ac5891ba0c4699.js","/_next/static/chunks/9cafa863efb7e2bf.js","/_next/static/chunks/59f283aba722abe9.js","/_next/static/chunks/cc190b4d23051e3a.js","/_next/static/chunks/10623e2afbf6a84c.js"],"DocContent",1]
+3:I[70582,["/_next/static/chunks/67e7214feabe1636.js","/_next/static/chunks/7f5cc694ea9b4ee4.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"OG8eCAthKGUJyzKMGQdxl","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Analytics","description":"Track impressions, clicks, CTR, and revenue.","content":"## Metrics\n\n| Metric | Description |\n|--------|-------------|\n| Impressions | Times the ad was displayed |\n| Clicks | Times the ad was clicked |\n| CTR | Click-through rate |\n| Revenue | Total earnings |\n| Fill Rate | % of time slots had paid ads |\n\n## Date Range\n\nFilter analytics by:\n- Today\n- Last 7 days\n- Last 30 days\n- Custom range\n\nContent coming soon.","slug":"publisher/analytics"}],[["$","script","script-0",{"src":"/_next/static/chunks/10623e2afbf6a84c.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
