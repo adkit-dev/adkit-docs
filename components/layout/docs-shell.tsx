@@ -24,6 +24,11 @@ export function DocsShell({ children }: DocsShellProps) {
   const [assistantExpanded, setAssistantExpanded] = useState(false)
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
+  // Close assistant on navigation
+  useEffect(() => {
+    setAssistantExpanded(false)
+  }, [pathname])
+
   // Find current section and page for breadcrumbs
   const currentNav = navigation.find((section) => section.items.some((item) => item.href === pathname))
   const currentPage = currentNav?.items.find((item) => item.href === pathname)

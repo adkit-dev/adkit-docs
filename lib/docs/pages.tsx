@@ -1,5 +1,11 @@
 import type React from "react"
 import { ReactInstallationPage } from "@/components/docs/pages/react-installation"
+import { QuickstartJavaScriptPage } from "@/components/docs/pages/quickstart-javascript"
+import { QuickstartReactPage } from "@/components/docs/pages/quickstart-react"
+import { QuickstartNextjsPage } from "@/components/docs/pages/quickstart-nextjs"
+import { QuickstartAstroPage } from "@/components/docs/pages/quickstart-astro"
+import { QuickstartWordPressPage } from "@/components/docs/pages/quickstart-wordpress"
+import { QuickstartWebflowPage } from "@/components/docs/pages/quickstart-webflow"
 
 export interface DocPage {
   slug: string
@@ -10,6 +16,43 @@ export interface DocPage {
 }
 
 export const docPages: DocPage[] = [
+  // Quickstart
+  {
+    slug: "quickstart/javascript",
+    title: "JavaScript",
+    description: "Add Adkit to any website using a single script tag. No build step required.",
+    component: QuickstartJavaScriptPage,
+  },
+  {
+    slug: "quickstart/react",
+    title: "React",
+    description: "Install adkit-react and add ad slots to your React app.",
+    component: QuickstartReactPage,
+  },
+  {
+    slug: "quickstart/nextjs",
+    title: "Next.js",
+    description: "Install adkit-react and add slots to your Next.js app. Supports App Router and Pages Router.",
+    component: QuickstartNextjsPage,
+  },
+  {
+    slug: "quickstart/astro",
+    title: "Astro",
+    description: "Add Adkit to an Astro site using the vanilla JS SDK or adkit-react in React islands.",
+    component: QuickstartAstroPage,
+  },
+  {
+    slug: "quickstart/wordpress",
+    title: "WordPress",
+    description: "Add Adkit to your WordPress site using Custom HTML blocks, functions.php, or a child theme.",
+    component: QuickstartWordPressPage,
+  },
+  {
+    slug: "quickstart/webflow",
+    title: "Webflow",
+    description: "Add Adkit to your Webflow site using Project Settings and Embed elements.",
+    component: QuickstartWebflowPage,
+  },
   // Get Started
   {
     slug: "quickstart",
