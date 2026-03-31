@@ -4,7 +4,8 @@ import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
 import { Breadcrumbs } from "@/components/docs/breadcrumbs"
-import { Check, Copy, AlertCircle, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { Callout } from "@/components/docs/callout"
 
 export function ReactInstallationPage() {
   const [framework, setFramework] = useState<"nextjs" | "react" | "html">("nextjs")
@@ -20,11 +21,9 @@ export function ReactInstallationPage() {
         </p>
       </header>
 
-      <div className="mb-8 p-4 bg-muted/50 rounded-lg border border-border">
-        <p className="text-sm font-medium text-foreground m-0">
-          <strong>Prerequisites:</strong> Node.js 18+, a React 17+ app, and an Adkit account.
-        </p>
-      </div>
+      <Callout variant="note" title="Prerequisites" className="mb-8">
+        Node.js 18+, a React 17+ app, and an Adkit account.
+      </Callout>
 
       <div className="flex space-x-2 border-b border-border mb-8">
         <button
@@ -170,15 +169,10 @@ export function Sidebar() {
             />
           )}
 
-          <details className="mt-4 group border border-border rounded-lg bg-muted/30">
-            <summary className="flex items-center gap-2 p-3 font-medium cursor-pointer list-none">
-              <AlertCircle className="w-4 h-4 text-amber-500" />
-              Not seeing the placeholder?
-            </summary>
-            <div className="p-3 pt-0 text-sm text-muted-foreground border-t border-border/50 mt-1">
-              Check that your <code className="bg-muted px-1 py-0.5 rounded">siteId</code> is correct and your domain is verified in the dashboard. Make sure you don't have an ad blocker enabled during development.
-            </div>
-          </details>
+          <Callout variant="note" title="Not seeing the placeholder?" className="mt-4">
+            Check that your <code>siteId</code> is correct and your domain is verified in the dashboard. Make sure
+            you don't have an ad blocker enabled during development.
+          </Callout>
         </section>
 
         {/* Step 4: Verify */}

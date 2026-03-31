@@ -67,8 +67,13 @@ export const navigation: NavSection[] = [
     defaultOpen: true,
     items: [
       { title: "Introduction", href: "/docs" },
-      { title: "Quickstart", href: "/docs/quickstart" },
       { title: "How It Works", href: "/docs/how-it-works" },
+      { title: "JavaScript", href: "/docs/quickstart/javascript" },
+      { title: "React", href: "/docs/quickstart/react" },
+      { title: "Next.js", href: "/docs/quickstart/nextjs" },
+      { title: "Astro", href: "/docs/quickstart/astro" },
+      { title: "WordPress", href: "/docs/quickstart/wordpress" },
+      { title: "Webflow", href: "/docs/quickstart/webflow" },
     ],
   },
   {
