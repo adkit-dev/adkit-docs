@@ -17,7 +17,7 @@ import {
 } from "@/components/icons/sdk-icons"
 
 export const siteConfig = {
-  name: "Adkit Docs",
+  name: "AdKit Docs",
   description: "Sell ad space directly on your website. Fixed-price slots, publisher-approved placements, two-line integration.",
   url: "https://docs.adkit.dev",
   links: {
