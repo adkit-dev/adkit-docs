@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 import { Check, ChevronDown, Copy, File } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
@@ -29,7 +30,7 @@ interface CodePreviewProps {
 }
 
 // ---------------------------------------------------------------------------
-// Shared mobile dropdown — shows icons when provided
+// Shared mobile dropdown — portal-based so overflow:hidden never clips it
 // ---------------------------------------------------------------------------
 function TabDropdown({
   options,
@@ -41,54 +42,95 @@ function TabDropdown({
   onSelect: (index: number) => void
 }) {
   const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({})
+  const [mounted, setMounted] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
-  const close = useCallback(() => setOpen(false), [])
+  useEffect(() => { setMounted(true) }, [])
+
+  const toggle = () => {
+    if (!open && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect()
+      setMenuStyle({
+        top: rect.bottom + 4,
+        left: rect.left,
+        minWidth: Math.max(rect.width, 160),
+      })
+    }
+    setOpen((v) => !v)
+  }
 
   useEffect(() => {
     if (!open) return
-    function handleOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) close()
+    const close = (e: MouseEvent) => {
+      if (!triggerRef.current?.contains(e.target as Node)) setOpen(false)
     }
-    document.addEventListener("mousedown", handleOutside)
-    return () => document.removeEventListener("mousedown", handleOutside)
-  }, [open, close])
+    document.addEventListener("mousedown", close)
+    return () => document.removeEventListener("mousedown", close)
+  }, [open])
 
   const active = options[activeIndex]
 
   return (
-    <div ref={ref} className="relative sm:hidden">
+    <div className="sm:hidden">
       <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 dark:text-foreground"
+        ref={triggerRef}
+        onClick={toggle}
+        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-200/60 dark:text-foreground dark:hover:bg-white/5"
       >
-        {active.icon && <span className="flex shrink-0">{active.icon}</span>}
+        {active.icon && (
+          <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+            {active.icon}
+          </span>
+        )}
         <span>{active.label}</span>
-        <ChevronDown
-          className={cn(
-            "h-3.5 w-3.5 text-slate-400 transition-transform duration-150 dark:text-muted-foreground",
-            open && "rotate-180"
-          )}
-        />
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="flex shrink-0"
+        >
+          <ChevronDown className="h-3.5 w-3.5 text-slate-400 dark:text-muted-foreground" />
+        </motion.span>
       </button>
-      {open && (
-        <div className="absolute top-full left-0 z-50 mt-0.5 min-w-[120px] overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-border dark:bg-[#161b22]">
-          {options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => { onSelect(index); setOpen(false) }}
-              className={cn(
-                "flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-slate-100 dark:hover:bg-primary/10",
-                index === activeIndex
-                  ? "font-medium text-slate-900 dark:text-foreground"
-                  : "text-slate-600 dark:text-muted-foreground"
-              )}
+
+      {mounted && createPortal(
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -6 }}
+              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              style={{ ...menuStyle, position: "fixed", zIndex: 9999, transformOrigin: "top left" }}
+              className="overflow-hidden rounded-xl border border-slate-200/80 bg-white p-1.5 shadow-xl shadow-black/10 dark:border-white/10 dark:bg-[#1c1c27] dark:shadow-black/40"
             >
-              {option.icon && <span className="flex shrink-0">{option.icon}</span>}
-              <span>{option.label}</span>
-            </button>
-          ))}
-        </div>
+              {options.map((option, index) => {
+                const isActive = index === activeIndex
+                return (
+                  <button
+                    key={index}
+                    onClick={() => { onSelect(index); setOpen(false) }}
+                    className={cn(
+                      "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-100",
+                      isActive
+                        ? "bg-primary/10 font-medium text-primary dark:bg-primary/15 dark:text-primary"
+                        : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
+                    )}
+                  >
+                    {option.icon && (
+                      <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                        {option.icon}
+                      </span>
+                    )}
+                    <span className="flex-1">{option.label}</span>
+                    {isActive && <Check className="h-3.5 w-3.5 shrink-0 text-primary" />}
+                  </button>
+                )
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
       )}
     </div>
   )
