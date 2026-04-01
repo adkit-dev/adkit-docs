@@ -70,20 +70,22 @@ function TabDropdown({
   }, [open])
 
   const active = options[activeIndex]
+  // If the active option has an icon, show icon-only in the trigger (compact framework selector)
+  const iconOnly = !!active.icon
 
   return (
     <div className="sm:hidden">
       <button
         ref={triggerRef}
         onClick={toggle}
-        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-200/60 dark:text-foreground dark:hover:bg-white/5"
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-200/60 dark:text-foreground dark:hover:bg-white/5"
       >
         {active.icon && (
           <span className="flex h-4 w-4 shrink-0 items-center justify-center">
             {active.icon}
           </span>
         )}
-        <span>{active.label}</span>
+        {!iconOnly && <span>{active.label}</span>}
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
@@ -205,8 +207,9 @@ export function CodePreview({
       )}
     >
       {/* Header with tabs and filename */}
-      <div className="flex items-center justify-between border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-        <div className="flex min-w-0 flex-1 items-center">
+      <div className="relative flex items-center border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+        {/* Left: tab selector */}
+        <div className="flex min-w-0 items-center">
           {resolvedTabs.length > 1 ? (
             <>
               {/* Mobile: custom dropdown with icon support */}
@@ -241,18 +244,21 @@ export function CodePreview({
                 ))}
               </div>
             </>
-          ) : currentTab.filename ? (
-            <div className="flex min-w-0 items-center gap-2 px-4 py-2.5 text-sm text-slate-500 dark:text-muted-foreground">
-              <File className="h-4 w-4 shrink-0" />
-              <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{currentTab.filename}</span>
-            </div>
           ) : null}
         </div>
+
+        {/* Centered filename */}
+        {currentTab.filename && (
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground pointer-events-none">
+            <File className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{currentTab.filename}</span>
+          </div>
+        )}
 
         {/* Copy button */}
         <button
           onClick={handleCopy}
-          className="mr-2 flex shrink-0 w-9 sm:w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
+          className="ml-auto mr-2 flex shrink-0 w-9 sm:w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
           aria-label="Copy code"
         >
           <AnimatePresence mode="wait">
@@ -465,11 +471,11 @@ export function MultiCodePreview({
             ))}
           </div>
 
-          {/* Filename display - centered, desktop only */}
+          {/* Filename display - centered on all screen sizes */}
           {examples[activeTab].filename && (
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs text-slate-500 sm:flex dark:text-muted-foreground">
+            <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground pointer-events-none">
               <File className="h-3.5 w-3.5 shrink-0" />
-              <span className="truncate font-mono max-w-[160px] lg:max-w-xs">{examples[activeTab].filename}</span>
+              <span className="truncate font-mono max-w-[120px] sm:max-w-[160px] lg:max-w-xs">{examples[activeTab].filename}</span>
             </div>
           )}
 
@@ -508,13 +514,6 @@ export function MultiCodePreview({
           </button>
         </div>
 
-        {/* Filename sub-row — mobile only */}
-        {examples[activeTab].filename && (
-          <div className="flex sm:hidden items-center gap-1.5 px-3 pb-1.5 text-xs text-slate-500 dark:text-muted-foreground">
-            <File className="h-3 w-3 shrink-0" />
-            <span className="truncate font-mono">{examples[activeTab].filename}</span>
-          </div>
-        )}
       </div>
 
       {/* Code content with animation */}
