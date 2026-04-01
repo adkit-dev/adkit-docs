@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Check, Copy, File } from "lucide-react"
+import { Check, ChevronDown, Copy, File } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
@@ -98,36 +98,54 @@ export function CodePreview({
     >
       {/* Header with tabs and filename */}
       <div className="flex items-center justify-between border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-        <div className="flex items-center">
+        <div className="flex min-w-0 flex-1 items-center">
           {resolvedTabs.length > 1 ? (
-            <div className="flex">
-              {resolvedTabs.map((tab, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={cn(
-                    "relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors",
-                    activeTab === index
-                      ? "text-slate-900 dark:text-foreground"
-                      : "text-slate-500 hover:text-slate-900 dark:text-muted-foreground dark:hover:text-foreground"
-                  )}
+            <>
+              {/* Mobile: dropdown */}
+              <div className="relative flex sm:hidden items-center px-3 py-2">
+                <select
+                  value={activeTab}
+                  onChange={(e) => setActiveTab(Number(e.target.value))}
+                  className="appearance-none bg-transparent pr-5 text-sm font-medium text-slate-700 focus:outline-none dark:text-foreground cursor-pointer"
                 >
-                  {tab.icon}
-                  <span>{tab.label}</span>
-                  {activeTab === index && (
-                    <motion.div
-                      layoutId="code-tab-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
+                  {resolvedTabs.map((tab, index) => (
+                    <option key={index} value={index} className="bg-slate-100 dark:bg-[#0d1117]">
+                      {tab.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 h-3.5 w-3.5 text-slate-400 dark:text-muted-foreground" />
+              </div>
+              {/* Desktop: tabs */}
+              <div className="hidden sm:flex">
+                {resolvedTabs.map((tab, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                    className={cn(
+                      "relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors",
+                      activeTab === index
+                        ? "text-slate-900 dark:text-foreground"
+                        : "text-slate-500 hover:text-slate-900 dark:text-muted-foreground dark:hover:text-foreground"
+                    )}
+                  >
+                    {tab.icon}
+                    <span>{tab.label}</span>
+                    {activeTab === index && (
+                      <motion.div
+                        layoutId="code-tab-indicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </>
           ) : currentTab.filename ? (
-            <div className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-500 dark:text-muted-foreground">
-              <File className="h-4 w-4" />
-              <span className="font-mono">{currentTab.filename}</span>
+            <div className="flex min-w-0 items-center gap-2 px-4 py-2.5 text-sm text-slate-500 dark:text-muted-foreground">
+              <File className="h-4 w-4 shrink-0" />
+              <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{currentTab.filename}</span>
             </div>
           ) : null}
         </div>
@@ -135,7 +153,7 @@ export function CodePreview({
         {/* Copy button */}
         <button
           onClick={handleCopy}
-          className="mr-2 flex w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
+          className="mr-2 flex shrink-0 w-9 sm:w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
           aria-label="Copy code"
         >
           <AnimatePresence mode="wait">
@@ -160,7 +178,7 @@ export function CodePreview({
                 className="flex items-center gap-1.5"
               >
                 <Copy className="h-4 w-4" />
-                <span>Copy</span>
+                <span className="hidden sm:inline">Copy</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -314,8 +332,24 @@ export function MultiCodePreview({
     >
       {/* Header with tabs */}
       <div className="relative flex items-center border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-        {/* Tabs on left */}
-        <div className="flex">
+        {/* Mobile: dropdown */}
+        <div className="relative flex sm:hidden items-center px-3 py-2">
+          <select
+            value={activeTab}
+            onChange={(e) => setActiveTab(Number(e.target.value))}
+            className="appearance-none bg-transparent pr-5 text-sm font-medium text-slate-700 focus:outline-none dark:text-foreground cursor-pointer"
+          >
+            {examples.map((example, index) => (
+              <option key={index} value={index} className="bg-slate-100 dark:bg-[#0d1117]">
+                {example.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-3 h-3.5 w-3.5 text-slate-400 dark:text-muted-foreground" />
+        </div>
+
+        {/* Desktop: tabs */}
+        <div className="hidden sm:flex">
           {examples.map((example, index) => (
             <button
               key={index}
@@ -340,18 +374,18 @@ export function MultiCodePreview({
           ))}
         </div>
 
-        {/* Filename display - centered */}
+        {/* Filename display - centered, desktop only */}
         {examples[activeTab].filename && (
-          <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2 text-xs text-slate-500 dark:text-muted-foreground">
-            <File className="h-3.5 w-3.5" />
-            <span className="font-mono">{examples[activeTab].filename}</span>
+          <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs text-slate-500 sm:flex dark:text-muted-foreground">
+            <File className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate font-mono max-w-[160px] lg:max-w-xs">{examples[activeTab].filename}</span>
           </div>
         )}
 
         {/* Copy button on right */}
         <button
           onClick={handleCopy}
-          className="ml-auto mr-2 flex w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
+          className="ml-auto mr-2 flex shrink-0 w-9 sm:w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
           aria-label="Copy code"
         >
           <AnimatePresence mode="wait">
@@ -376,7 +410,7 @@ export function MultiCodePreview({
                 className="flex items-center gap-1.5"
               >
                 <Copy className="h-4 w-4" />
-                <span>Copy</span>
+                <span className="hidden sm:inline">Copy</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -451,14 +485,14 @@ export function DiffPreview({
     >
       <div className="flex items-center justify-between border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
         {filename && (
-          <div className="flex items-center gap-2 px-4 py-2.5 text-sm text-slate-500 dark:text-muted-foreground">
-            <File className="h-4 w-4" />
-            <span className="font-mono">{filename}</span>
+          <div className="flex min-w-0 items-center gap-2 px-4 py-2.5 text-sm text-slate-500 dark:text-muted-foreground">
+            <File className="h-4 w-4 shrink-0" />
+            <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{filename}</span>
           </div>
         )}
         <button
           onClick={handleCopy}
-          className="ml-auto mr-2 flex w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
+          className="ml-auto mr-2 flex shrink-0 w-9 sm:w-[72px] items-center justify-center rounded-md py-2 text-xs text-slate-500 transition-colors hover:bg-slate-200/70 hover:text-slate-900 dark:text-muted-foreground dark:hover:bg-primary/10 dark:hover:text-foreground"
           aria-label="Copy code"
         >
           <AnimatePresence mode="wait">
@@ -483,7 +517,7 @@ export function DiffPreview({
                 className="flex items-center gap-1.5"
               >
                 <Copy className="h-4 w-4" />
-                <span>Copy</span>
+                <span className="hidden sm:inline">Copy</span>
               </motion.div>
             )}
           </AnimatePresence>
