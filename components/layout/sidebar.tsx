@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Search, Sparkles, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { ShimmerButton } from "@/components/ui/shimmer-button"
 import { navigation } from "@/lib/docs/nav"
 import { ThemeToggle } from "./theme-toggle"
 import { JavaScriptIcon, ReactIcon } from "@/components/icons/sdk-icons"
@@ -68,15 +69,16 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
             ⌘K
           </kbd>
         </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-9 w-9 shrink-0 border-border bg-background text-foreground/70 hover:bg-muted hover:text-foreground"
+        <ShimmerButton
+          shimmerColor="hsl(270 70% 75%)"
+          background="hsl(270 70% 45%)"
+          className="h-9 shrink-0 px-3 font-sans text-sm font-medium"
           onClick={onAssistantClick}
           aria-label="Open AI assistant"
         >
-          <Sparkles className="h-4 w-4" />
-        </Button>
+          <Sparkles className="mr-1.5 h-4 w-4" />
+          Ask AI
+        </ShimmerButton>
       </div>
 
       <nav className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4" tabIndex={0}>
@@ -109,6 +111,7 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
                   <ul className="mt-1 space-y-0.5 border-l border-border/50 ml-3 pl-3" role="list">
                     {section.items.map((item) => {
                       const isActive = pathname === item.href
+                      const ItemIcon = item.icon
                       return (
                         <li key={item.href}>
                             <Link
@@ -121,6 +124,7 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
                                   : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                               )}
                             >
+                              {ItemIcon && <ItemIcon className="h-4 w-4 shrink-0" />}
                               {item.isCode ? (
                                 <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono text-primary">
                                   {item.title}

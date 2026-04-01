@@ -7,6 +7,14 @@ import {
   Lightbulb,
   BookOpen,
 } from "lucide-react"
+import {
+  JavaScriptIcon,
+  ReactIcon,
+  NextJSIcon,
+  AstroIcon,
+  WordPressIcon,
+  WebflowIcon,
+} from "@/components/icons/sdk-icons"
 
 export const siteConfig = {
   name: "Adkit Docs",
@@ -68,12 +76,20 @@ export const navigation: NavSection[] = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "How It Works", href: "/docs/how-it-works" },
-      { title: "JavaScript", href: "/docs/quickstart/javascript" },
-      { title: "React", href: "/docs/quickstart/react" },
-      { title: "Next.js", href: "/docs/quickstart/nextjs" },
-      { title: "Astro", href: "/docs/quickstart/astro" },
-      { title: "WordPress", href: "/docs/quickstart/wordpress" },
-      { title: "Webflow", href: "/docs/quickstart/webflow" },
+    ],
+  },
+  {
+    title: "Quickstarts",
+    icon: Rocket,
+    collapsible: true,
+    defaultOpen: true,
+    items: [
+      { title: "JavaScript", href: "/docs/quickstart/javascript", icon: JavaScriptIcon },
+      { title: "React", href: "/docs/quickstart/react", icon: ReactIcon },
+      { title: "Next.js", href: "/docs/quickstart/nextjs", icon: NextJSIcon },
+      { title: "Astro", href: "/docs/quickstart/astro", icon: AstroIcon },
+      { title: "WordPress", href: "/docs/quickstart/wordpress", icon: WordPressIcon },
+      { title: "Webflow", href: "/docs/quickstart/webflow", icon: WebflowIcon },
     ],
   },
   {
