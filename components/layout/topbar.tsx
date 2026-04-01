@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button"
 import { ShimmerButton } from "@/components/ui/shimmer-button"
 import { topNavigation } from "@/lib/docs/nav"
 import { SiteLogo } from "./site-logo"
+import { ThemeToggle } from "./theme-toggle"
 
 interface TopbarProps {
   onSearchClick?: () => void
-  onAssistantClick?: () => void
   onMenuClick?: () => void
 }
 
@@ -34,8 +34,14 @@ export function Topbar({ onSearchClick, onMenuClick }: TopbarProps) {
         <SiteLogo />
       </div>
 
+      <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-64 items-center justify-end pr-4 lg:flex">
+        <div className="pointer-events-auto">
+          <ThemeToggle />
+        </div>
+      </div>
+
       {/* Desktop navigation (center) */}
-      <div className="hidden md:flex items-center gap-1">
+      <div className="ml-auto hidden md:flex items-center gap-1">
         <nav className="flex items-center gap-1" aria-label="Main navigation">
           {topNavigation.map((item) => (
             <Link
@@ -62,10 +68,18 @@ export function Topbar({ onSearchClick, onMenuClick }: TopbarProps) {
         </Link>
       </div>
 
-      {/* Right: search icon (always visible) */}
-      <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Search" onClick={onSearchClick}>
-        <Search className="h-5 w-5" />
-      </Button>
+      <div className="flex items-center gap-2 lg:hidden">
+        <ThemeToggle />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 md:hidden"
+          aria-label="Search"
+          onClick={onSearchClick}
+        >
+          <Search className="h-5 w-5" />
+        </Button>
+      </div>
     </header>
   )
 }

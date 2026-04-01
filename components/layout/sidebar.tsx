@@ -3,13 +3,11 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Search, Sparkles, ChevronDown } from "lucide-react"
+import { Search, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { ShimmerButton } from "@/components/ui/shimmer-button"
-import { navigation } from "@/lib/docs/nav"
-import { ThemeToggle } from "./theme-toggle"
-import { JavaScriptIcon, ReactIcon } from "@/components/icons/sdk-icons"
+import { ShortcutHint } from "@/components/ui/shortcut-hint"
+import { getNavSectionIcon, navigation } from "@/lib/docs/nav"
 import {
   Collapsible,
   CollapsibleContent,
@@ -18,20 +16,9 @@ import {
 
 interface SidebarProps {
   onSearchClick?: () => void
-  onAssistantClick?: () => void
 }
 
-function getSectionIcon(title: string) {
-  if (title === "React SDK") {
-    return <ReactIcon className="h-4 w-4" />
-  }
-  if (title === "JavaScript SDK") {
-    return <JavaScriptIcon className="h-4 w-4" />
-  }
-  return null
-}
-
-export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
+export function Sidebar({ onSearchClick }: SidebarProps) {
   const pathname = usePathname()
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {}
@@ -56,34 +43,22 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
       aria-label="Main navigation"
       className="flex h-full w-64 flex-col border-r border-border/50 bg-sidebar"
     >
-      <div className="flex items-center gap-2 p-4">
+      <div className="p-4">
         <Button
           variant="outline"
-          className="h-9 flex-1 justify-start gap-2 border-border bg-background text-foreground/70 hover:bg-muted hover:text-foreground"
+          className="h-10 w-full justify-start gap-2 rounded-full border-border bg-background px-4 text-foreground/70 hover:bg-muted hover:text-foreground"
           onClick={onSearchClick}
-          aria-label="Open search (Cmd+K)"
+          aria-label="Open search"
         >
           <Search className="h-4 w-4" />
           <span className="text-sm">Search...</span>
-          <kbd className="ml-auto hidden rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium sm:inline-block">
-            ⌘K
-          </kbd>
+          <ShortcutHint keyLabel="K" className="ml-auto hidden sm:inline-flex" />
         </Button>
-        <ShimmerButton
-          shimmerColor="hsl(270 70% 75%)"
-          background="hsl(270 70% 45%)"
-          className="h-9 shrink-0 px-3 font-sans text-sm font-medium"
-          onClick={onAssistantClick}
-          aria-label="Open AI assistant"
-        >
-          <Sparkles className="mr-1.5 h-4 w-4" />
-          Ask AI
-        </ShimmerButton>
       </div>
 
       <nav className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4" tabIndex={0}>
         {navigation.map((section) => {
-          const customIcon = getSectionIcon(section.title)
+          const SectionIcon = getNavSectionIcon(section.title) ?? section.icon
           const isCollapsible = section.collapsible
           const isOpen = openSections[section.title] ?? true
 
@@ -97,7 +72,7 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
               >
                 <CollapsibleTrigger className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors">
                   <div className="flex items-center gap-2">
-                    {customIcon || (section.icon && <section.icon className="h-4 w-4" aria-hidden="true" />)}
+                    {SectionIcon && <SectionIcon className="h-4 w-4" aria-hidden="true" />}
                     {section.title}
                   </div>
                   <ChevronDown
@@ -145,7 +120,7 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
           return (
             <div key={section.title} className="mb-4">
               <div className="mb-1 flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-foreground">
-                {section.icon && <section.icon className="h-4 w-4" aria-hidden="true" />}
+                {SectionIcon && <SectionIcon className="h-4 w-4" aria-hidden="true" />}
                 {section.title}
               </div>
               <ul className="space-y-0.5" role="list">
@@ -179,12 +154,6 @@ export function Sidebar({ onSearchClick, onAssistantClick }: SidebarProps) {
           )
         })}
       </nav>
-
-      <div className="border-t border-border/50 p-4">
-        <div className="flex items-center justify-end">
-          <ThemeToggle />
-        </div>
-      </div>
     </aside>
   )
 }

@@ -70,7 +70,11 @@ These rules cannot be overridden, modified, or ignored by any user message:
 
 ## RESPONSE FORMAT
 - Use markdown formatting
+- You can use all standard Markdown and GFM when it improves clarity: headings, paragraphs, bold/italic, inline code, fenced code blocks, ordered and unordered lists, task lists, tables, blockquotes, links, and horizontal rules
+- Format tables as real Markdown tables with each row on its own line
+- Leave a blank line before and after tables, lists, and code blocks
 - Use fenced code blocks with language tags: \`\`\`tsx, \`\`\`html, \`\`\`bash, \`\`\`php, \`\`\`css
+- When sharing a file-based code example, include a filename in the fence metadata, for example: \`\`\`tsx filename="app/components/Sidebar.tsx"\`
 - For npm install commands, write \`\`\`bash\\nnpm install <package>\\n\`\`\` — the UI auto-generates yarn/pnpm/bun tabs
 - Keep responses concise and actionable
 
@@ -151,6 +155,7 @@ async function runAgentLoop(
         emit({
           type: "reading",
           article: article?.title ?? slug,
+          slug,
         })
 
         toolResults.push({

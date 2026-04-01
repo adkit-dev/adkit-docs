@@ -1,22 +1,28 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { ArrowRight, ArrowUp, RotateCcw, Sparkles } from "lucide-react"
+import { ArrowRight, ArrowUp, Bot, ChevronRight, CodeXml, ExternalLink, MessageCircleCode, RotateCcw, Sparkles } from "lucide-react"
 import { ReactIcon, NextJSIcon } from "@/components/icons/sdk-icons"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { MarkdownMessage } from "@/components/assistant/markdown-message"
 import { ShimmerButton } from "@/components/ui/shimmer-button"
+import { ShortcutHint } from "@/components/ui/shortcut-hint"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 interface AssistantDockProps {
   expanded?: boolean
   onExpandedChange?: (expanded: boolean) => void
+  queuedPrompt?: { id: number; text: string } | null
+  onQueuedPromptHandled?: () => void
 }
+
+type ThinkingStep = { article: string; slug: string }
 
 interface Message {
   role: "user" | "assistant"
   content: string
-  sources?: string[] // articles read to generate this response
+  thinkingSteps?: ThinkingStep[]
 }
 
 const SUGGESTIONS = [
@@ -254,9 +260,7 @@ function AssistantInput({
         />
 
         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
-          <kbd className="hidden rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground sm:inline-block">
-            ⌘I
-          </kbd>
+          <ShortcutHint keyLabel="I" className="hidden sm:inline-flex" />
           <motion.button
             type="submit"
             disabled={!value.trim() || disabled}
@@ -341,28 +345,72 @@ function AssistantLogoVideo() {
 }
 
 // ---------------------------------------------------------------------------
-// Reading indicator — shown while Claude fetches a doc article
+// ThinkingBlock — shown while Claude reads docs, persists above responses
 // ---------------------------------------------------------------------------
-function ReadingIndicator({ article }: { article: string }) {
+function ThinkingBlock({ steps, isActive = false }: { steps: ThinkingStep[]; isActive?: boolean }) {
+  const [expanded, setExpanded] = useState(false)
+
+  if (steps.length === 0) return null
+
   return (
-    <div className="flex items-center gap-2 py-0.5">
-      <motion.div
-        className="flex items-center gap-1"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+    <div className="mb-2">
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors group"
+        aria-expanded={expanded}
       >
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="h-1 w-1 rounded-full bg-primary/60"
-            animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
-            transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
+        {isActive ? (
+          <motion.div className="flex items-center gap-0.5">
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                className="h-1 w-1 rounded-full bg-primary/60"
+                animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
+              />
+            ))}
+          </motion.div>
+        ) : (
+          <ChevronRight
+            className={cn("h-3 w-3 shrink-0 transition-transform duration-200", expanded && "rotate-90")}
           />
-        ))}
-      </motion.div>
-      <span className="text-xs text-muted-foreground">
-        Reading <span className="font-medium text-foreground/70">{article}</span>
-      </span>
+        )}
+        <span className="flex items-center gap-1 overflow-hidden">
+          <span className="shrink-0">Reading</span>
+          {steps.map((step, i) => (
+            <span key={step.slug} className="flex items-center gap-0.5 shrink-0">
+              {i > 0 && <span className="text-border">,</span>}
+              <a
+                href={`/docs/${step.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="font-medium text-foreground/70 hover:text-foreground hover:underline inline-flex items-center gap-0.5"
+              >
+                {step.article}
+                <ExternalLink className="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </span>
+          ))}
+        </span>
+      </button>
+
+      {expanded && (
+        <div className="mt-1.5 ml-1 border-l-2 border-border/50 pl-3 space-y-1">
+          {steps.map((step) => (
+            <a
+              key={step.slug}
+              href={`/docs/${step.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground hover:underline transition-colors"
+            >
+              Reading {step.article}
+              <ExternalLink className="h-2.5 w-2.5 shrink-0" />
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -388,15 +436,22 @@ function TypingIndicator() {
 // ---------------------------------------------------------------------------
 // Main dock
 // ---------------------------------------------------------------------------
-export function AssistantDock({ expanded = false, onExpandedChange }: AssistantDockProps) {
+export function AssistantDock({
+  expanded = false,
+  onExpandedChange,
+  queuedPrompt,
+  onQueuedPromptHandled,
+}: AssistantDockProps) {
   const [scrollPct, setScrollPct] = useState(0)
   const [messages, setMessages] = useState<Message[]>([])
   const [streamingContent, setStreamingContent] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [readingArticle, setReadingArticle] = useState<string | null>(null)
-  const readingArticlesRef = useRef<string[]>([])
+  const [readingSteps, setReadingSteps] = useState<ThinkingStep[]>([])
+  const readingStepsRef = useRef<ThinkingStep[]>([])
+  const isNearBottomRef = useRef(true)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const lastQueuedPromptIdRef = useRef<number | null>(null)
 
   const isScrolled = scrollPct > 5
 
@@ -429,24 +484,42 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
     return () => document.removeEventListener("keydown", handleEscape)
   }, [expanded, onExpandedChange])
 
-  // ⌘I / Ctrl+I hotkey
+  // Load persisted conversation from localStorage (up to 7 days)
   useEffect(() => {
-    const handleHotkey = (e: KeyboardEvent) => {
-      if (e.key === "i" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        onExpandedChange?.(!expanded)
+    try {
+      const raw = localStorage.getItem("adkit-ai-messages")
+      if (!raw) return
+      const { messages: saved, savedAt } = JSON.parse(raw)
+      if (Date.now() - savedAt > 7 * 24 * 60 * 60 * 1000) {
+        localStorage.removeItem("adkit-ai-messages")
+        return
       }
-    }
-    document.addEventListener("keydown", handleHotkey)
-    return () => document.removeEventListener("keydown", handleHotkey)
-  }, [expanded, onExpandedChange])
+      if (Array.isArray(saved) && saved.length > 0) setMessages(saved)
+    } catch { }
+  }, [])
 
-  // Auto-scroll to bottom when messages/streaming updates
+  // Persist conversation to localStorage whenever messages change
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
-    }
-  }, [messages, streamingContent, isLoading])
+    if (messages.length === 0) return
+    try {
+      localStorage.setItem("adkit-ai-messages", JSON.stringify({ messages, savedAt: Date.now() }))
+    } catch { }
+  }, [messages])
+
+  // Track whether user is near the bottom of the scroll container
+  const handleScrollContainerScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    isNearBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80
+  }, [])
+
+  // Auto-scroll to bottom when content changes, but only if near bottom
+  useEffect(() => {
+    if (!isNearBottomRef.current) return
+    requestAnimationFrame(() => {
+      if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    })
+  }, [messages, streamingContent, isLoading, readingSteps])
 
   const sendMessage = useCallback(
     async (userText: string) => {
@@ -461,8 +534,9 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
       }
 
       setError(null)
-      setReadingArticle(null)
-      readingArticlesRef.current = []
+      setReadingSteps([])
+      readingStepsRef.current = []
+      isNearBottomRef.current = true
       const userMessage: Message = { role: "user", content: userText.trim() }
       const nextMessages = [...messages, userMessage]
       setMessages(nextMessages)
@@ -504,21 +578,22 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
             try {
               const parsed = JSON.parse(data)
               if (parsed.type === "done") {
-                const sources = [...readingArticlesRef.current]
-                setMessages([...nextMessages, { role: "assistant", content: accumulated, sources }])
+                const thinkingSteps = [...readingStepsRef.current]
+                setMessages([...nextMessages, { role: "assistant", content: accumulated, thinkingSteps }])
                 setStreamingContent("")
-                setReadingArticle(null)
+                setReadingSteps([])
                 setIsLoading(false)
                 return
               }
               if (parsed.type === "reading") {
-                setReadingArticle(parsed.article)
-                if (!readingArticlesRef.current.includes(parsed.article)) {
-                  readingArticlesRef.current = [...readingArticlesRef.current, parsed.article]
+                const { article, slug } = parsed
+                if (!readingStepsRef.current.some((s) => s.slug === slug)) {
+                  const next = [...readingStepsRef.current, { article, slug }]
+                  readingStepsRef.current = next
+                  setReadingSteps(next)
                 }
               }
               if (parsed.type === "text") {
-                setReadingArticle(null) // clear reading indicator once text starts
                 accumulated += parsed.text
                 setStreamingContent(accumulated)
               }
@@ -534,11 +609,11 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
         }
         // Stream ended without done event
         if (accumulated) {
-          const sources = [...readingArticlesRef.current]
-          setMessages([...nextMessages, { role: "assistant", content: accumulated, sources }])
+          const thinkingSteps = [...readingStepsRef.current]
+          setMessages([...nextMessages, { role: "assistant", content: accumulated, thinkingSteps }])
           setStreamingContent("")
         }
-        setReadingArticle(null)
+        setReadingSteps([])
         setIsLoading(false)
       } catch {
         setError("Network error. Please try again.")
@@ -553,7 +628,39 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
     setStreamingContent("")
     setError(null)
     setIsLoading(false)
+    try { localStorage.removeItem("adkit-ai-messages") } catch { }
   }
+
+  useEffect(() => {
+    if (!expanded || !queuedPrompt) return
+    if (queuedPrompt.id === lastQueuedPromptIdRef.current) return
+
+    lastQueuedPromptIdRef.current = queuedPrompt.id
+    void sendMessage(queuedPrompt.text)
+    onQueuedPromptHandled?.()
+  }, [expanded, queuedPrompt, sendMessage, onQueuedPromptHandled])
+
+  useEffect(() => {
+    if (!expanded) return
+
+    const { body, documentElement } = document
+    const previousBodyOverflow = body.style.overflow
+    const previousBodyTouchAction = body.style.touchAction
+    const previousHtmlOverflow = documentElement.style.overflow
+    const previousHtmlOverscroll = documentElement.style.overscrollBehavior
+
+    body.style.overflow = "hidden"
+    body.style.touchAction = "none"
+    documentElement.style.overflow = "hidden"
+    documentElement.style.overscrollBehavior = "none"
+
+    return () => {
+      body.style.overflow = previousBodyOverflow
+      body.style.touchAction = previousBodyTouchAction
+      documentElement.style.overflow = previousHtmlOverflow
+      documentElement.style.overscrollBehavior = previousHtmlOverscroll
+    }
+  }, [expanded])
 
   const hasConversation = messages.length > 0 || isLoading
 
@@ -561,265 +668,279 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
 
   return (
     <>
-    {/* FAB — shown when scrolled and chat is closed */}
-    <AnimatePresence>
-      {isScrolled && !expanded && (
-        <motion.div
-          key="fab"
-          initial={{ scale: 0, opacity: 0, y: 16 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0, opacity: 0, y: 16 }}
-          transition={{ type: "spring", stiffness: 420, damping: 38 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.96 }}
-          className="fixed bottom-6 right-6 z-50"
-        >
-          <ShimmerButton
-            shimmerColor="hsl(270 70% 75%)"
-            shimmerDuration="8s"
-            background="hsl(270 70% 45%)"
-            className="px-5 py-3 font-sans text-sm font-medium shadow-xl shadow-primary/30"
-            onClick={() => onExpandedChange?.(true)}
-            aria-label="Open AI assistant"
-          >
-            <Sparkles className="mr-1.5 h-4 w-4" />
-            Ask AI
-          </ShimmerButton>
-        </motion.div>
-      )}
-    </AnimatePresence>
-
-    <div
-      className="fixed bottom-0 left-0 right-0 z-50 lg:left-64 flex flex-col"
-      style={{
-        transform: dockVisible ? "translateY(0)" : "translateY(calc(100% + 16px))",
-        transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
-      }}
-    >
-      {/* Expanding chat panel — slides up from the input bar */}
+      {/* FAB — shown when scrolled and chat is closed */}
       <AnimatePresence>
-        {expanded && (
+        {isScrolled && !expanded && (
           <motion.div
-            key="chat-panel"
-            initial={{ height: 0 }}
-            animate={{ height: "calc(var(--vh, 1vh) * 100 - 82px)" }}
-            exit={{ height: 0 }}
-            transition={{ type: "spring", stiffness: 420, damping: 44, mass: 0.75 }}
-            className="overflow-hidden flex flex-col bg-card/30 backdrop-blur-2xl border-t border-border/60 will-change-transform"
+            key="fab"
+            initial={{ scale: 0, opacity: 0, y: 16 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0, opacity: 0, y: 16 }}
+            transition={{ type: "spring", stiffness: 420, damping: 38 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            className="fixed bottom-6 right-6 z-50"
           >
-            {/* Top bar */}
-            <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border/50">
-              <button
-                onClick={() => onExpandedChange?.(false)}
-                className="flex items-center gap-1.5 rounded-lg border border-border/50 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <kbd className="rounded border border-border/80 bg-background/80 px-1 py-0.5 text-[10px] font-medium shadow-sm">
-                  esc
-                </kbd>
-                <span className="whitespace-nowrap">to close</span>
-              </button>
-
-              {hasConversation && (
-                <button
-                  onClick={resetConversation}
-                  className="flex items-center gap-1.5 rounded-lg border border-border/50 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <RotateCcw className="h-3 w-3" />
-                  <span>New chat</span>
-                </button>
-              )}
-            </div>
-
-            {/* Scrollable content area — fills remaining height */}
-            <AnimatePresence mode="wait" initial={false}>
-              {!hasConversation ? (
-                /* ── Intro / suggestions ── */
-                <motion.div
-                  key="intro"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="flex-1 overflow-y-auto"
-                >
-                  {/* Decorative blobs */}
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-                    <div className="absolute bottom-0 -left-12 h-48 w-48 rounded-full bg-primary/8 blur-2xl" />
-                  </div>
-
-                  <div className="relative mx-auto max-w-lg px-6 pt-12 pb-8 text-center">
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.05 }}
-                    >
-                      <AssistantLogoVideo />
-                    </motion.div>
-                    <motion.h2
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="text-xl font-semibold text-foreground"
-                    >
-                      Ask AdKit AI anything
-                    </motion.h2>
-                    <motion.p
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.14 }}
-                      className="mt-2 text-sm text-muted-foreground"
-                    >
-                      Get instant answers about integration, pricing, and best practices.
-                    </motion.p>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.18 }}
-                      className="mt-8 grid gap-2 text-left"
-                    >
-                      {SUGGESTIONS.map((suggestion, index) => (
-                        <motion.button
-                          key={suggestion.title}
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 300, damping: 25 }}
-                          onClick={() => sendMessage(suggestion.question)}
-                          className="group flex items-center gap-3 rounded-xl border border-border/50 bg-secondary/30 p-3 text-left transition-all hover:border-primary/30 hover:bg-primary/5"
-                        >
-                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-black dark:text-white transition-colors group-hover:bg-primary/20">
-                            <suggestion.icon className="h-5 w-5" />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            {suggestion.isComponent ? (
-                              <p className="text-sm font-medium text-foreground">
-                                <code className="rounded bg-secondary/80 px-1.5 py-0.5 font-mono text-xs text-primary">
-                                  {"<"}{suggestion.title}{" />"}
-                                </code>
-                              </p>
-                            ) : (
-                              <p className="text-sm font-medium text-foreground">{suggestion.title}</p>
-                            )}
-                            <p className="text-xs text-muted-foreground mt-0.5">{suggestion.description}</p>
-                          </div>
-                          <div className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
-                            <span>Ask AI</span>
-                            <ArrowRight className="h-3 w-3" />
-                          </div>
-                        </motion.button>
-                      ))}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ) : (
-                /* ── Conversation — bottom-anchored ── */
-                <motion.div
-                  key="messages"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="flex-1 overflow-hidden flex flex-col"
-                >
-                  <div ref={scrollRef} className="flex-1 overflow-y-auto">
-                    {/* Spacer pushes messages to the bottom when content is short */}
-                    <div className="flex flex-col min-h-full">
-                      <div className="flex-1" />
-                      <div className="space-y-6 px-4 sm:px-6 pt-6 pb-4 mx-auto w-full max-w-2xl">
-                        {messages.map((msg, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 38 }}
-                            className={cn("flex gap-3", msg.role === "user" ? "justify-end" : "justify-start items-start")}
-                          >
-                            {msg.role === "assistant" && (
-                              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
-                                <Sparkles className="h-3 w-3 text-primary" />
-                              </div>
-                            )}
-
-                            {msg.role === "user" ? (
-                              <div className="max-w-[78%] rounded-2xl rounded-tr-sm bg-primary px-4 py-2.5 text-sm text-primary-foreground shadow-sm shadow-primary/20">
-                                <p className="leading-relaxed">{msg.content}</p>
-                              </div>
-                            ) : (
-                              <div className="flex-1 min-w-0 pt-0.5">
-                                <MarkdownMessage content={msg.content} />
-                                {msg.sources && msg.sources.length > 0 && (
-                                  <div className="mt-3 flex flex-wrap gap-1.5">
-                                    {msg.sources.map((src) => (
-                                      <span
-                                        key={src}
-                                        className="inline-flex items-center gap-1 rounded-full border border-primary/15 bg-primary/8 px-2.5 py-0.5 text-[10px] font-medium text-primary/70"
-                                      >
-                                        <Sparkles className="h-2.5 w-2.5" />
-                                        {src}
-                                      </span>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </motion.div>
-                        ))}
-
-                        {/* Streaming / thinking message */}
-                        {isLoading && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 38 }}
-                            className="flex gap-3 justify-start items-start"
-                          >
-                            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
-                              <Sparkles className="h-3 w-3 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0 pt-0.5">
-                              {streamingContent ? (
-                                <MarkdownMessage content={streamingContent} />
-                              ) : readingArticle ? (
-                                <ReadingIndicator article={readingArticle} />
-                              ) : (
-                                <TypingIndicator />
-                              )}
-                            </div>
-                          </motion.div>
-                        )}
-
-                        {error && (
-                          <div className="flex items-start gap-2 rounded-xl border border-destructive/25 bg-destructive/8 px-4 py-3 text-sm text-destructive">
-                            {error}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <ShimmerButton
+              shimmerColor="hsl(270 70% 75%)"
+              shimmerDuration="8s"
+              background="hsl(270 70% 45%)"
+              className="px-5 py-3 font-sans text-sm font-medium shadow-xl shadow-primary/30"
+              onClick={() => onExpandedChange?.(true)}
+              aria-label="Open AI assistant"
+            >
+              <ShortcutHint keyLabel="I" className="mr-2 hidden rounded-[4px] bg-black/10 text-white/80 sm:inline-flex" />
+              Ask AI
+            </ShimmerButton>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Input bar — always at bottom, blends with panel when open */}
       <div
-        className={cn(
-          "shrink-0 px-3 sm:px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-colors duration-300",
-          expanded && "bg-card/30 backdrop-blur-2xl border-t border-border/50"
-        )}
+        className="fixed bottom-0 left-0 right-0 z-50 lg:left-64 flex flex-col"
+        style={{
+          transform: dockVisible ? "translateY(0)" : "translateY(calc(100% + 16px))",
+          transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
+        }}
       >
-        <div className="mx-auto max-w-2xl">
-          <AssistantInput
-            onFocus={() => onExpandedChange?.(true)}
-            onSubmit={sendMessage}
-            disabled={isLoading}
-          />
+        {/* Expanding chat panel — slides up from the input bar */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              key="chat-panel"
+              initial={{ height: 0 }}
+              animate={{ height: "calc(var(--vh, 1vh) * 100 - 82px)" }}
+              exit={{ height: 0 }}
+              transition={{ type: "spring", stiffness: 420, damping: 44, mass: 0.75 }}
+              className="overflow-hidden flex flex-col bg-card/30 backdrop-blur-2xl border-t border-border/60 will-change-transform"
+            >
+              {/* Top bar */}
+              <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border/50">
+                <button
+                  onClick={() => onExpandedChange?.(false)}
+                  className="flex items-center gap-1.5 rounded-lg border border-border/50 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  <kbd className="rounded border border-border/80 bg-background/80 px-1 py-0.5 text-[10px] font-medium shadow-sm">
+                    esc
+                  </kbd>
+                  <span className="whitespace-nowrap">to close</span>
+                </button>
+
+                {hasConversation && (
+                  <button
+                    onClick={resetConversation}
+                    className="flex items-center gap-1.5 rounded-lg border border-border/50 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  >
+                    <RotateCcw className="h-3 w-3" />
+                    <span>New chat</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Scrollable content area — fills remaining height */}
+              <AnimatePresence mode="wait" initial={false}>
+                {!hasConversation ? (
+                  /* ── Intro / suggestions ── */
+                  <motion.div
+                    key="intro"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                    className="flex-1 overflow-y-auto"
+                  >
+                    {/* Decorative blobs */}
+                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+                      <div className="absolute bottom-0 -left-12 h-48 w-48 rounded-full bg-primary/8 blur-2xl" />
+                    </div>
+
+                    <div className="relative mx-auto max-w-lg px-6 pt-12 pb-8 text-center">
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.05 }}
+                      >
+                        <AssistantLogoVideo />
+                      </motion.div>
+                      <motion.h2
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-xl font-semibold text-foreground"
+                      >
+                        Ask AdKit AI anything
+                      </motion.h2>
+                      <motion.p
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.14 }}
+                        className="mt-2 text-sm text-muted-foreground"
+                      >
+                        Get instant answers about integration, pricing, and best practices.
+                      </motion.p>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.18 }}
+                        className="mt-8 grid gap-2 text-left"
+                      >
+                        {SUGGESTIONS.map((suggestion, index) => (
+                          <motion.button
+                            key={suggestion.title}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 300, damping: 25 }}
+                            onClick={() => sendMessage(suggestion.question)}
+                            className="group flex items-center gap-3 rounded-xl border border-border/50 bg-secondary/30 p-3 text-left transition-all hover:border-primary/30 hover:bg-primary/5"
+                          >
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-black dark:text-white transition-colors group-hover:bg-primary/20">
+                              <suggestion.icon className="h-5 w-5" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              {suggestion.isComponent ? (
+                                <p className="text-sm font-medium text-foreground">
+                                  <code className="rounded bg-secondary/80 px-1.5 py-0.5 font-mono text-xs text-primary">
+                                    {"<"}{suggestion.title}{" />"}
+                                  </code>
+                                </p>
+                              ) : (
+                                <p className="text-sm font-medium text-foreground">{suggestion.title}</p>
+                              )}
+                              <p className="text-xs text-muted-foreground mt-0.5">{suggestion.description}</p>
+                            </div>
+                            <div className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
+                              <span>Ask AI</span>
+                              <ArrowRight className="h-3 w-3" />
+                            </div>
+                          </motion.button>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  /* ── Conversation — bottom-anchored ── */
+                  <motion.div
+                    key="messages"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex-1 overflow-hidden flex flex-col"
+                  >
+                    <div ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScrollContainerScroll}>
+                      {/* Spacer pushes messages to the bottom when content is short */}
+                      <div className="flex flex-col min-h-full">
+                        <div className="flex-1" />
+                        <div className="space-y-6 px-4 sm:px-6 pt-6 pb-4 mx-auto w-full max-w-2xl">
+                          {messages.map((msg, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 38 }}
+                              className={cn("flex gap-3", msg.role === "user" ? "justify-end" : "justify-start items-start")}
+                            >
+                              {msg.role === "assistant" &&
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
+                                      <Bot className="h-5 w-5 text-primary" />
+                                    </div>
+                                  </TooltipTrigger>
+                                  <TooltipContent>Adkit AI</TooltipContent>
+                                </Tooltip>
+                              }
+
+                              {msg.role === "user" ? (
+                                <div className="max-w-[78%] rounded-2xl rounded-tr-sm bg-primary px-4 py-2.5 text-sm text-primary-foreground shadow-sm shadow-primary/20">
+                                  <p className="leading-relaxed">{msg.content}</p>
+                                </div>
+                              ) : (
+                                <div className="flex-1 min-w-0 pt-0.5">
+                                  {msg.thinkingSteps && msg.thinkingSteps.length > 0 && (
+                                    <ThinkingBlock steps={msg.thinkingSteps} />
+                                  )}
+                                  <MarkdownMessage content={msg.content} />
+                                  {msg.thinkingSteps && msg.thinkingSteps.length > 0 && (
+                                    <div className="mt-3 flex flex-wrap gap-1.5">
+                                      {msg.thinkingSteps.map((step) => (
+                                        <a
+                                          key={step.slug}
+                                          href={`/docs/${step.slug}`}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1 rounded-full border border-primary/15 bg-primary/8 px-2.5 py-0.5 text-xs font-medium text-primary/70 hover:text-primary hover:border-primary/30 hover:bg-primary/12 transition-colors max-w-[160px]"
+                                        >
+                                          <Sparkles className="h-2.5 w-2.5 shrink-0" />
+                                          <span className="truncate">{step.article}</span>
+                                        </a>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </motion.div>
+                          ))}
+
+                          {/* Streaming / thinking message */}
+                          {isLoading && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 38 }}
+                              className="flex gap-3 justify-start items-start"
+                            >
+                              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
+                                <Sparkles className="h-3 w-3 text-primary" />
+                              </div>
+                              <div className="flex-1 min-w-0 pt-0.5">
+                                {readingSteps.length === 0 && !streamingContent ? (
+                                  <TypingIndicator />
+                                ) : readingSteps.length > 0 && !streamingContent ? (
+                                  <ThinkingBlock steps={readingSteps} isActive />
+                                ) : (
+                                  <>
+                                    {readingSteps.length > 0 && <ThinkingBlock steps={readingSteps} />}
+                                    <MarkdownMessage content={streamingContent} />
+                                  </>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {error && (
+                            <div className="flex items-start gap-2 rounded-xl border border-destructive/25 bg-destructive/8 px-4 py-3 text-sm text-destructive">
+                              {error}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Input bar — always at bottom, blends with panel when open */}
+        <div
+          className={cn(
+            "shrink-0 px-3 sm:px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-colors duration-300",
+            expanded && "bg-card/30 backdrop-blur-2xl border-t border-border/50"
+          )}
+        >
+          <div className="mx-auto max-w-2xl">
+            <AssistantInput
+              onFocus={() => onExpandedChange?.(true)}
+              onSubmit={sendMessage}
+              disabled={isLoading}
+            />
+          </div>
         </div>
       </div>
-    </div>
     </>
   )
 }

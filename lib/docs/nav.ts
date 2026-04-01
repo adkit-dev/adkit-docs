@@ -67,6 +67,8 @@ export interface NavSection {
   defaultOpen?: boolean
 }
 
+type NavIcon = React.ComponentType<{ className?: string }>
+
 export const navigation: NavSection[] = [
   {
     title: "Getting started",
@@ -175,3 +177,29 @@ export const navigation: NavSection[] = [
     ],
   },
 ]
+
+export function getNavSectionIcon(title: string): NavIcon | undefined {
+  if (title === "React SDK") {
+    return ReactIcon
+  }
+
+  if (title === "JavaScript SDK") {
+    return JavaScriptIcon
+  }
+
+  return navigation.find((section) => section.title === title)?.icon
+}
+
+export function getDocIcon(slug: string): NavIcon | undefined {
+  const href = slug ? `/docs/${slug}` : "/docs"
+
+  for (const section of navigation) {
+    const item = section.items.find((entry) => entry.href === href)
+
+    if (item) {
+      return item.icon ?? getNavSectionIcon(section.title)
+    }
+  }
+
+  return undefined
+}

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { DocsShell } from "@/components/layout/docs-shell"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 export const metadata: Metadata = {
   title: {
@@ -68,11 +69,13 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <DocsShell>{children}</DocsShell>
-          <Toaster />
+          <TooltipProvider>
+            <DocsShell>{children}</DocsShell>
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
         <Analytics />
       </body>
-    </html>
+    </html >
   )
 }

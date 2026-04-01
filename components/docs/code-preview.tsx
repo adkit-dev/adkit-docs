@@ -198,6 +198,7 @@ export function CodePreview({
   const processedHtml = highlightedCode
     ? addLineFeatures(highlightedCode, highlightLines, showLineNumbers, diff, addedLines, removedLines, isDark)
     : ""
+  const hasSelector = resolvedTabs.length > 1
 
   return (
     <div
@@ -210,7 +211,7 @@ export function CodePreview({
       <div className="relative flex items-center border-b border-slate-200/80 bg-slate-100/85 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] dark:border-primary/30 dark:bg-primary/20 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
         {/* Left: tab selector */}
         <div className="flex min-w-0 items-center">
-          {resolvedTabs.length > 1 ? (
+          {hasSelector ? (
             <>
               {/* Mobile: custom dropdown with icon support */}
               <TabDropdown
@@ -247,9 +248,15 @@ export function CodePreview({
           ) : null}
         </div>
 
-        {/* Centered filename */}
-        {currentTab.filename && (
+        {/* Filename: left-aligned for single previews, centered when a selector is present */}
+        {currentTab.filename && hasSelector && (
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground pointer-events-none">
+            <File className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{currentTab.filename}</span>
+          </div>
+        )}
+        {currentTab.filename && !hasSelector && (
+          <div className="flex min-w-0 items-center gap-1.5 px-4 py-2.5 text-xs text-slate-500 dark:text-muted-foreground">
             <File className="h-3.5 w-3.5 shrink-0" />
             <span className="truncate font-mono max-w-[120px] sm:max-w-xs">{currentTab.filename}</span>
           </div>

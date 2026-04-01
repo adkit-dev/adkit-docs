@@ -2,18 +2,20 @@
 
 import { useState, useMemo, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { FileText, Hash, Search, X, ArrowRight } from "lucide-react"
+import { FileText, Search, Sparkles, X, ArrowRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { docPages } from "@/lib/docs/pages"
+import { getDocIcon } from "@/lib/docs/nav"
 import { useDebounce } from "@/hooks/use-debounce"
 import { cn } from "@/lib/utils"
 
 interface CommandPaletteProps {
   open: boolean
   onOpenChange: (open: boolean) => void
+  onAskAi?: (query: string) => void
 }
 
-export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
+export function CommandPalette({ open, onOpenChange, onAskAi }: CommandPaletteProps) {
   const router = useRouter()
   const [search, setSearch] = useState("")
   const debouncedSearch = useDebounce(search, 150)
@@ -28,16 +30,20 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     )
   }, [debouncedSearch])
 
-  const quickLinks = [
-    { label: "Getting started", slug: "quickstart" },
-    { label: "API Reference", slug: "api/serve" },
-  ]
+  const trimmedQuery = debouncedSearch.trim()
+  const askAiItem =
+    trimmedQuery && filteredPages.length === 0
+      ? {
+          type: "ask-ai" as const,
+          label: `Ask AI: ${trimmedQuery}`,
+          desc: "Let Adkit AI assist you with this.",
+          query: trimmedQuery,
+        }
+      : null
 
   const allItems = [
     ...filteredPages.map((p) => ({ type: "page" as const, label: p.title, desc: p.description, slug: p.slug })),
-    ...(debouncedSearch
-      ? []
-      : quickLinks.map((l) => ({ type: "quick" as const, label: l.label, desc: "", slug: l.slug }))),
+    ...(askAiItem ? [askAiItem] : []),
   ]
 
   // Reset state when opening
@@ -59,6 +65,12 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     router.push(slug ? `/docs/${slug}` : "/docs")
   }
 
+  const handleAskAi = (query: string) => {
+    onOpenChange(false)
+    setSearch("")
+    onAskAi?.(query)
+  }
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault()
@@ -68,7 +80,15 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
       setActiveIndex((i) => Math.max(i - 1, 0))
     } else if (e.key === "Enter") {
       e.preventDefault()
-      if (allItems[activeIndex]) handleSelect(allItems[activeIndex].slug)
+      const activeItem = allItems[activeIndex]
+      if (!activeItem) return
+
+      if (activeItem.type === "ask-ai") {
+        handleAskAi(activeItem.query)
+        return
+      }
+
+      handleSelect(activeItem.slug)
     } else if (e.key === "Escape") {
       onOpenChange(false)
     }
@@ -92,11 +112,11 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
           {/* Panel — slides up from bottom on mobile, centered on desktop */}
           <motion.div
             key="panel"
-            initial={{ opacity: 0, y: "100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "100%" }}
-            transition={{ type: "spring", stiffness: 420, damping: 44, mass: 0.75 }}
-            className="fixed bottom-0 left-0 right-0 z-50 sm:bottom-auto sm:left-1/2 sm:top-[15%] sm:-translate-x-1/2 sm:w-full sm:max-w-lg"
+            initial={{ opacity: 0, scale: 0.965 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 520, damping: 34, mass: 0.65 }}
+            className="fixed bottom-0 left-0 right-0 z-50 origin-bottom sm:bottom-auto sm:left-1/2 sm:top-[15%] sm:w-full sm:max-w-lg sm:-translate-x-1/2 sm:origin-top"
           >
             <div className="rounded-t-2xl sm:rounded-2xl border border-border/60 bg-card/95 backdrop-blur-2xl shadow-2xl shadow-black/30 overflow-hidden flex flex-col max-h-[85vh] sm:max-h-[70vh]">
               {/* Header with search input */}
@@ -135,94 +155,89 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
 
               {/* Results */}
               <div className="flex-1 overflow-y-auto overscroll-contain p-2">
-                {allItems.length === 0 ? (
-                  <div className="py-10 text-center text-sm text-muted-foreground">No results found.</div>
-                ) : (
-                  <>
-                    {/* Pages group */}
-                    {filteredPages.length > 0 && (
-                      <div className="mb-1">
-                        <div className="px-2 py-1.5 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
-                          Pages
-                        </div>
-                        {filteredPages.map((page, idx) => {
-                          const isActive = idx === activeIndex
-                          return (
-                            <button
-                              key={page.slug}
-                              onClick={() => handleSelect(page.slug)}
-                              onMouseEnter={() => setActiveIndex(idx)}
-                              className={cn(
-                                "group w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-100",
-                                isActive
-                                  ? "bg-primary/10 text-foreground"
-                                  : "text-foreground hover:bg-muted/60"
-                              )}
-                            >
-                              <div className={cn(
-                                "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
-                                isActive ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
-                              )}>
-                                <FileText className="h-4 w-4" aria-hidden="true" />
-                              </div>
-                              <div className="flex flex-col min-w-0 flex-1">
-                                <span className="text-sm font-medium truncate">{page.title}</span>
-                                <span className={cn(
-                                  "text-xs truncate transition-colors",
-                                  isActive ? "text-muted-foreground" : "text-muted-foreground/70"
-                                )}>
-                                  {page.description}
-                                </span>
-                              </div>
-                              <ArrowRight className={cn(
-                                "h-3.5 w-3.5 shrink-0 transition-all",
-                                isActive ? "text-primary opacity-100 translate-x-0" : "text-muted-foreground opacity-0 -translate-x-1"
-                              )} />
-                            </button>
-                          )
-                        })}
+                <>
+                  {filteredPages.length > 0 && (
+                    <div className="mb-1">
+                      <div className="px-2 py-1.5 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                        Pages
                       </div>
-                    )}
+                      {filteredPages.map((page, idx) => {
+                        const isActive = idx === activeIndex
+                        const PageIcon = getDocIcon(page.slug) ?? FileText
+                        return (
+                          <button
+                            key={page.slug}
+                            onClick={() => handleSelect(page.slug)}
+                            onMouseEnter={() => setActiveIndex(idx)}
+                            className={cn(
+                              "group w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-100",
+                              isActive
+                                ? "bg-primary/10 text-foreground"
+                                : "text-foreground hover:bg-muted/60"
+                            )}
+                          >
+                            <div className={cn(
+                              "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
+                              isActive ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
+                            )}>
+                              <PageIcon className="h-4 w-4" aria-hidden="true" />
+                            </div>
+                            <div className="flex flex-col min-w-0 flex-1">
+                              <span className="text-sm font-medium truncate">{page.title}</span>
+                              <span className={cn(
+                                "text-xs truncate transition-colors",
+                                isActive ? "text-muted-foreground" : "text-muted-foreground/70"
+                              )}>
+                                {page.description}
+                              </span>
+                            </div>
+                            <ArrowRight className={cn(
+                              "h-3.5 w-3.5 shrink-0 transition-all",
+                              isActive ? "text-primary opacity-100 translate-x-0" : "text-muted-foreground opacity-0 -translate-x-1"
+                            )} />
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
 
-                    {/* Quick links group */}
-                    {!debouncedSearch && (
-                      <div>
-                        <div className="px-2 py-1.5 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
-                          Quick links
-                        </div>
-                        {quickLinks.map((link, idx) => {
-                          const itemIdx = filteredPages.length + idx
-                          const isActive = itemIdx === activeIndex
-                          return (
-                            <button
-                              key={link.slug}
-                              onClick={() => handleSelect(link.slug)}
-                              onMouseEnter={() => setActiveIndex(itemIdx)}
-                              className={cn(
-                                "group w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-100",
-                                isActive
-                                  ? "bg-primary/10 text-foreground"
-                                  : "text-foreground hover:bg-muted/60"
-                              )}
-                            >
-                              <div className={cn(
-                                "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
-                                isActive ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
-                              )}>
-                                <Hash className="h-4 w-4" aria-hidden="true" />
-                              </div>
-                              <span className="text-sm font-medium">{link.label}</span>
-                              <ArrowRight className={cn(
-                                "h-3.5 w-3.5 shrink-0 ml-auto transition-all",
-                                isActive ? "text-primary opacity-100 translate-x-0" : "text-muted-foreground opacity-0 -translate-x-1"
-                              )} />
-                            </button>
-                          )
-                        })}
+                  {askAiItem && (
+                    <div>
+                      <div className="px-2 py-1.5 text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+                        Ask AI
                       </div>
-                    )}
-                  </>
-                )}
+                      <button
+                        onClick={() => handleAskAi(askAiItem.query)}
+                        onMouseEnter={() => setActiveIndex(filteredPages.length)}
+                        className={cn(
+                          "group w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-100",
+                          activeIndex === filteredPages.length
+                            ? "bg-primary/10 text-foreground"
+                            : "text-foreground hover:bg-muted/60"
+                        )}
+                      >
+                        <div className={cn(
+                          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
+                          activeIndex === filteredPages.length
+                            ? "bg-primary/15 text-primary"
+                            : "bg-muted text-muted-foreground"
+                        )}>
+                          <Sparkles className="h-4 w-4" aria-hidden="true" />
+                        </div>
+                        <div className="flex min-w-0 flex-1 flex-col">
+                          <span className="truncate text-sm font-medium">{askAiItem.label}</span>
+                          <span className="text-xs text-muted-foreground/70">{askAiItem.desc}</span>
+                        </div>
+                        <ArrowRight className={cn(
+                          "h-3.5 w-3.5 shrink-0 transition-all",
+                          activeIndex === filteredPages.length
+                            ? "text-primary opacity-100 translate-x-0"
+                            : "text-muted-foreground opacity-0 -translate-x-1"
+                        )} />
+                      </button>
+                    </div>
+                  )}
+                </>
               </div>
 
               {/* Footer hint */}
