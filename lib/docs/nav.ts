@@ -6,7 +6,6 @@ import {
   Server,
   Lightbulb,
   BookOpen,
-  Zap,
 } from "lucide-react"
 import {
   JavaScriptIcon,
@@ -77,12 +76,11 @@ export const navigation: NavSection[] = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "How It Works", href: "/docs/how-it-works" },
-      { title: "Quickstarts", href: "/docs/quickstart" },
     ],
   },
   {
     title: "Quickstarts",
-    icon: Zap,
+    icon: Rocket,
     collapsible: true,
     defaultOpen: true,
     items: [

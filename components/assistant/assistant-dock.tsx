@@ -6,6 +6,7 @@ import { ReactIcon, NextJSIcon } from "@/components/icons/sdk-icons"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { MarkdownMessage } from "@/components/assistant/markdown-message"
+import { ShimmerButton } from "@/components/ui/shimmer-button"
 
 interface AssistantDockProps {
   expanded?: boolean
@@ -553,7 +554,7 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
     {/* FAB — shown when scrolled and chat is closed */}
     <AnimatePresence>
       {isScrolled && !expanded && (
-        <motion.button
+        <motion.div
           key="fab"
           initial={{ scale: 0, opacity: 0, y: 16 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -561,12 +562,20 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
           transition={{ type: "spring", stiffness: 420, damping: 38 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.96 }}
-          onClick={() => onExpandedChange?.(true)}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-medium text-primary-foreground shadow-xl shadow-primary/30 ring-1 ring-primary/20"
-          aria-label="Open AI assistant"
+          className="fixed bottom-6 right-6 z-50"
         >
-          <span>Ask AI</span>
-        </motion.button>
+          <ShimmerButton
+            shimmerColor="hsl(270 70% 75%)"
+            shimmerDuration="8s"
+            background="hsl(270 70% 45%)"
+            className="px-5 py-3 font-sans text-sm font-medium shadow-xl shadow-primary/30"
+            onClick={() => onExpandedChange?.(true)}
+            aria-label="Open AI assistant"
+          >
+            <Sparkles className="mr-1.5 h-4 w-4" />
+            Ask AI
+          </ShimmerButton>
+        </motion.div>
       )}
     </AnimatePresence>
 
