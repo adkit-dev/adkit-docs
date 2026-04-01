@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Copy, Check } from "lucide-react"
+import { Check, Link } from "lucide-react"
 import { CodePreview } from "./code-preview"
 import { CommandBlock } from "./command-block"
 import { Breadcrumbs } from "./breadcrumbs"
@@ -13,6 +13,47 @@ interface DocContentProps {
   description: string
   content: string
   slug?: string
+}
+
+// Map slug prefixes to their section label and landing href
+const SECTION_MAP: Record<string, { label: string; href: string }> = {
+  quickstart: { label: "Quickstarts", href: "/docs/quickstart" },
+  react: { label: "React SDK", href: "/docs/react/installation" },
+  js: { label: "JavaScript SDK", href: "/docs/js/installation" },
+  publisher: { label: "Publisher Guide", href: "/docs/publisher/dashboard" },
+  advertiser: { label: "Advertiser Guide", href: "/docs/advertiser/booking" },
+  concepts: { label: "Concepts", href: "/docs/concepts/pricing" },
+  api: { label: "API Reference", href: "/docs/api/serve" },
+}
+
+// Derive a fitting filename for code blocks based on language and content hints
+function deriveFilename(language: string, code: string): string | undefined {
+  const lang = language.toLowerCase()
+  if (lang === "text" || lang === "bash" || lang === "shell" || lang === "sh") return undefined
+  if (lang === "tsx") {
+    if (code.includes("layout") || code.includes("Layout")) return "layout.tsx"
+    if (code.includes("App(") || code.includes("function App")) return "App.tsx"
+    if (code.includes("_app") || code.includes("_App")) return "_app.tsx"
+    if (code.includes("page") || code.includes("Page")) return "page.tsx"
+    return "component.tsx"
+  }
+  if (lang === "jsx") {
+    if (code.includes("App(") || code.includes("function App")) return "App.jsx"
+    return "component.jsx"
+  }
+  if (lang === "typescript" || lang === "ts") return "index.ts"
+  if (lang === "javascript" || lang === "js") {
+    if (code.includes("window.Adkit") || code.includes("adkit.js")) return "script.js"
+    return "index.js"
+  }
+  if (lang === "html") return "index.html"
+  if (lang === "css") return "styles.css"
+  if (lang === "json") {
+    if (code.includes('"scripts"') || code.includes('"dependencies"')) return "package.json"
+    return "config.json"
+  }
+  if (lang === "diff") return undefined
+  return undefined
 }
 
 function parseContent(content: string) {
@@ -40,7 +81,8 @@ function parseContent(content: string) {
       if (language === "bash" && (codeStr.includes("npm ") || codeStr.includes("npx ") || codeStr.includes("yarn ") || codeStr.includes("pnpm ") || codeStr.includes("bun "))) {
         elements.push(<CommandBlock key={key++} command={codeStr} />)
       } else {
-        elements.push(<CodePreview key={key++} code={codeStr} language={language} className="my-6" />)
+        const filename = deriveFilename(language, codeStr)
+        elements.push(<CodePreview key={key++} code={codeStr} language={language} filename={filename} className="my-6" />)
       }
       i++ // Skip closing fence
       continue
@@ -256,34 +298,55 @@ function InlineCode({ children }: { children: React.ReactNode }) {
 export function DocContent({ title, description, content, slug }: DocContentProps) {
   const { copied, copy } = useCopyToClipboard()
 
-  const copyPage = () => {
-    const fullContent = `# ${title}\n\n${description}\n\n${content}`
-    copy(fullContent)
+  const copyLink = () => {
+    const url = typeof window !== "undefined"
+      ? `${window.location.origin}/docs/${slug}`
+      : `/docs/${slug}`
+    copy(url)
   }
 
-  const breadcrumbItems = slug ? [{ label: title }] : []
+  // Build breadcrumbs: Home > [Section] > Title (if slug has a prefix)
+  const breadcrumbItems: { label: string; href?: string }[] = []
+  if (slug) {
+    const parts = slug.split("/")
+    const prefix = parts[0]
+    const section = SECTION_MAP[prefix]
+    if (section && parts.length > 1) {
+      breadcrumbItems.push({ label: section.label, href: section.href })
+    }
+    breadcrumbItems.push({ label: title })
+  }
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      {breadcrumbItems.length > 0 && <Breadcrumbs items={breadcrumbItems} className="mb-4 sm:mb-6" />}
-      <header className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-        <div>
-          <h1 className="mb-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">{title}</h1>
-          <p className="text-base sm:text-lg text-muted-foreground">{description}</p>
+      {/* Breadcrumbs row with copy link button on the right */}
+      {breadcrumbItems.length > 0 && (
+        <div className="flex items-center justify-between mb-4 sm:mb-6 gap-2">
+          <Breadcrumbs items={breadcrumbItems} />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={copyLink}
+            className="shrink-0 gap-1.5 text-muted-foreground hover:text-foreground h-7 px-2"
+            aria-label="Copy link to this page"
+          >
+            {copied ? (
+              <>
+                <Check className="size-3.5" />
+                <span className="text-xs">Copied</span>
+              </>
+            ) : (
+              <>
+                <Link className="size-3.5" />
+                <span className="text-xs hidden sm:inline">Copy link</span>
+              </>
+            )}
+          </Button>
         </div>
-        <Button variant="outline" size="sm" onClick={copyPage} className="shrink-0 gap-2 bg-transparent self-start">
-          {copied ? (
-            <>
-              <Check className="size-4" />
-              <span className="hidden sm:inline">Copied</span>
-            </>
-          ) : (
-            <>
-              <Copy className="size-4" />
-              <span className="hidden sm:inline">Copy page</span>
-            </>
-          )}
-        </Button>
+      )}
+      <header className="mb-6 sm:mb-8">
+        <h1 className="mb-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">{title}</h1>
+        <p className="text-base sm:text-lg text-muted-foreground">{description}</p>
       </header>
       <div className="prose prose-zinc dark:prose-invert max-w-none">{parseContent(content)}</div>
     </article>

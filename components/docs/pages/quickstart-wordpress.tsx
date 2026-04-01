@@ -11,7 +11,7 @@ export function QuickstartWordPressPage() {
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstart" }, { label: "WordPress" }]} className="mb-4 sm:mb-6" />
+      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "WordPress" }]} className="mb-4 sm:mb-6" />
 
       <header className="mb-8">
         <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">WordPress</h1>
@@ -85,6 +85,7 @@ export function QuickstartWordPressPage() {
             </p>
             <CodePreview
               language="html"
+              filename="header-scripts.html"
               code={`<script src="https://cdn.adkit.dev/v1.js" defer></script>`}
               showLineNumbers={false}
             />
@@ -106,6 +107,7 @@ export function QuickstartWordPressPage() {
             </p>
             <CodePreview
               language="html"
+              filename="custom-html-block.html"
               code={`<div
   data-adkit-site="your-site-id"
   data-adkit-slot="sidebar"
@@ -188,6 +190,7 @@ add_action( 'wp_enqueue_scripts', 'adkit_enqueue_script' );`}
             </p>
             <CodePreview
               language="html"
+              filename="custom-html-block.html"
               code={`<div
   data-adkit-site="your-site-id"
   data-adkit-slot="sidebar"
@@ -297,6 +300,7 @@ add_action( 'wp_enqueue_scripts', 'my_child_enqueue' );`}
             </p>
             <CodePreview
               language="html"
+              filename="custom-html-block.html"
               code={`<div
   data-adkit-site="your-site-id"
   data-adkit-slot="sidebar"

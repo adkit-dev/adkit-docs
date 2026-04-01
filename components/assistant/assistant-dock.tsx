@@ -411,6 +411,16 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Fix mobile viewport height (avoids issue with 100vh including browser chrome)
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`)
+    }
+    setVh()
+    window.addEventListener("resize", setVh)
+    return () => window.removeEventListener("resize", setVh)
+  }, [])
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && expanded) onExpandedChange?.(false)
@@ -592,7 +602,7 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
           <motion.div
             key="chat-panel"
             initial={{ height: 0 }}
-            animate={{ height: "calc(100vh - 82px)" }}
+            animate={{ height: "calc(var(--vh, 1vh) * 100 - 82px)" }}
             exit={{ height: 0 }}
             transition={{ type: "spring", stiffness: 420, damping: 44, mass: 0.75 }}
             className="overflow-hidden flex flex-col bg-card/30 backdrop-blur-2xl border-t border-border/60 will-change-transform"
@@ -797,7 +807,7 @@ export function AssistantDock({ expanded = false, onExpandedChange }: AssistantD
       {/* Input bar — always at bottom, blends with panel when open */}
       <div
         className={cn(
-          "shrink-0 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-colors duration-300",
+          "shrink-0 px-3 sm:px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-colors duration-300",
           expanded && "bg-card/30 backdrop-blur-2xl border-t border-border/50"
         )}
       >

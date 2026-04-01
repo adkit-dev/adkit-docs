@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react"
 export function QuickstartReactPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstart" }, { label: "React" }]} className="mb-4 sm:mb-6" />
+      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "React" }]} className="mb-4 sm:mb-6" />
 
       <header className="mb-8">
         <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">React</h1>
