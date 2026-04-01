@@ -1,5 +1,6 @@
 import type React from "react"
 import { ReactInstallationPage } from "@/components/docs/pages/react-installation"
+import { QuickstartOverviewPage } from "@/components/docs/pages/quickstart-overview"
 import { QuickstartJavaScriptPage } from "@/components/docs/pages/quickstart-javascript"
 import { QuickstartReactPage } from "@/components/docs/pages/quickstart-react"
 import { QuickstartNextjsPage } from "@/components/docs/pages/quickstart-nextjs"
@@ -56,66 +57,9 @@ export const docPages: DocPage[] = [
   // Get Started
   {
     slug: "quickstart",
-    title: "Quickstart",
+    title: "Quickstarts",
     description: "Get Adkit running on your site in under 10 minutes.",
-    content: `## Install the SDK
-
-Choose your preferred installation method:
-
-### JavaScript (Recommended for most sites)
-
-Add the Adkit script to your HTML:
-
-\`\`\`html
-<script src="https://cdn.adkit.dev/v1.js" defer></script>
-\`\`\`
-
-### React / Next.js
-
-Install the React package:
-
-\`\`\`bash
-npm install adkit-react
-\`\`\`
-
-## Add Your First Slot
-
-### JavaScript
-
-\`\`\`html
-<div
-  data-adkit-site="your-site-id"
-  data-adkit-slot="sidebar"
-  data-adkit-aspect-ratio="4:3"
-></div>
-\`\`\`
-
-### React
-
-\`\`\`tsx
-import { AdkitProvider, AdSlot } from "adkit-react"
-import "adkit-react/styles.css"
-
-function App() {
-  return (
-    <AdkitProvider siteId="your-site-id">
-      <AdSlot slot="sidebar" aspectRatio="4:3" />
-    </AdkitProvider>
-  )
-}
-\`\`\`
-
-## Get Your Site ID
-
-1. Sign up at [adkit.dev](https://adkit.dev)
-2. Create a new site in your dashboard
-3. Copy your site ID from the settings page
-
-## Next Steps
-
-- Configure your slot pricing in the [Publisher Dashboard](/docs/publisher/dashboard)
-- Customize the appearance with [Theming](/docs/react/theming)
-- Learn about [How It Works](/docs/how-it-works)`,
+    component: QuickstartOverviewPage,
   },
   {
     slug: "how-it-works",
