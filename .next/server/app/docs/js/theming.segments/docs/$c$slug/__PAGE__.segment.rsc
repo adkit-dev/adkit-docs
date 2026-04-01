@@ -1,6 +1,0 @@
-1:"$Sreact.fragment"
-2:I[79912,["/_next/static/chunks/ccf93c344c59b10d.js","/_next/static/chunks/c0662c918a2af466.js","/_next/static/chunks/24ac5891ba0c4699.js","/_next/static/chunks/9cafa863efb7e2bf.js","/_next/static/chunks/59f283aba722abe9.js","/_next/static/chunks/cc190b4d23051e3a.js","/_next/static/chunks/10623e2afbf6a84c.js"],"DocContent",1]
-3:I[70582,["/_next/static/chunks/67e7214feabe1636.js","/_next/static/chunks/7f5cc694ea9b4ee4.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"OG8eCAthKGUJyzKMGQdxl","rsc":["$","$1","c",{"children":[["$","$L2",null,{"title":"Theming","description":"Customize the appearance of JavaScript SDK slots.","content":"## Theme Attribute\n\nSet the theme per slot:\n\n```html\n<div\n  data-adkit-site=\"...\"\n  data-adkit-slot=\"sidebar\"\n  data-adkit-theme=\"dark\"\n></div>\n```\n\n## Global Theme\n\nSet a global theme via JavaScript:\n\n```javascript\nwindow.Adkit.setTheme(\"dark\")\n```\n\nContent coming soon.","slug":"js/theming"}],[["$","script","script-0",{"src":"/_next/static/chunks/10623e2afbf6a84c.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
