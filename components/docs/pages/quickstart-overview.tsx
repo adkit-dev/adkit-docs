@@ -8,6 +8,7 @@ import {
   WordPressIcon,
   WebflowIcon,
 } from "@/components/icons/sdk-icons"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { FrameworkCard } from "@/components/docs/framework-card"
 
 const frameworks = [
@@ -52,12 +53,13 @@ const frameworks = [
 export function QuickstartOverviewPage() {
   return (
     <article className="mx-auto max-w-4xl px-4 sm:px-8 py-8 sm:py-16">
-      <header className="mb-10">
-        <h1 className="mb-3 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">Quickstarts</h1>
-        <p className="text-md text-muted-foreground max-w-3xl">
-          Get Adkit running on your site in under 10 minutes. Choose your stack below.
-        </p>
-      </header>
+      <DocPageHeader
+        title="Quickstarts"
+        description="Get Adkit running on your site in under 10 minutes. Choose your stack below."
+        breadcrumbItems={[{ label: "Quickstarts" }]}
+        slug="quickstart"
+        headerClassName="mb-10"
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {frameworks.map((fw) => (

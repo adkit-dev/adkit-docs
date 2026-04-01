@@ -1,18 +1,16 @@
 "use client"
 
 import type React from "react"
-import { Check, Link } from "lucide-react"
 import { CodePreview } from "./code-preview"
 import { CommandBlock } from "./command-block"
-import { Breadcrumbs } from "./breadcrumbs"
-import { Button } from "@/components/ui/button"
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { DocPageHeader } from "./doc-page-header"
 
 interface DocContentProps {
   title: string
   description: string
   content: string
   slug?: string
+  isCodeTitle?: boolean
 }
 
 // Map slug prefixes to their section label and landing href
@@ -295,17 +293,7 @@ function InlineCode({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function DocContent({ title, description, content, slug }: DocContentProps) {
-  const { copied, copy } = useCopyToClipboard()
-
-  const copyLink = () => {
-    const url = typeof window !== "undefined"
-      ? `${window.location.origin}/docs/${slug}`
-      : `/docs/${slug}`
-    copy(url)
-  }
-
-  // Build breadcrumbs: Home > [Section] > Title (if slug has a prefix)
+export function DocContent({ title, description, content, slug, isCodeTitle = false }: DocContentProps) {
   const breadcrumbItems: { label: string; href?: string }[] = []
   if (slug) {
     const parts = slug.split("/")
@@ -319,35 +307,14 @@ export function DocContent({ title, description, content, slug }: DocContentProp
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      {/* Breadcrumbs row with copy link button on the right */}
-      {breadcrumbItems.length > 0 && (
-        <div className="flex items-center justify-between mb-4 sm:mb-6 gap-2">
-          <Breadcrumbs items={breadcrumbItems} />
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={copyLink}
-            className="shrink-0 gap-1.5 text-muted-foreground hover:text-foreground h-7 px-2"
-            aria-label="Copy link to this page"
-          >
-            {copied ? (
-              <>
-                <Check className="size-3.5" />
-                <span className="text-xs">Copied</span>
-              </>
-            ) : (
-              <>
-                <Link className="size-3.5" />
-                <span className="text-xs hidden sm:inline">Copy link</span>
-              </>
-            )}
-          </Button>
-        </div>
-      )}
-      <header className="mb-6 sm:mb-8">
-        <h1 className="mb-2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">{title}</h1>
-        <p className="text-base sm:text-lg text-muted-foreground">{description}</p>
-      </header>
+      <DocPageHeader
+        title={title}
+        description={description}
+        breadcrumbItems={breadcrumbItems}
+        slug={slug}
+        headerClassName="mb-6 sm:mb-8"
+        isCodeTitle={isCodeTitle}
+      />
       <div className="prose prose-zinc dark:prose-invert max-w-none">{parseContent(content)}</div>
     </article>
   )

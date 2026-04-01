@@ -6,6 +6,7 @@ import {
   Server,
   Lightbulb,
   BookOpen,
+  FastForward,
 } from "lucide-react"
 import {
   JavaScriptIcon,
@@ -82,7 +83,7 @@ export const navigation: NavSection[] = [
   },
   {
     title: "Quickstarts",
-    icon: Rocket,
+    icon: FastForward,
     collapsible: true,
     defaultOpen: true,
     items: [

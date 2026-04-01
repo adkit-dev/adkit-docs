@@ -3,23 +3,21 @@
 import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { ArrowRight } from "lucide-react"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 
 export function ReactInstallationPage() {
   const [framework, setFramework] = useState<"nextjs" | "react" | "html">("nextjs")
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "React SDK", href: "/docs/react/installation" }, { label: "Installation" }]} className="mb-4 sm:mb-6" />
-      
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">Installation</h1>
-        <p className="text-lg text-muted-foreground">
-          Get Adkit running on your site. Takes about 3 minutes.
-        </p>
-      </header>
+      <DocPageHeader
+        title="Installation"
+        description="Get Adkit running on your site. Takes about 3 minutes."
+        breadcrumbItems={[{ label: "React SDK", href: "/docs/react/installation" }, { label: "Installation" }]}
+        slug="react/installation"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         Node.js 18+, a React 17+ app, and an Adkit account.

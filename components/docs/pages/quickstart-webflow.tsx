@@ -1,22 +1,19 @@
 "use client"
 
 import { CodePreview } from "@/components/docs/code-preview"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartWebflowPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Webflow" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">Webflow</h1>
-        <p className="text-lg text-muted-foreground">
-          Add Adkit to your Webflow site using Project Settings and Embed elements. Custom code requires a Webflow paid
-          plan (Basic or above).
-        </p>
-      </header>
+      <DocPageHeader
+        title="Webflow Quickstart"
+        description="Add Adkit to your Webflow site using Project Settings and Embed elements. Custom code requires a Webflow paid plan (Basic or above)."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Webflow" }]}
+        slug="quickstart/webflow"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         A Webflow site on a paid plan and an Adkit account.{" "}

@@ -2,22 +2,19 @@
 
 import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartReactPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "React" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">React</h1>
-        <p className="text-lg text-muted-foreground">
-          Install <code className="text-base bg-muted px-1.5 py-0.5 rounded">adkit-react</code> and drop ad slots into
-          your React app. Works with Vite, Create React App, and any React 17+ project.
-        </p>
-      </header>
+      <DocPageHeader
+        title="React Quickstart"
+        description="Install adkit-react and drop ad slots into your React app. Works with Vite, Create React App, and any React 17+ project."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "React" }]}
+        slug="quickstart/react"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         React 17+, Node.js 18+, and an Adkit account.{" "}

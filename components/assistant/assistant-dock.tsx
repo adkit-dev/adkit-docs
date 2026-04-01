@@ -1,11 +1,13 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { ArrowRight, ArrowUp, Bot, ChevronRight, CodeXml, ExternalLink, MessageCircleCode, RotateCcw, Sparkles } from "lucide-react"
-import { ReactIcon, NextJSIcon } from "@/components/icons/sdk-icons"
+import { ArrowRight, ArrowUp, BookText, Bot, ChevronRight, ExternalLink, MessageCircleCode, RotateCcw, ThumbsDown, ThumbsUp } from "lucide-react"
+import { AstroIcon, JavaScriptIcon, NextJSIcon, ReactIcon, WebflowIcon, WordPressIcon } from "@/components/icons/sdk-icons"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { MarkdownMessage } from "@/components/assistant/markdown-message"
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ShimmerButton } from "@/components/ui/shimmer-button"
 import { ShortcutHint } from "@/components/ui/shortcut-hint"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
@@ -344,6 +346,103 @@ function AssistantLogoVideo() {
   )
 }
 
+function getArticleIcon(slug: string, className = "h-2.5 w-2.5 shrink-0") {
+  if (slug.startsWith("js/")) return <JavaScriptIcon className={className} />
+  if (slug.startsWith("react/")) return <ReactIcon className={className} />
+  if (slug === "quickstart/javascript") return <JavaScriptIcon className={className} />
+  if (slug === "quickstart/react") return <ReactIcon className={className} />
+  if (slug === "quickstart/nextjs") return <NextJSIcon className={className} />
+  if (slug === "quickstart/astro") return <AstroIcon className={className} />
+  if (slug === "quickstart/wordpress") return <WordPressIcon className={className} />
+  if (slug === "quickstart/webflow") return <WebflowIcon className={className} />
+  return <BookText className={className} />
+}
+
+function ResponseSources({ steps }: { steps: ThinkingStep[] }) {
+  const [feedback, setFeedback] = useState<"thanked" | "done" | null>(null)
+
+  const handleFeedback = () => {
+    setFeedback("thanked")
+    setTimeout(() => setFeedback("done"), 1800)
+  }
+
+  return (
+    <div className="mt-3 flex items-center justify-between">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-7 px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
+          >
+            Sources
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="start" className="w-72 p-2">
+          <div className="grid gap-1">
+            {steps.map((step) => (
+              <a
+                key={step.slug}
+                href={`/docs/${step.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                {getArticleIcon(step.slug, "h-3 w-3 shrink-0")}
+                <span className="min-w-0 flex-1 truncate">{step.article}</span>
+                <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />
+              </a>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+
+      <div className="flex items-center h-7">
+        <AnimatePresence mode="wait">
+          {feedback === "thanked" ? (
+            <motion.span
+              key="thanks"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="text-xs text-muted-foreground px-1"
+            >
+              Thanks!
+            </motion.span>
+          ) : feedback === null ? (
+            <motion.div
+              key="buttons"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center gap-0.5"
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
+                onClick={handleFeedback}
+              >
+                <ThumbsUp className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground"
+                onClick={handleFeedback}
+              >
+                <ThumbsDown className="h-3.5 w-3.5" />
+              </Button>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 // ThinkingBlock — shown while Claude reads docs, persists above responses
 // ---------------------------------------------------------------------------
@@ -356,7 +455,7 @@ function ThinkingBlock({ steps, isActive = false }: { steps: ThinkingStep[]; isA
     <div className="mb-2">
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors group"
+        className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer transition-all duration-200 group"
         aria-expanded={expanded}
       >
         {isActive ? (
@@ -379,16 +478,17 @@ function ThinkingBlock({ steps, isActive = false }: { steps: ThinkingStep[]; isA
           <span className="shrink-0">Reading</span>
           {steps.map((step, i) => (
             <span key={step.slug} className="flex items-center gap-0.5 shrink-0">
-              {i > 0 && <span className="text-border">,</span>}
+              {i > 0 && i === steps.length - 1 && <span className="text-muted-foreground mr-1">and</span>}
+              {i > 0 && i < steps.length - 1 && <span className="text-border mr-1">,</span>}
               <a
                 href={`/docs/${step.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="font-medium text-foreground/70 hover:text-foreground hover:underline inline-flex items-center gap-0.5"
+                className="font-medium text-foreground hover:text-primary hover:underline inline-flex items-center gap-1"
               >
+                <BookText className="h-2.5 w-2.5 shrink-0" />
                 {step.article}
-                <ExternalLink className="h-2.5 w-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             </span>
           ))}
@@ -396,19 +496,8 @@ function ThinkingBlock({ steps, isActive = false }: { steps: ThinkingStep[]; isA
       </button>
 
       {expanded && (
-        <div className="mt-1.5 ml-1 border-l-2 border-border/50 pl-3 space-y-1">
-          {steps.map((step) => (
-            <a
-              key={step.slug}
-              href={`/docs/${step.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground hover:underline transition-colors"
-            >
-              Reading {step.article}
-              <ExternalLink className="h-2.5 w-2.5 shrink-0" />
-            </a>
-          ))}
+        <div className="mt-1.5 ml-1 border-l-2 border-border/50 pl-3">
+          <div className="text-xs text-muted-foreground">Finished reading</div>
         </div>
       )}
     </div>
@@ -517,7 +606,7 @@ export function AssistantDock({
   useEffect(() => {
     if (!isNearBottomRef.current) return
     requestAnimationFrame(() => {
-      if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+      if (scrollRef.current) scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" })
     })
   }, [messages, streamingContent, isLoading, readingSteps])
 
@@ -642,23 +731,10 @@ export function AssistantDock({
 
   useEffect(() => {
     if (!expanded) return
-
-    const { body, documentElement } = document
-    const previousBodyOverflow = body.style.overflow
-    const previousBodyTouchAction = body.style.touchAction
-    const previousHtmlOverflow = documentElement.style.overflow
-    const previousHtmlOverscroll = documentElement.style.overscrollBehavior
-
-    body.style.overflow = "hidden"
-    body.style.touchAction = "none"
-    documentElement.style.overflow = "hidden"
-    documentElement.style.overscrollBehavior = "none"
-
+    const previousOverscroll = document.documentElement.style.overscrollBehavior
+    document.documentElement.style.overscrollBehavior = "none"
     return () => {
-      body.style.overflow = previousBodyOverflow
-      body.style.touchAction = previousBodyTouchAction
-      documentElement.style.overflow = previousHtmlOverflow
-      documentElement.style.overscrollBehavior = previousHtmlOverscroll
+      document.documentElement.style.overscrollBehavior = previousOverscroll
     }
   }, [expanded])
 
@@ -840,12 +916,12 @@ export function AssistantDock({
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ type: "spring", stiffness: 400, damping: 38 }}
-                              className={cn("flex gap-3", msg.role === "user" ? "justify-end" : "justify-start items-start")}
+                              className={cn("flex gap-3", msg.role === "user" ? "justify-end" : (msg.thinkingSteps && msg.thinkingSteps.length > 0 ? "justify-start items-start" : "justify-start items-center"))}
                             >
                               {msg.role === "assistant" &&
                                 <Tooltip>
                                   <TooltipTrigger asChild>
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20">
                                       <Bot className="h-5 w-5 text-primary" />
                                     </div>
                                   </TooltipTrigger>
@@ -864,20 +940,7 @@ export function AssistantDock({
                                   )}
                                   <MarkdownMessage content={msg.content} />
                                   {msg.thinkingSteps && msg.thinkingSteps.length > 0 && (
-                                    <div className="mt-3 flex flex-wrap gap-1.5">
-                                      {msg.thinkingSteps.map((step) => (
-                                        <a
-                                          key={step.slug}
-                                          href={`/docs/${step.slug}`}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1 rounded-full border border-primary/15 bg-primary/8 px-2.5 py-0.5 text-xs font-medium text-primary/70 hover:text-primary hover:border-primary/30 hover:bg-primary/12 transition-colors max-w-[160px]"
-                                        >
-                                          <Sparkles className="h-2.5 w-2.5 shrink-0" />
-                                          <span className="truncate">{step.article}</span>
-                                        </a>
-                                      ))}
-                                    </div>
+                                    <ResponseSources steps={msg.thinkingSteps} />
                                   )}
                                 </div>
                               )}
@@ -892,8 +955,8 @@ export function AssistantDock({
                               transition={{ type: "spring", stiffness: 400, damping: 38 }}
                               className="flex gap-3 justify-start items-start"
                             >
-                              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
-                                <Sparkles className="h-3 w-3 text-primary" />
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/30 to-primary/10 ring-1 ring-primary/20 mt-0.5">
+                                <Bot className="h-5 w-5 text-primary" />
                               </div>
                               <div className="flex-1 min-w-0 pt-0.5">
                                 {readingSteps.length === 0 && !streamingContent ? (

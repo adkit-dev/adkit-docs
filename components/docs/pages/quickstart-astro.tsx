@@ -2,22 +2,19 @@
 
 import { CommandBlock } from "@/components/docs/command-block"
 import { CodePreview } from "@/components/docs/code-preview"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartAstroPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Astro" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">Astro</h1>
-        <p className="text-lg text-muted-foreground">
-          Add Adkit to an Astro site using the vanilla JS SDK. If your project has React integration enabled, you can
-          also use <code className="text-base bg-muted px-1.5 py-0.5 rounded">adkit-react</code> inside React islands.
-        </p>
-      </header>
+      <DocPageHeader
+        title="Astro Quickstart"
+        description="Add Adkit to an Astro site using the vanilla JS SDK. If your project has React integration enabled, you can also use adkit-react inside React islands."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Astro" }]}
+        slug="quickstart/astro"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         An Astro project and an Adkit account.{" "}

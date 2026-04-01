@@ -83,31 +83,37 @@ const frameworkCards = [
     framework: "JavaScript",
     description: "Script tag setup for any website, recommended for non-React sites not using Next.js or Astro.",
     iconComponent: JavaScriptIcon,
+    href: "/docs/quickstart/javascript",
   },
   {
     framework: "React",
     description: "Get your React site up and running in minutes with native components and hooks.",
     iconComponent: ReactIcon,
+    href: "/docs/quickstart/react",
   },
   {
     framework: "Next.js",
     description: "Framework-specific guidance for adding Adkit to App Router and Pages Router projects.",
     iconComponent: NextJSIcon,
+    href: "/docs/quickstart/nextjs",
   },
   {
     framework: "Astro",
     description: "Add Adkit to Astro pages and islands with a lightweight client-side integration.",
     iconComponent: AstroIcon,
+    href: "/docs/quickstart/astro",
   },
   {
     framework: "WordPress",
     description: "Install Adkit in WordPress themes or custom layouts without rebuilding your stack.",
     iconComponent: WordPressIcon,
+    href: "/docs/quickstart/wordpress",
   },
   {
     framework: "Webflow",
     description: "Use custom code embeds and launch Adkit on Webflow sites with minimal setup.",
     iconComponent: WebflowIcon,
+    href: "/docs/quickstart/webflow",
   },
 ]
 
@@ -379,6 +385,7 @@ export default function DocsPage() {
                 title={card.framework}
                 description={card.description}
                 iconComponent={card.iconComponent}
+                href={card.href}
               />
             ))}
           </div>

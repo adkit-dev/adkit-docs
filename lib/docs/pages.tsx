@@ -14,6 +14,7 @@ export interface DocPage {
   description: string
   content?: string
   component?: React.ComponentType
+  isCodeTitle?: boolean
 }
 
 export const docPages: DocPage[] = [
@@ -114,8 +115,9 @@ Compare this to AdSense, where publishers typically keep around 68%.
   },
   {
     slug: "react/provider",
-    title: "AdkitProvider",
+    title: "<AdkitProvider />",
     description: "Configure the Adkit context provider for your React application.",
+    isCodeTitle: true,
     content: `## Overview
 
 \`AdkitProvider\` initializes the Adkit SDK and provides context to all child components.
@@ -154,8 +156,9 @@ function App({ children }) {
   },
   {
     slug: "react/adslot",
-    title: "AdSlot",
+    title: "<AdSlot />",
     description: "Render an ad slot in your React application.",
+    isCodeTitle: true,
     content: `## Overview
 
 \`AdSlot\` renders an ad placement. It displays either a paid creative or a booking placeholder.
@@ -196,8 +199,9 @@ Slot identifiers must be unique within your site. Use descriptive names like:
   },
   {
     slug: "react/booking-modal",
-    title: "BookingModal",
+    title: "<BookingModal />",
     description: "Customize the booking modal that appears when visitors click to book a slot.",
+    isCodeTitle: true,
     content: `## Overview
 
 The \`BookingModal\` component controls the booking flow UI. It's rendered automatically when a visitor clicks to book, but you can customize its appearance.

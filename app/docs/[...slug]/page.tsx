@@ -54,5 +54,13 @@ export default async function DocPage({ params }: DocPageProps) {
     return <Component />
   }
 
-  return <DocContent title={page.title} description={page.description} content={page.content || ""} slug={slugPath} />
+  return (
+    <DocContent
+      title={page.title}
+      description={page.description}
+      content={page.content || ""}
+      slug={slugPath}
+      isCodeTitle={page.isCodeTitle}
+    />
+  )
 }

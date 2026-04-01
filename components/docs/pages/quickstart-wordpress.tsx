@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartWordPressPage() {
@@ -11,15 +11,12 @@ export function QuickstartWordPressPage() {
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "WordPress" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">WordPress</h1>
-        <p className="text-lg text-muted-foreground">
-          Add Adkit to your WordPress site. Choose the method that fits your comfort level — the Custom HTML Block
-          approach requires no code editor or developer experience.
-        </p>
-      </header>
+      <DocPageHeader
+        title="WordPress Quickstart"
+        description="Add Adkit to your WordPress site. Choose the method that fits your comfort level — the Custom HTML Block approach requires no code editor or developer experience."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "WordPress" }]}
+        slug="quickstart/wordpress"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         A WordPress site (self-hosted or WordPress.com Business plan) and an Adkit account.{" "}

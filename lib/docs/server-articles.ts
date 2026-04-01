@@ -437,7 +437,7 @@ Click **Publish**. Open your live site in an incognito window — you should see
   },
   {
     slug: "react/provider",
-    title: "AdkitProvider",
+    title: "<AdkitProvider />",
     description: "Configure the Adkit context provider for your React application.",
     content: `## Overview
 \`AdkitProvider\` initializes the Adkit SDK and provides context to all child \`AdSlot\` components.
@@ -486,7 +486,7 @@ function App({ children }) {
   },
   {
     slug: "react/adslot",
-    title: "AdSlot",
+    title: "<AdSlot />",
     description: "Render an ad slot in your React application.",
     content: `## Overview
 \`AdSlot\` renders an ad placement. When the slot has a paid booking, it displays the creative. Otherwise it shows a "Rent this spot" placeholder.

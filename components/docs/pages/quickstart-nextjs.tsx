@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartNextjsPage() {
@@ -12,15 +12,12 @@ export function QuickstartNextjsPage() {
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Next.js" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">Next.js</h1>
-        <p className="text-lg text-muted-foreground">
-          Install <code className="text-base bg-muted px-1.5 py-0.5 rounded">adkit-react</code> and add slots to your
-          Next.js app. Supports both App Router (Next.js 13+) and Pages Router.
-        </p>
-      </header>
+      <DocPageHeader
+        title="Next.js Quickstart"
+        description="Install adkit-react and add slots to your Next.js app. Supports both App Router (Next.js 13+) and Pages Router."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Next.js" }]}
+        slug="quickstart/nextjs"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         Next.js 13+, Node.js 18+, and an Adkit account.{" "}

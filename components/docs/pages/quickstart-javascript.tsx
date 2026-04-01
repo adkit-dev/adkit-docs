@@ -1,22 +1,19 @@
 "use client"
 
 import { CodePreview } from "@/components/docs/code-preview"
-import { Breadcrumbs } from "@/components/docs/breadcrumbs"
 import { Callout } from "@/components/docs/callout"
+import { DocPageHeader } from "@/components/docs/doc-page-header"
 import { ArrowRight } from "lucide-react"
 
 export function QuickstartJavaScriptPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
-      <Breadcrumbs items={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "JavaScript" }]} className="mb-4 sm:mb-6" />
-
-      <header className="mb-8">
-        <h1 className="mb-2 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">JavaScript</h1>
-        <p className="text-lg text-muted-foreground">
-          Add Adkit to any website with a single script tag. No build step or framework required — works on plain HTML,
-          static sites, and any CMS that allows custom code.
-        </p>
-      </header>
+      <DocPageHeader
+        title="JavaScript Quickstart"
+        description="Add Adkit to any website with a single script tag. No build step or framework required — works on plain HTML, static sites, and any CMS that allows custom code."
+        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "JavaScript" }]}
+        slug="quickstart/javascript"
+      />
 
       <Callout variant="note" title="Prerequisites" className="mb-8">
         An Adkit account and a site ID.{" "}
