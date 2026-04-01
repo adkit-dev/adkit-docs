@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Github } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { siteConfig, footerLinks } from "@/lib/docs/nav"
@@ -23,8 +22,30 @@ export function Footer() {
 
   return (
     <footer className="border-t bg-background" style={{ borderColor }} role="contentinfo">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-6">
+      {/* Mobile: compact single-column */}
+      <div className="md:hidden px-4 py-6">
+        <SiteLogo className="mb-4" />
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          {[...footerLinks.explore, ...footerLinks.resources, ...footerLinks.company, ...footerLinks.legal].map(
+            (link) => (
+              <Link
+                key={link.title}
+                href={link.href}
+                className="hover:text-foreground transition-colors"
+              >
+                {link.title}
+              </Link>
+            ),
+          )}
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground/60">
+          © {new Date().getFullYear()} {siteConfig.name}
+        </p>
+      </div>
+
+      {/* Desktop: full grid */}
+      <div className="hidden md:block mx-auto max-w-7xl px-6 py-12 lg:py-16">
+        <div className="grid grid-cols-6 gap-8">
           {/* Logo */}
           <div className="col-span-2">
             <SiteLogo />

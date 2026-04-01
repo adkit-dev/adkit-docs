@@ -7,12 +7,10 @@ import { usePathname } from "next/navigation"
 import { Topbar } from "./topbar"
 import { Sidebar } from "./sidebar"
 import { MobileNav } from "./mobile-nav"
-import { MobileBreadcrumbBar } from "./mobile-breadcrumb-bar"
 import { Footer } from "./footer"
 import { SkipLink } from "./skip-link"
 import { CommandPalette } from "@/components/search/command-palette"
 import { AssistantDock } from "@/components/assistant/assistant-dock"
-  import { navigation } from "@/lib/docs/nav"
 
 interface DocsShellProps {
   children: React.ReactNode
@@ -28,10 +26,6 @@ export function DocsShell({ children }: DocsShellProps) {
   useEffect(() => {
     setAssistantExpanded(false)
   }, [pathname])
-
-  // Find current section and page for breadcrumbs
-  const currentNav = navigation.find((section) => section.items.some((item) => item.href === pathname))
-  const currentPage = currentNav?.items.find((item) => item.href === pathname)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -51,10 +45,9 @@ export function DocsShell({ children }: DocsShellProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <SkipLink />
-      <Topbar onSearchClick={() => setSearchOpen(true)} onAssistantClick={() => setAssistantExpanded(true)} />
-      <MobileBreadcrumbBar
-        section={currentNav?.title}
-        page={currentPage?.title}
+      <Topbar
+        onSearchClick={() => setSearchOpen(true)}
+        onAssistantClick={() => setAssistantExpanded(true)}
         onMenuClick={() => setMobileNavOpen(true)}
       />
       <div className="flex flex-1">
