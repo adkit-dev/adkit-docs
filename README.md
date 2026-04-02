@@ -136,8 +136,8 @@ export const navigation: NavSection[] = [
     title: "Getting Started",
     icon: Rocket,
     items: [
-      { title: "Introduction", href: "/docs" },
-      { title: "Installation", href: "/docs/installation" },
+      { title: "Introduction", href: "/" },
+      { title: "Installation", href: "/react/installation" },
     ],
   },
 ]

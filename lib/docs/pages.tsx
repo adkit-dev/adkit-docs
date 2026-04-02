@@ -7,6 +7,18 @@ import { QuickstartNextjsPage } from "@/components/docs/pages/quickstart-nextjs"
 import { QuickstartAstroPage } from "@/components/docs/pages/quickstart-astro"
 import { QuickstartWordPressPage } from "@/components/docs/pages/quickstart-wordpress"
 import { QuickstartWebflowPage } from "@/components/docs/pages/quickstart-webflow"
+import { HowItWorksPage } from "@/components/docs/pages/how-it-works"
+import { ReactProviderPage } from "@/components/docs/pages/react-provider"
+import { ReactAdSlotPage } from "@/components/docs/pages/react-adslot"
+import { ReactBookingModalPage } from "@/components/docs/pages/react-booking-modal"
+import { ReactUseAdkitPage } from "@/components/docs/pages/react-use-adkit"
+import { ReactThemingPage } from "@/components/docs/pages/react-theming"
+import { ReactCustomStylingPage } from "@/components/docs/pages/react-custom-styling"
+import { JsInstallationPage } from "@/components/docs/pages/js-installation"
+import { JsDataAttributesPage } from "@/components/docs/pages/js-data-attributes"
+import { JsApiPage } from "@/components/docs/pages/js-api"
+import { JsThemingPage } from "@/components/docs/pages/js-theming"
+import { JsCustomStylingPage } from "@/components/docs/pages/js-custom-styling"
 
 export interface DocPage {
   slug: string
@@ -66,45 +78,7 @@ export const docPages: DocPage[] = [
     slug: "how-it-works",
     title: "How It Works",
     description: "Understand the Adkit model: fixed-price slots, self-serve booking, and publisher approval.",
-    content: `## The Adkit Model
-
-Adkit replaces programmatic advertising with a direct marketplace. Publishers set fixed daily prices, and advertisers book slots directly through your website.
-
-## Key Concepts
-
-### Fixed-Price Slots
-
-You define ad slots on your site with a daily price. No bidding, no auctions, no real-time optimization. Advertisers see the price upfront and book for specific dates.
-
-### Self-Serve Booking
-
-Empty slots display a placeholder inviting visitors to book. When someone clicks, they see your pricing and can purchase the slot with a credit card. Demand comes from your own audience.
-
-### Publisher Approval
-
-Every ad submission goes through your approval queue. You review the creative, destination URL, and advertiser details before anything goes live. Your site, your rules.
-
-### Automatic Payouts
-
-Adkit handles payment processing via Stripe. You receive 85% of each booking, paid out automatically. If a slot has downtime (your site is unreachable), advertisers are refunded proportionally.
-
-## Revenue Share
-
-| Party | Share |
-|-------|-------|
-| Publisher | 85% |
-| Adkit | 15% |
-
-Compare this to AdSense, where publishers typically keep around 68%.
-
-## Flow
-
-1. **Publisher** creates slots and sets prices
-2. **Visitor** sees empty slot with booking CTA
-3. **Advertiser** books dates and uploads creative
-4. **Publisher** approves or rejects the ad
-5. **Ad goes live** on the booked dates
-6. **Publisher** receives payout via Stripe`,
+    component: HowItWorksPage,
   },
   // React SDK
   {
@@ -118,358 +92,70 @@ Compare this to AdSense, where publishers typically keep around 68%.
     title: "<AdkitProvider />",
     description: "Configure the Adkit context provider for your React application.",
     isCodeTitle: true,
-    content: `## Overview
-
-\`AdkitProvider\` initializes the Adkit SDK and provides context to all child components.
-
-## Props
-
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| \`siteId\` | \`string\` | Yes | Your Adkit site ID |
-| \`theme\` | \`"light" \\| "dark" \\| "auto"\` | No | Color theme (default: \`"auto"\`) |
-| \`locale\` | \`string\` | No | Locale for formatting (default: \`"en-US"\`) |
-
-## Example
-
-\`\`\`tsx
-import { AdkitProvider } from "adkit-react"
-
-function App({ children }) {
-  return (
-    <AdkitProvider 
-      siteId="your-site-id"
-      theme="dark"
-      locale="en-GB"
-    >
-      {children}
-    </AdkitProvider>
-  )
-}
-\`\`\`
-
-## Notes
-
-- Only one \`AdkitProvider\` should exist in your app
-- Place it as high in the tree as possible
-- All \`AdSlot\` components must be descendants of \`AdkitProvider\``,
+    component: ReactProviderPage,
   },
   {
     slug: "react/adslot",
     title: "<AdSlot />",
     description: "Render an ad slot in your React application.",
     isCodeTitle: true,
-    content: `## Overview
-
-\`AdSlot\` renders an ad placement. It displays either a paid creative or a booking placeholder.
-
-## Props
-
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| \`slot\` | \`string\` | Yes | Unique slot identifier |
-| \`aspectRatio\` | \`string\` | No | Aspect ratio (e.g., \`"16:9"\`, \`"4:3"\`) |
-| \`className\` | \`string\` | No | Additional CSS classes |
-| \`fallback\` | \`ReactNode\` | No | Content to show while loading |
-
-## Example
-
-\`\`\`tsx
-import { AdSlot } from "adkit-react"
-
-function Sidebar() {
-  return (
-    <AdSlot 
-      slot="sidebar"
-      aspectRatio="4:3"
-      className="my-4"
-    />
-  )
-}
-\`\`\`
-
-## Slot Identifiers
-
-Slot identifiers must be unique within your site. Use descriptive names like:
-
-- \`header-banner\`
-- \`sidebar\`
-- \`in-content-1\`
-- \`footer-leaderboard\``,
+    component: ReactAdSlotPage,
   },
   {
     slug: "react/booking-modal",
     title: "<BookingModal />",
-    description: "Customize the booking modal that appears when visitors click to book a slot.",
+    description: "The booking flow modal that opens when a visitor clicks an empty slot placeholder.",
     isCodeTitle: true,
-    content: `## Overview
-
-The \`BookingModal\` component controls the booking flow UI. It's rendered automatically when a visitor clicks to book, but you can customize its appearance.
-
-## Props
-
-| Prop | Type | Description |
-|------|------|-------------|
-| \`onClose\` | \`() => void\` | Called when modal is dismissed |
-| \`onSuccess\` | \`(booking: Booking) => void\` | Called after successful booking |
-
-## Customization
-
-Content coming soon.`,
+    component: ReactBookingModalPage,
   },
   {
     slug: "react/use-adkit",
     title: "useAdkit Hook",
-    description: "Access Adkit state and methods from any component.",
-    content: `## Overview
-
-The \`useAdkit\` hook provides access to Adkit context from any component within the provider.
-
-## Usage
-
-\`\`\`tsx
-import { useAdkit } from "adkit-react"
-
-function MyComponent() {
-  const { siteId, theme, slots } = useAdkit()
-  
-  return <div>Site: {siteId}</div>
-}
-\`\`\`
-
-## Return Value
-
-| Property | Type | Description |
-|----------|------|-------------|
-| \`siteId\` | \`string\` | Current site ID |
-| \`theme\` | \`string\` | Current theme |
-| \`slots\` | \`Map<string, Slot>\` | Loaded slot data |
-| \`refresh\` | \`() => void\` | Force refresh slot data |
-
-Content coming soon.`,
+    description: "Access the Adkit context from any component inside AdkitProvider.",
+    component: ReactUseAdkitPage,
   },
   {
     slug: "react/theming",
     title: "Theming",
-    description: "Customize colors, fonts, and styling for the React SDK.",
-    content: `## Theme Prop
-
-Set the theme on \`AdkitProvider\`:
-
-\`\`\`tsx
-<AdkitProvider siteId="..." theme="dark">
-\`\`\`
-
-Options:
-- \`"light"\` - Light mode
-- \`"dark"\` - Dark mode  
-- \`"auto"\` - Follow system preference (default)
-
-## CSS Variables
-
-Override CSS variables to customize colors:
-
-\`\`\`css
-:root {
-  --adkit-primary: #6366f1;
-  --adkit-background: #ffffff;
-  --adkit-text: #0a0a0a;
-  --adkit-border: #e5e5e5;
-}
-
-.dark {
-  --adkit-background: #0a0a0a;
-  --adkit-text: #fafafa;
-  --adkit-border: #262626;
-}
-\`\`\`
-
-Content coming soon.`,
+    description: "Control the visual appearance of Adkit slots with themes, color overrides, and CSS variables.",
+    component: ReactThemingPage,
   },
   {
     slug: "react/custom-styling",
     title: "Custom Styling",
-    description: "Apply custom CSS classes and styles to Adkit components.",
-    content: `## className Prop
-
-All Adkit components accept a \`className\` prop:
-
-\`\`\`tsx
-<AdSlot slot="sidebar" className="my-custom-class" />
-\`\`\`
-
-## CSS Selectors
-
-Target Adkit elements with these selectors:
-
-\`\`\`css
-.adkit-slot { }
-.adkit-slot-placeholder { }
-.adkit-slot-creative { }
-.adkit-booking-modal { }
-\`\`\`
-
-Content coming soon.`,
+    description: "Apply your own CSS to Adkit slot elements using className, class selectors, and data attributes.",
+    component: ReactCustomStylingPage,
   },
   // JavaScript SDK
   {
     slug: "js/installation",
     title: "Installation",
-    description: "Add the Adkit script to any website.",
-    content: `## Add the Script
-
-Add this script tag to your HTML, ideally in the \`<head>\`:
-
-\`\`\`html
-<script src="https://cdn.adkit.dev/v1.js" defer></script>
-\`\`\`
-
-## Add a Slot
-
-Place a div with data attributes where you want the ad:
-
-\`\`\`html
-<div
-  data-adkit-site="your-site-id"
-  data-adkit-slot="sidebar"
-  data-adkit-aspect-ratio="4:3"
-></div>
-\`\`\`
-
-## Verify Installation
-
-Open your browser console. You should see:
-
-\`\`\`
-[Adkit] Initialized with site: your-site-id
-\`\`\`
-
-## CDN
-
-The script is served from Adkit's global CDN with automatic failover. Average load time is under 50ms.`,
+    description: "Add Adkit to any website with a single script tag. No npm, no build step required.",
+    component: JsInstallationPage,
   },
   {
     slug: "js/data-attributes",
     title: "Data Attributes",
-    description: "Configure ad slots using HTML data attributes.",
-    content: `## Required Attributes
-
-| Attribute | Description |
-|-----------|-------------|
-| \`data-adkit-site\` | Your site ID |
-| \`data-adkit-slot\` | Unique slot identifier |
-
-## Optional Attributes
-
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| \`data-adkit-aspect-ratio\` | Aspect ratio (e.g., \`"16:9"\`) | \`"auto"\` |
-| \`data-adkit-theme\` | \`"light"\`, \`"dark"\`, or \`"auto"\` | \`"auto"\` |
-| \`data-adkit-lazy\` | Enable lazy loading | \`"true"\` |
-
-## Example
-
-\`\`\`html
-<div
-  data-adkit-site="abc123"
-  data-adkit-slot="header-banner"
-  data-adkit-aspect-ratio="728:90"
-  data-adkit-theme="dark"
-  data-adkit-lazy="true"
-></div>
-\`\`\``,
+    description: "Configure ad slots using HTML data attributes. Full reference for all required and optional attributes.",
+    component: JsDataAttributesPage,
   },
   {
     slug: "js/api",
     title: "JavaScript API",
-    description: "Programmatically control Adkit slots with JavaScript.",
-    content: `## Global Object
-
-After the script loads, \`window.Adkit\` is available:
-
-\`\`\`javascript
-window.Adkit.refresh("sidebar")
-window.Adkit.destroy("sidebar")
-\`\`\`
-
-## Methods
-
-| Method | Description |
-|--------|-------------|
-| \`refresh(slotId)\` | Reload a specific slot |
-| \`refreshAll()\` | Reload all slots |
-| \`destroy(slotId)\` | Remove a slot |
-| \`on(event, callback)\` | Listen for events |
-
-## Events
-
-\`\`\`javascript
-window.Adkit.on("impression", (data) => {
-  console.log("Impression:", data.slotId)
-})
-
-window.Adkit.on("click", (data) => {
-  console.log("Click:", data.slotId)
-})
-\`\`\`
-
-Content coming soon.`,
+    description: "Programmatic control via window.__adkit. Primarily used for SPA navigation and slot refresh.",
+    component: JsApiPage,
   },
   {
     slug: "js/theming",
     title: "Theming",
-    description: "Customize the appearance of JavaScript SDK slots.",
-    content: `## Theme Attribute
-
-Set the theme per slot:
-
-\`\`\`html
-<div
-  data-adkit-site="..."
-  data-adkit-slot="sidebar"
-  data-adkit-theme="dark"
-></div>
-\`\`\`
-
-## Global Theme
-
-Set a global theme via JavaScript:
-
-\`\`\`javascript
-window.Adkit.setTheme("dark")
-\`\`\`
-
-Content coming soon.`,
+    description: "Control slot appearance using data attributes and CSS custom properties.",
+    component: JsThemingPage,
   },
   {
     slug: "js/custom-styling",
     title: "Custom Styling",
-    description: "Apply custom CSS to JavaScript SDK slots.",
-    content: `## CSS Classes
-
-Adkit adds these classes to slot elements:
-
-\`\`\`css
-.adkit-slot { }
-.adkit-slot--loading { }
-.adkit-slot--empty { }
-.adkit-slot--filled { }
-\`\`\`
-
-## Custom Styles
-
-\`\`\`css
-.adkit-slot {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.adkit-slot--empty {
-  background: #f5f5f5;
-}
-\`\`\`
-
-Content coming soon.`,
+    description: "Apply your own CSS to Adkit slot elements using class selectors and data attribute selectors.",
+    component: JsCustomStylingPage,
   },
   // Publisher Guide
   {

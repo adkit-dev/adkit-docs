@@ -4,7 +4,7 @@ import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-import { ArrowRight } from "lucide-react"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function QuickstartWordPressPage() {
   const [method, setMethod] = useState<"block" | "functions" | "child">("block")
@@ -14,7 +14,7 @@ export function QuickstartWordPressPage() {
       <DocPageHeader
         title="WordPress Quickstart"
         description="Add Adkit to your WordPress site. Choose the method that fits your comfort level — the Custom HTML Block approach requires no code editor or developer experience."
-        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "WordPress" }]}
+        breadcrumbItems={[{ label: "Quickstarts", href: "/quickstart" }, { label: "WordPress" }]}
         slug="quickstart/wordpress"
       />
 
@@ -128,10 +128,10 @@ export function QuickstartWordPressPage() {
               </div>
               <h2 className="text-xl font-semibold m-0">Verify it works</h2>
             </div>
-            <p className="text-muted-foreground">
-              Save and publish your page, then view it in a private or incognito window. You should see a dashed-border
-              placeholder with "Rent this spot" and your price.
+            <p className="text-sm text-muted-foreground mb-4">
+              Save and publish your page, then view it in a private or incognito window.
             </p>
+            <SlotVerifyPreview variant="js" />
           </section>
         </div>
       )}
@@ -207,10 +207,10 @@ add_action( 'wp_enqueue_scripts', 'adkit_enqueue_script' );`}
               </div>
               <h2 className="text-xl font-semibold m-0">Verify it works</h2>
             </div>
-            <p className="text-muted-foreground">
-              View your page in a private or incognito window. You should see the placeholder with "Rent this spot" and
-              your price.
+            <p className="text-sm text-muted-foreground mb-4">
+              View your page in a private or incognito window. The slot should match this banner placeholder.
             </p>
+            <SlotVerifyPreview variant="js" />
           </section>
         </div>
       )}
@@ -317,40 +317,13 @@ add_action( 'wp_enqueue_scripts', 'my_child_enqueue' );`}
               </div>
               <h2 className="text-xl font-semibold m-0">Verify it works</h2>
             </div>
-            <p className="text-muted-foreground">
-              View your page in a private or incognito window. You should see the dashed-border placeholder with "Rent
-              this spot" and your price.
+            <p className="text-sm text-muted-foreground mb-4">
+              View your page in a private or incognito window. The slot should match this banner placeholder.
             </p>
+            <SlotVerifyPreview variant="js" />
           </section>
         </div>
       )}
-
-      {/* Next steps */}
-      <section className="pt-8 mt-12 border-t border-border">
-        <h2 className="text-xl font-semibold mb-4">Next steps</h2>
-        <div className="grid gap-3">
-          <a
-            href="/docs/js/data-attributes"
-            className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-          >
-            <div>
-              <p className="font-medium text-foreground">Data Attributes</p>
-              <p className="text-sm text-muted-foreground">All slot configuration options including theme and size</p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-          </a>
-          <a
-            href="/docs/publisher/dashboard"
-            className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-          >
-            <div>
-              <p className="font-medium text-foreground">Publisher Dashboard</p>
-              <p className="text-sm text-muted-foreground">Manage slots, review ad submissions, and track revenue</p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-          </a>
-        </div>
-      </section>
     </article>
   )
 }

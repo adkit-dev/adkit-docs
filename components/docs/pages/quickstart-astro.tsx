@@ -4,7 +4,7 @@ import { CommandBlock } from "@/components/docs/command-block"
 import { CodePreview } from "@/components/docs/code-preview"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-import { ArrowRight } from "lucide-react"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function QuickstartAstroPage() {
   return (
@@ -12,7 +12,7 @@ export function QuickstartAstroPage() {
       <DocPageHeader
         title="Astro Quickstart"
         description="Add Adkit to an Astro site using the vanilla JS SDK. If your project has React integration enabled, you can also use adkit-react inside React islands."
-        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Astro" }]}
+        breadcrumbItems={[{ label: "Quickstarts", href: "/quickstart" }, { label: "Astro" }]}
         slug="quickstart/astro"
       />
 
@@ -113,12 +113,10 @@ import Layout from "../layouts/Layout.astro"
             </div>
             <h2 className="text-xl font-semibold m-0">Verify it works</h2>
           </div>
-          <p className="text-muted-foreground">
-            Run <code className="text-sm bg-muted px-1.5 py-0.5 rounded">astro dev</code> and open your page. You
-            should see a dashed-border placeholder with "Rent this spot" and your price. If it doesn't appear, check the
-            browser console for{" "}
-            <code className="text-sm bg-muted px-1.5 py-0.5 rounded">[Adkit]</code> errors.
+          <p className="text-sm text-muted-foreground mb-4">
+            Run <code className="text-sm bg-muted px-1.5 py-0.5 rounded">astro dev</code> and open your page. You should see a slot such as the one below. 
           </p>
+          <SlotVerifyPreview variant="js" />
         </section>
 
         {/* React islands */}
@@ -191,32 +189,6 @@ import { SidebarAd } from "../components/SidebarAd"
           </Callout>
         </section>
 
-        {/* Next steps */}
-        <section className="pt-8 border-t border-border">
-          <h2 className="text-xl font-semibold mb-4">Next steps</h2>
-          <div className="grid gap-3">
-            <a
-              href="/docs/js/data-attributes"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Data Attributes</p>
-                <p className="text-sm text-muted-foreground">Full reference for all slot configuration options</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/publisher/dashboard"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Publisher Dashboard</p>
-                <p className="text-sm text-muted-foreground">Manage slots, review ad submissions, and track revenue</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-          </div>
-        </section>
       </div>
     </article>
   )
