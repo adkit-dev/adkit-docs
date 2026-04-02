@@ -12,7 +12,7 @@ interface SiteLogoProps {
 
 export function SiteLogo({ className, onClick }: SiteLogoProps) {
   return (
-    <Link href="/docs" className={cn("flex items-center gap-2", className)} onClick={onClick}>
+    <Link href="/" className={cn("flex items-center gap-2", className)} onClick={onClick}>
       <span className="text-lg font-semibold text-foreground">
         <span className="text-muted-foreground">&lt;</span>
         <span className="text-primary">{siteConfig.name.replace(/\s+Docs$/, "")}</span>

@@ -19,10 +19,10 @@ export const siteConfig = {
 }
 
 export const topNavigation = [
-  { label: "Documentation", href: "/docs" },
-  { label: "Guides", href: "/docs/quickstart" },
-  { label: "API Reference", href: "/docs/api/serve" },
-  { label: "Changelog", href: "/docs/changelog" },
+  { label: "Documentation", href: "/" },
+  { label: "Guides", href: "/quickstart" },
+  { label: "API Reference", href: "/api/serve" },
+  { label: "Changelog", href: "/changelog" },
 ]
 
 export const navigation = [
@@ -30,84 +30,84 @@ export const navigation = [
     title: "Getting started",
     icon: Rocket,
     items: [
-      { title: "Introduction", href: "/docs" },
-      { title: "Quickstart", href: "/docs/quickstart" },
-      { title: "How It Works", href: "/docs/how-it-works" },
+      { title: "Introduction", href: "/" },
+      { title: "Quickstart", href: "/quickstart" },
+      { title: "How It Works", href: "/how-it-works" },
     ],
   },
   {
     title: "React SDK",
     items: [
-      { title: "Installation", href: "/docs/react/installation" },
-      { title: "AdkitProvider", href: "/docs/react/provider" },
-      { title: "AdSlot", href: "/docs/react/adslot" },
-      { title: "BookingModal", href: "/docs/react/booking-modal" },
-      { title: "useAdkit Hook", href: "/docs/react/use-adkit" },
-      { title: "Theming", href: "/docs/react/theming" },
-      { title: "Custom Styling", href: "/docs/react/custom-styling" },
+      { title: "Installation", href: "/react/installation" },
+      { title: "AdkitProvider", href: "/react/provider" },
+      { title: "AdSlot", href: "/react/adslot" },
+      { title: "BookingModal", href: "/react/booking-modal" },
+      { title: "useAdkit Hook", href: "/react/use-adkit" },
+      { title: "Theming", href: "/react/theming" },
+      { title: "Custom Styling", href: "/react/custom-styling" },
     ],
   },
   {
     title: "JavaScript SDK",
     items: [
-      { title: "Installation", href: "/docs/js/installation" },
-      { title: "Data Attributes", href: "/docs/js/data-attributes" },
-      { title: "JavaScript API", href: "/docs/js/api" },
-      { title: "Theming", href: "/docs/js/theming" },
-      { title: "Custom Styling", href: "/docs/js/custom-styling" },
+      { title: "Installation", href: "/js/installation" },
+      { title: "Data Attributes", href: "/js/data-attributes" },
+      { title: "JavaScript API", href: "/js/api" },
+      { title: "Theming", href: "/js/theming" },
+      { title: "Custom Styling", href: "/js/custom-styling" },
     ],
   },
   {
     title: "Publisher Guide",
     icon: LayoutDashboard,
     items: [
-      { title: "Dashboard Overview", href: "/docs/publisher/dashboard" },
-      { title: "Creating Slots", href: "/docs/publisher/creating-slots" },
-      { title: "Approvals", href: "/docs/publisher/approvals" },
-      { title: "Analytics", href: "/docs/publisher/analytics" },
-      { title: "Discounts", href: "/docs/publisher/discounts" },
-      { title: "Payouts", href: "/docs/publisher/payouts" },
-      { title: "Settings", href: "/docs/publisher/settings" },
+      { title: "Dashboard Overview", href: "/publisher/dashboard" },
+      { title: "Creating Slots", href: "/publisher/creating-slots" },
+      { title: "Approvals", href: "/publisher/approvals" },
+      { title: "Analytics", href: "/publisher/analytics" },
+      { title: "Discounts", href: "/publisher/discounts" },
+      { title: "Payouts", href: "/publisher/payouts" },
+      { title: "Settings", href: "/publisher/settings" },
     ],
   },
   {
     title: "Advertiser Guide",
     icon: ShoppingCart,
     items: [
-      { title: "Booking an Ad", href: "/docs/advertiser/booking" },
-      { title: "Campaign Management", href: "/docs/advertiser/campaigns" },
-      { title: "Billing", href: "/docs/advertiser/billing" },
+      { title: "Booking an Ad", href: "/advertiser/booking" },
+      { title: "Campaign Management", href: "/advertiser/campaigns" },
+      { title: "Billing", href: "/advertiser/billing" },
     ],
   },
   {
     title: "API Reference",
     icon: Server,
     items: [
-      { title: "Serve API", href: "/docs/api/serve" },
-      { title: "Events API", href: "/docs/api/events" },
+      { title: "Serve API", href: "/api/serve" },
+      { title: "Events API", href: "/api/events" },
     ],
   },
   {
     title: "Concepts",
     icon: Lightbulb,
     items: [
-      { title: "Server-Authoritative Pricing", href: "/docs/concepts/pricing" },
-      { title: "Slot Identity", href: "/docs/concepts/slot-identity" },
-      { title: "Event Tracking", href: "/docs/concepts/event-tracking" },
+      { title: "Server-Authoritative Pricing", href: "/concepts/pricing" },
+      { title: "Slot Identity", href: "/concepts/slot-identity" },
+      { title: "Event Tracking", href: "/concepts/event-tracking" },
     ],
   },
 ]
 
 export const footerLinks = {
   explore: [
-    { label: "Documentation", href: "/docs" },
-    { label: "React SDK", href: "/docs/react/installation" },
-    { label: "JavaScript SDK", href: "/docs/js/installation" },
+    { label: "Documentation", href: "/" },
+    { label: "React SDK", href: "/react/installation" },
+    { label: "JavaScript SDK", href: "/js/installation" },
   ],
   resources: [
-    { label: "Publisher Guide", href: "/docs/publisher/dashboard" },
-    { label: "Advertiser Guide", href: "/docs/advertiser/booking" },
-    { label: "API Reference", href: "/docs/api/serve" },
+    { label: "Publisher Guide", href: "/publisher/dashboard" },
+    { label: "Advertiser Guide", href: "/advertiser/booking" },
+    { label: "API Reference", href: "/api/serve" },
   ],
   company: [
     { label: "GitHub", href: "https://github.com/adkit-dev" },

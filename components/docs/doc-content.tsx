@@ -15,13 +15,13 @@ interface DocContentProps {
 
 // Map slug prefixes to their section label and landing href
 const SECTION_MAP: Record<string, { label: string; href: string }> = {
-  quickstart: { label: "Quickstarts", href: "/docs/quickstart" },
-  react: { label: "React SDK", href: "/docs/react/installation" },
-  js: { label: "JavaScript SDK", href: "/docs/js/installation" },
-  publisher: { label: "Publisher Guide", href: "/docs/publisher/dashboard" },
-  advertiser: { label: "Advertiser Guide", href: "/docs/advertiser/booking" },
-  concepts: { label: "Concepts", href: "/docs/concepts/pricing" },
-  api: { label: "API Reference", href: "/docs/api/serve" },
+  quickstart: { label: "Quickstarts", href: "/quickstart" },
+  react: { label: "React SDK", href: "/react/installation" },
+  js: { label: "JavaScript SDK", href: "/js/installation" },
+  publisher: { label: "Publisher Guide", href: "/publisher/dashboard" },
+  advertiser: { label: "Advertiser Guide", href: "/advertiser/booking" },
+  concepts: { label: "Concepts", href: "/concepts/pricing" },
+  api: { label: "API Reference", href: "/api/serve" },
 }
 
 // Derive a fitting filename for code blocks based on language and content hints
