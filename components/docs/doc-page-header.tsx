@@ -18,8 +18,8 @@ export function DocPageHeader({ title, description, breadcrumbItems = [], slug, 
 
   const copyLink = () => {
     const url = typeof window !== "undefined" && slug
-      ? `${window.location.origin}/docs/${slug}`
-      : `/docs/${slug ?? ""}`
+      ? `${window.location.origin}/${slug}`
+      : slug ? `/${slug}` : "/"
     copy(url)
   }
 

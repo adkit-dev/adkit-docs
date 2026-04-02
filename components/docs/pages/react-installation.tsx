@@ -3,9 +3,9 @@
 import { useState } from "react"
 import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
-import { ArrowRight } from "lucide-react"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function ReactInstallationPage() {
   const [framework, setFramework] = useState<"nextjs" | "react" | "html">("nextjs")
@@ -15,7 +15,7 @@ export function ReactInstallationPage() {
       <DocPageHeader
         title="Installation"
         description="Get Adkit running on your site. Takes about 3 minutes."
-        breadcrumbItems={[{ label: "React SDK", href: "/docs/react/installation" }, { label: "Installation" }]}
+        breadcrumbItems={[{ label: "React SDK", href: "/react/installation" }, { label: "Installation" }]}
         slug="react/installation"
       />
 
@@ -181,44 +181,14 @@ export function Sidebar() {
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-semibold text-sm">4</div>
             <h2 className="text-xl font-semibold m-0">Verify it works</h2>
           </div>
-          
-          <div className="p-6 border border-border rounded-lg bg-card flex flex-col items-center justify-center text-center">
-            <div className="w-full max-w-xs aspect-video border-2 border-dashed border-border rounded flex items-center justify-center mb-4 bg-muted/20">
-              <span className="text-muted-foreground font-medium">Adkit Placeholder</span>
-            </div>
-            <p className="text-foreground font-medium">Open your site.</p>
-            <p className="text-muted-foreground text-sm mt-1">
-              You should see a dashed border placeholder with your price. If you see it, you're done.
-            </p>
-          </div>
-        </section>
 
-        {/* What happens next */}
-        <section className="pt-8 border-t border-border">
-          <h2 className="text-2xl font-semibold mb-4">What happens next?</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
-            <div>
-              <div className="w-10 h-10 rounded bg-blue-500/10 flex items-center justify-center mb-3">
-                <span className="text-xl">🖱️</span>
-              </div>
-              <h3 className="font-medium mb-2">1. Visitor Clicks</h3>
-              <p className="text-sm text-muted-foreground">When a visitor clicks the placeholder, they'll be guided through booking and payment.</p>
-            </div>
-            <div>
-              <div className="w-10 h-10 rounded bg-amber-500/10 flex items-center justify-center mb-3">
-                <span className="text-xl">🔔</span>
-              </div>
-              <h3 className="font-medium mb-2">2. You Approve</h3>
-              <p className="text-sm text-muted-foreground">You'll receive a notification to review the creative and approve the ad.</p>
-            </div>
-            <div>
-              <div className="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center mb-3">
-                <span className="text-xl">💰</span>
-              </div>
-              <h3 className="font-medium mb-2">3. Ad Goes Live</h3>
-              <p className="text-sm text-muted-foreground">The ad runs for the booked duration, and you get paid automatically via Stripe.</p>
-            </div>
-          </div>
+          <p className="text-sm text-muted-foreground mb-4">
+            Toggle <strong className="font-medium text-foreground">Code</strong> for the exact{" "}
+            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">AdSlot</code> props;{" "}
+            <strong className="font-medium text-foreground">Preview</strong> shows an empty banner slot before an ad is
+            booked.
+          </p>
+          <SlotVerifyPreview variant="react" />
         </section>
       </div>
     </article>

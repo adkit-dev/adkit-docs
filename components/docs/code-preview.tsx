@@ -300,7 +300,7 @@ export function CodePreview({
       {/* Code content */}
       <div
         ref={codeRef}
-        className="overflow-x-auto text-sm leading-relaxed [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-4 [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:min-w-full"
+        className="overflow-x-auto text-sm leading-relaxed [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-4 [&_code]:block [&_code]:min-w-max [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:w-full"
         dangerouslySetInnerHTML={{ __html: processedHtml }}
       />
     </div>
@@ -370,6 +370,34 @@ function addLineFeatures(
   code.innerHTML = processedLines.join("")
 
   return doc.body.innerHTML
+}
+
+export function useShikiHighlightedHtml(code: string, language: string, showLineNumbers = false) {
+  const { resolvedTheme } = useTheme()
+  const [html, setHtml] = useState("")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = !mounted || resolvedTheme !== "light"
+  const shikiTheme = isDark ? "github-dark-default" : "github-light"
+
+  useEffect(() => {
+    let cancelled = false
+    async function run() {
+      const raw = await codeToHtml(code, { lang: language, theme: shikiTheme })
+      if (cancelled) return
+      setHtml(addLineFeatures(raw, [], showLineNumbers, false, [], [], isDark))
+    }
+    run()
+    return () => {
+      cancelled = true
+    }
+  }, [code, language, shikiTheme, isDark, showLineNumbers])
+
+  return html
 }
 
 interface MultiCodePreviewProps {
@@ -531,7 +559,7 @@ export function MultiCodePreview({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="overflow-x-auto text-sm leading-relaxed [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:m-0 [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:min-w-full"
+          className="overflow-x-auto text-sm leading-relaxed [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:m-0 [&_code]:block [&_code]:min-w-max [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:w-full"
           dangerouslySetInnerHTML={{ __html: highlightedCodes[activeTab] || "" }}
         />
       </AnimatePresence>
@@ -631,7 +659,7 @@ export function DiffPreview({
       </div>
 
       <div
-        className="overflow-x-auto text-sm leading-relaxed [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:m-0 [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:min-w-full"
+        className="overflow-x-auto text-sm leading-relaxed [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:m-0 [&_code]:block [&_code]:min-w-max [&_code]:font-mono [&_.code-line]:leading-6 [&_.code-line]:w-full"
         dangerouslySetInnerHTML={{ __html: highlightedCode }}
       />
     </div>

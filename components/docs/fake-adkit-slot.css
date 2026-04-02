@@ -1,0 +1,147 @@
+/* Mirrored from adkit-react/src/styles.css — slot + placeholder only (no modal). */
+
+.adkit-slot {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  flex: 0 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.adkit-slot--default-width {
+  width: 100%;
+}
+
+.adkit-slot,
+.adkit-slot *,
+.adkit-canvas {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+.adkit-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--adkit-aspect) !important;
+  overflow: hidden;
+  background: var(--adkit-bg);
+}
+
+.adkit-canvas img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+.adkit-box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--adkit-border);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.adkit-box:hover {
+  border-color: var(--adkit-border-hover);
+}
+
+.adkit-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--adkit-padding);
+  gap: var(--adkit-gap);
+}
+
+.adkit-slot[data-adkit-ratio="banner"] .adkit-content {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 12px;
+}
+
+.adkit-slot[data-adkit-ratio="banner"] .adkit-cta {
+  margin-left: auto;
+  margin-top: 0;
+}
+
+.adkit-label {
+  font-size: var(--adkit-label-size);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--adkit-text-muted);
+}
+
+.adkit-price {
+  font-size: var(--adkit-price-size);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--adkit-text-strong);
+}
+
+.adkit-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--adkit-cta-mt);
+  font-size: var(--adkit-cta-size);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--adkit-text);
+  transition: color 0.15s ease;
+}
+
+.adkit-box:hover .adkit-cta {
+  color: var(--adkit-text-strong);
+}
+
+.adkit-arrow {
+  opacity: 0.5;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.adkit-box:hover .adkit-arrow {
+  transform: translateX(2px);
+  opacity: 0.8;
+}
+
+.adkit-slot[data-adkit-size="sm"] {
+  --adkit-label-size: 7px;
+  --adkit-price-size: 10px;
+  --adkit-cta-size: 6px;
+  --adkit-gap: 2px;
+  --adkit-cta-mt: 4px;
+  --adkit-padding: 0 8px;
+}
+
+.adkit-slot[data-adkit-size="md"] {
+  --adkit-label-size: 9px;
+  --adkit-price-size: 14px;
+  --adkit-cta-size: 8px;
+  --adkit-gap: 4px;
+  --adkit-cta-mt: 8px;
+  --adkit-padding: 0 12px;
+}
+
+.adkit-slot[data-adkit-size="lg"] {
+  --adkit-label-size: 11px;
+  --adkit-price-size: 18px;
+  --adkit-cta-size: 10px;
+  --adkit-gap: 4px;
+  --adkit-cta-mt: 10px;
+  --adkit-padding: 0 12px;
+}

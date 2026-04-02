@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getDocPage, docPages } from "@/lib/docs/pages"
 import { DocContent } from "@/components/docs/doc-content"
+import { DocRelatedArticles } from "@/components/docs/doc-related-articles"
 
 interface DocPageProps {
   params: Promise<{
@@ -51,16 +52,24 @@ export default async function DocPage({ params }: DocPageProps) {
 
   if (page.component) {
     const Component = page.component
-    return <Component />
+    return (
+      <>
+        <Component />
+        <DocRelatedArticles slug={slugPath} />
+      </>
+    )
   }
 
   return (
-    <DocContent
-      title={page.title}
-      description={page.description}
-      content={page.content || ""}
-      slug={slugPath}
-      isCodeTitle={page.isCodeTitle}
-    />
+    <>
+      <DocContent
+        title={page.title}
+        description={page.description}
+        content={page.content || ""}
+        slug={slugPath}
+        isCodeTitle={page.isCodeTitle}
+      />
+      <DocRelatedArticles slug={slugPath} />
+    </>
   )
 }

@@ -15,37 +15,37 @@ const frameworks = [
   {
     title: "Next.js",
     description: "Install adkit-react and add slots to your Next.js app. Supports App Router and Pages Router.",
-    href: "/docs/quickstart/nextjs",
+    href: "/quickstart/nextjs",
     icon: NextJSIcon,
   },
   {
     title: "Astro",
     description: "Add Adkit to an Astro site using the vanilla JS SDK or adkit-react in React islands.",
-    href: "/docs/quickstart/astro",
+    href: "/quickstart/astro",
     icon: AstroIcon,
   },
   {
     title: "WordPress",
     description: "Add Adkit to your WordPress site using Custom HTML blocks, functions.php, or a child theme.",
-    href: "/docs/quickstart/wordpress",
+    href: "/quickstart/wordpress",
     icon: WordPressIcon,
   },
   {
     title: "Webflow",
     description: "Add Adkit to your Webflow site using Project Settings and Embed elements.",
-    href: "/docs/quickstart/webflow",
+    href: "/quickstart/webflow",
     icon: WebflowIcon,
   },
   {
     title: "JavaScript",
     description: "Add Adkit to any website using a single script tag. No build step required.",
-    href: "/docs/quickstart/javascript",
+    href: "/quickstart/javascript",
     icon: JavaScriptIcon,
   },
   {
     title: "React",
     description: "Install adkit-react and add ad slots to your React app.",
-    href: "/docs/quickstart/react",
+    href: "/quickstart/react",
     icon: ReactIcon,
   },
 ]

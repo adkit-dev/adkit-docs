@@ -383,7 +383,7 @@ function ResponseSources({ steps }: { steps: ThinkingStep[] }) {
             {steps.map((step) => (
               <a
                 key={step.slug}
-                href={`/docs/${step.slug}`}
+                href={`/${step.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -481,7 +481,7 @@ function ThinkingBlock({ steps, isActive = false }: { steps: ThinkingStep[]; isA
               {i > 0 && i === steps.length - 1 && <span className="text-muted-foreground mr-1">and</span>}
               {i > 0 && i < steps.length - 1 && <span className="text-border mr-1">,</span>}
               <a
-                href={`/docs/${step.slug}`}
+                href={`/${step.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}

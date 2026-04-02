@@ -56,7 +56,7 @@ export function Topbar({ onSearchClick, onMenuClick }: TopbarProps) {
             </Link>
           ))}
         </nav>
-        <Link href="/docs/quickstart" className="ml-2">
+        <Link href="/quickstart" className="ml-2">
           <ShimmerButton
             shimmerColor="hsl(270 70% 75%)"
             background="hsl(270 70% 45%)"

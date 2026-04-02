@@ -3,7 +3,7 @@
 import { CodePreview } from "@/components/docs/code-preview"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-import { ArrowRight } from "lucide-react"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function QuickstartJavaScriptPage() {
   return (
@@ -11,7 +11,7 @@ export function QuickstartJavaScriptPage() {
       <DocPageHeader
         title="JavaScript Quickstart"
         description="Add Adkit to any website with a single script tag. No build step or framework required — works on plain HTML, static sites, and any CMS that allows custom code."
-        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "JavaScript" }]}
+        breadcrumbItems={[{ label: "Quickstarts", href: "/quickstart" }, { label: "JavaScript" }]}
         slug="quickstart/javascript"
       />
 
@@ -172,12 +172,11 @@ export function QuickstartJavaScriptPage() {
             </div>
             <h2 className="text-xl font-semibold m-0">Verify it works</h2>
           </div>
-          <p className="text-muted-foreground mb-4">
-            Open your page in a browser. You should see a dashed-border placeholder with "Rent this spot" and your
-            price. If the slot doesn't appear, open the browser console — the SDK logs all errors prefixed with{" "}
-            <code className="text-sm bg-muted px-1.5 py-0.5 rounded">[Adkit]</code>.
+          <p className="text-sm text-muted-foreground mb-4">
+            Open your page in a browser. You should see a slot such as the one below. 
           </p>
-          <Callout variant="note">
+          <SlotVerifyPreview variant="js" />
+          <Callout variant="note" className="mt-4">
             <strong>Ad blockers:</strong> Disable your ad blocker during development. Most ad blockers suppress the
             Adkit script in local environments.
           </Callout>
@@ -236,43 +235,6 @@ async function loadContent() {
 }`}
               />
             </div>
-          </div>
-        </section>
-
-        {/* Next steps */}
-        <section className="pt-8 border-t border-border">
-          <h2 className="text-xl font-semibold mb-4">Next steps</h2>
-          <div className="grid gap-3">
-            <a
-              href="/docs/js/data-attributes"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Data Attributes</p>
-                <p className="text-sm text-muted-foreground">Full reference for all slot configuration options</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/js/theming"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Theming</p>
-                <p className="text-sm text-muted-foreground">Customize slot colors and appearance per placement</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/publisher/dashboard"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Publisher Dashboard</p>
-                <p className="text-sm text-muted-foreground">Manage slots, review ad submissions, and track revenue</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
           </div>
         </section>
       </div>
