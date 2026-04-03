@@ -104,7 +104,7 @@ const codeExamples = [
     language: "html",
     filename: "index.html",
     icon: <JavaScriptIcon className="h-4 w-4" />,
-    addedLines: [7, 12, 13, 14, 15, 16],
+    addedLines: [7, 12, 13, 14, 15, 16, 17],
     code: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,6 +119,7 @@ const codeExamples = [
     <div
       data-adkit-site="your-site-id"
       data-adkit-slot="my-slot"
+      data-adkit-price="30"
       data-adkit-aspect-ratio="4:3"
     ></div>
   </main>

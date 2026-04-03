@@ -729,15 +729,6 @@ export function AssistantDock({
     onQueuedPromptHandled?.()
   }, [expanded, queuedPrompt, sendMessage, onQueuedPromptHandled])
 
-  useEffect(() => {
-    if (!expanded) return
-    const previousOverscroll = document.documentElement.style.overscrollBehavior
-    document.documentElement.style.overscrollBehavior = "none"
-    return () => {
-      document.documentElement.style.overscrollBehavior = previousOverscroll
-    }
-  }, [expanded])
-
   const hasConversation = messages.length > 0 || isLoading
 
   const dockVisible = !isScrolled || expanded
@@ -805,7 +796,7 @@ export function AssistantDock({
                 {hasConversation && (
                   <button
                     onClick={resetConversation}
-                    className="flex items-center gap-1.5 rounded-lg border border-border/50 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className="flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[11px] font-medium text-primary-foreground transition-opacity hover:opacity-90"
                   >
                     <RotateCcw className="h-3 w-3" />
                     <span>New chat</span>
@@ -823,7 +814,7 @@ export function AssistantDock({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.18 }}
-                    className="flex-1 overflow-y-auto"
+                    className="flex-1 overflow-y-auto overscroll-contain"
                   >
                     {/* Decorative blobs */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -905,7 +896,7 @@ export function AssistantDock({
                     transition={{ duration: 0.15 }}
                     className="flex-1 overflow-hidden flex flex-col"
                   >
-                    <div ref={scrollRef} className="flex-1 overflow-y-auto" onScroll={handleScrollContainerScroll}>
+                    <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain" onScroll={handleScrollContainerScroll}>
                       {/* Spacer pushes messages to the bottom when content is short */}
                       <div className="flex flex-col min-h-full">
                         <div className="flex-1" />
