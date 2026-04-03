@@ -336,16 +336,4 @@ Path: /concepts/slot-identity
 Slot IDs: unique per site, descriptive, case-sensitive, no spaces.
 Use the same ID across all pages for consistent pricing/analytics.
 
---- API Reference: Serve ---
-Path: /api/serve
-
-GET https://api.adkit.dev/v1/serve?site=SITE_ID&slot=SLOT_NAME
-Response: { status: "filled" | "empty", creative: { imageUrl, destinationUrl, impressionId } }
-
---- API Reference: Events ---
-Path: /api/events
-
-POST https://api.adkit.dev/v1/events/impression
-POST https://api.adkit.dev/v1/events/click
-Body: { impressionId: string, timestamp: string }
 `

@@ -9,13 +9,12 @@ export function ReactCustomStylingPage() {
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
       <DocPageHeader
         title="Custom Styling"
-        description="Apply your own CSS to Adkit slot elements using className, CSS class selectors, and data attributes."
+        description="Use documented props on AdSlot for supported layout and appearance customization."
         breadcrumbItems={[{ label: "React SDK", href: "/react/installation" }, { label: "Custom Styling" }]}
         slug="react/custom-styling"
       />
 
       <div className="space-y-12">
-        {/* className prop */}
         <section>
           <h2 className="text-xl font-semibold mb-4">className prop</h2>
           <p className="text-muted-foreground mb-4">
@@ -50,90 +49,68 @@ export function ReactCustomStylingPage() {
           </Callout>
         </section>
 
-        {/* CSS class selectors */}
         <section>
-          <h2 className="text-xl font-semibold mb-4">CSS class selectors</h2>
+          <h2 className="text-xl font-semibold mb-4">Appearance props</h2>
           <p className="text-muted-foreground mb-4">
-            These classes are applied to the internal elements of every slot. Target them in your global stylesheet
-            to make changes across all slots at once.
+            Use documented props for visual changes instead of targeting internal DOM structure.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="text-left py-2 pr-4 font-medium text-foreground">Class</th>
-                  <th className="text-left py-2 font-medium text-foreground">Element</th>
+                  <th className="text-left py-2 pr-4 font-medium text-foreground">Prop</th>
+                  <th className="text-left py-2 font-medium text-foreground">What it controls</th>
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-slot</td>
-                  <td className="py-2">Root container (when className is provided)</td>
+                  <td className="py-2 pr-4 font-mono text-xs">theme</td>
+                  <td className="py-2">Built-in palette: <code className="text-xs bg-muted px-1 py-0.5 rounded">"light"</code>, <code className="text-xs bg-muted px-1 py-0.5 rounded">"dark"</code>, or <code className="text-xs bg-muted px-1 py-0.5 rounded">"auto"</code></td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-slot--default-width</td>
-                  <td className="py-2">Root container (when no className is provided, adds <code className="text-xs bg-muted px-1 py-0.5 rounded">width: 100%</code>)</td>
+                  <td className="py-2 pr-4 font-mono text-xs">styles.borderColor</td>
+                  <td className="py-2">Placeholder border color</td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-canvas</td>
-                  <td className="py-2">Inner canvas that enforces the aspect ratio</td>
+                  <td className="py-2 pr-4 font-mono text-xs">styles.backgroundColor</td>
+                  <td className="py-2">Placeholder background color</td>
                 </tr>
                 <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-box</td>
-                  <td className="py-2">Placeholder container (empty and loading states)</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-content</td>
-                  <td className="py-2">Inner content wrapper inside the placeholder</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-label</td>
-                  <td className="py-2">"Your ad here" / "ad space" label text</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-price</td>
-                  <td className="py-2">Price display text</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-cta</td>
-                  <td className="py-2">"Rent this spot" / "Rent" / "Learn more" button</td>
+                  <td className="py-2 pr-4 font-mono text-xs">styles.textColorPrimary</td>
+                  <td className="py-2">Primary text color for the price</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-arrow</td>
-                  <td className="py-2">Arrow icon inside the CTA</td>
+                  <td className="py-2 pr-4 font-mono text-xs">styles.textColorSecondary</td>
+                  <td className="py-2">Secondary text color for the label and CTA</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <CodePreview
-            language="css"
-            filename="src/index.css"
-            code={`/* Rounded corners on all slots */
-.adkit-canvas {
-  border-radius: 8px;
-  overflow: hidden;
-}
+            language="tsx"
+            filename="src/components/Sidebar.tsx"
+            code={`import { AdSlot } from "adkit-react"
 
-/* Custom font on placeholder text */
-.adkit-label,
-.adkit-cta {
-  font-family: "Inter", sans-serif;
-}
-
-/* Bolder CTA */
-.adkit-cta {
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}`}
+<AdSlot
+  slot="sidebar"
+  aspectRatio="4:3"
+  price={2500}
+  theme="dark"
+  styles={{
+    borderColor: "#6366f1",
+    backgroundColor: "#1e1b4b",
+    textColorPrimary: "#e0e7ff",
+    textColorSecondary: "#a5b4fc",
+  }}
+/>`}
           />
         </section>
 
-        {/* Data attribute selectors */}
         <section>
-          <h2 className="text-xl font-semibold mb-4">Data attribute selectors</h2>
+          <h2 className="text-xl font-semibold mb-4">Public data attributes on the rendered slot</h2>
           <p className="text-muted-foreground mb-4">
-            The root element has data attributes for site, slot name, aspect ratio, and size. Use them to scope
-            styles to a specific placement without adding extra classes.
+            The root element exposes stable data attributes. These are the only DOM markers you should rely on if you
+            need to identify a rendered slot.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm border-collapse">
@@ -163,69 +140,12 @@ export function ReactCustomStylingPage() {
               </tbody>
             </table>
           </div>
-          <CodePreview
-            language="css"
-            filename="src/index.css"
-            code={`/* Style only the sidebar slot */
-[data-adkit-slot="sidebar"] .adkit-canvas {
-  border-radius: 12px;
-}
-
-/* Different border radius for banner slots */
-[data-adkit-ratio="banner"] .adkit-canvas {
-  border-radius: 4px;
-}
-
-/* Compact text for small-size slots */
-[data-adkit-size="sm"] .adkit-cta {
-  display: none;
-}`}
-          />
         </section>
 
-        {/* Modal CSS classes */}
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Modal CSS classes</h2>
-          <p className="text-muted-foreground mb-4">
-            The booking modal uses these classes. Override them to match your brand if needed.
-          </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 pr-4 font-medium text-foreground">Class</th>
-                  <th className="text-left py-2 font-medium text-foreground">Element</th>
-                </tr>
-              </thead>
-              <tbody className="text-muted-foreground">
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-overlay</td>
-                  <td className="py-2">Full-screen backdrop</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-card</td>
-                  <td className="py-2">Modal card (max-width: 420px, z-index: 999999)</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-headline</td>
-                  <td className="py-2">Modal title</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-cta</td>
-                  <td className="py-2">"Book this ad" primary button</td>
-                </tr>
-                <tr className="border-b border-border/50">
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-cancel</td>
-                  <td className="py-2">Cancel / dismiss button</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-4 font-mono text-xs">.adkit-modal-price</td>
-                  <td className="py-2">Price display in the modal</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <Callout variant="warning">
+          Do not rely on internal selectors like <code>.adkit-box</code>, <code>.adkit-cta</code>, or modal class
+          names. They are implementation details, not supported customization APIs.
+        </Callout>
       </div>
     </article>
   )

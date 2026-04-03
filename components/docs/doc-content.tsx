@@ -21,7 +21,6 @@ const SECTION_MAP: Record<string, { label: string; href: string }> = {
   publisher: { label: "Publisher Guide", href: "/publisher/dashboard" },
   advertiser: { label: "Advertiser Guide", href: "/advertiser/booking" },
   concepts: { label: "Concepts", href: "/concepts/pricing" },
-  api: { label: "API Reference", href: "/api/serve" },
 }
 
 // Derive a fitting filename for code blocks based on language and content hints

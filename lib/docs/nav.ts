@@ -3,9 +3,7 @@ import {
   Rocket,
   LayoutDashboard,
   ShoppingCart,
-  Server,
   Lightbulb,
-  BookOpen,
   FastForward,
 } from "lucide-react"
 import {
@@ -28,8 +26,8 @@ export const siteConfig = {
 
 export const topNavigation = [
   { title: "Documentation", href: "/" },
-  { title: "Guides", href: "/quickstart" },
-  { title: "API Reference", href: "/api/serve" },
+  { title: "Publisher Guide", href: "/publisher/overview" },
+  { title: "Advertiser Guide", href: "/advertiser/overview" },
   { title: "Changelog", href: "/changelog" },
 ]
 
@@ -42,7 +40,7 @@ export const footerLinks = {
   resources: [
     { title: "Publisher Guide", href: "/publisher/dashboard" },
     { title: "Advertiser Guide", href: "/advertiser/booking" },
-    { title: "API Reference", href: "/api/serve" },
+    { title: "Changelog", href: "/changelog" },
   ],
   company: [
     { title: "GitHub", href: "https://github.com/adkit-dev" },
@@ -127,7 +125,8 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Dashboard Overview", href: "/publisher/dashboard" },
+      { title: "Overview", href: "/publisher/overview" },
+      { title: "Dashboard", href: "/publisher/dashboard" },
       { title: "Creating Slots", href: "/publisher/creating-slots" },
       { title: "Approving Ads", href: "/publisher/approvals" },
       { title: "Analytics", href: "/publisher/analytics" },
@@ -142,9 +141,11 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
+      { title: "Overview", href: "/advertiser/overview" },
       { title: "Booking an Ad", href: "/advertiser/booking" },
       { title: "Campaign Management", href: "/advertiser/campaigns" },
       { title: "Billing", href: "/advertiser/billing" },
+      { title: "Settings", href: "/advertiser/settings" },
     ],
   },
   {
@@ -156,25 +157,6 @@ export const navigation: NavSection[] = [
       { title: "Pricing Model", href: "/concepts/pricing" },
       { title: "Slot Identity", href: "/concepts/slot-identity" },
       { title: "Event Tracking", href: "/concepts/event-tracking" },
-    ],
-  },
-  {
-    title: "API Reference",
-    icon: Server,
-    collapsible: true,
-    defaultOpen: true,
-    items: [
-      { title: "Serve API", href: "/api/serve" },
-      { title: "Events API", href: "/api/events" },
-    ],
-  },
-  {
-    title: "Changelog",
-    icon: BookOpen,
-    collapsible: true,
-    defaultOpen: true,
-    items: [
-      { title: "Changelog", href: "/changelog" },
     ],
   },
 ]

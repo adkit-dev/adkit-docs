@@ -38,12 +38,9 @@ export const RELATED_SLUGS: Record<string, readonly [string, string, string]> = 
   "advertiser/campaigns": ["advertiser/billing", "advertiser/booking", "publisher/approvals"],
   "advertiser/billing": ["advertiser/campaigns", "advertiser/booking", "publisher/payouts"],
 
-  "api/serve": ["api/events", "concepts/pricing", "js/data-attributes"],
-  "api/events": ["api/serve", "concepts/event-tracking", "publisher/analytics"],
-
   "concepts/pricing": ["concepts/slot-identity", "publisher/creating-slots", "js/data-attributes"],
   "concepts/slot-identity": ["concepts/pricing", "js/data-attributes", "react/adslot"],
-  "concepts/event-tracking": ["api/events", "publisher/analytics", "advertiser/campaigns"],
+  "concepts/event-tracking": ["publisher/analytics", "advertiser/campaigns", "js/api"],
 
   changelog: ["quickstart", "how-it-works", "react/installation"],
 }

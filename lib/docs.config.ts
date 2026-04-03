@@ -2,7 +2,6 @@ import {
   Rocket,
   LayoutDashboard,
   ShoppingCart,
-  Server,
   Lightbulb,
 } from "lucide-react"
 
@@ -21,7 +20,6 @@ export const siteConfig = {
 export const topNavigation = [
   { label: "Documentation", href: "/" },
   { label: "Guides", href: "/quickstart" },
-  { label: "API Reference", href: "/api/serve" },
   { label: "Changelog", href: "/changelog" },
 ]
 
@@ -80,14 +78,6 @@ export const navigation = [
     ],
   },
   {
-    title: "API Reference",
-    icon: Server,
-    items: [
-      { title: "Serve API", href: "/api/serve" },
-      { title: "Events API", href: "/api/events" },
-    ],
-  },
-  {
     title: "Concepts",
     icon: Lightbulb,
     items: [
@@ -107,7 +97,7 @@ export const footerLinks = {
   resources: [
     { label: "Publisher Guide", href: "/publisher/dashboard" },
     { label: "Advertiser Guide", href: "/advertiser/booking" },
-    { label: "API Reference", href: "/api/serve" },
+    { label: "Changelog", href: "/changelog" },
   ],
   company: [
     { label: "GitHub", href: "https://github.com/adkit-dev" },
@@ -122,6 +112,5 @@ export const iconMap = {
   Rocket,
   LayoutDashboard,
   ShoppingCart,
-  Server,
   Lightbulb,
 }
