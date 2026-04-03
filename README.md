@@ -185,7 +185,6 @@ See `.env.example` for all available variables.
 The template includes placeholder components for AI integration:
 
 - **AssistantDock** - Floating input bar at bottom of page
-- **AssistantSheet** - Slide-out panel for chat interface
 
 To integrate AI-powered search with Supabase, Upstash Vector, and Vercel AI SDK, see the comprehensive guide in `template-docs/ai-search/README.md`.
 
