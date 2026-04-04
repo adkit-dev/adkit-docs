@@ -7,10 +7,9 @@ import { X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
-import { navigation, topNavigation } from "@/lib/docs/nav"
+import { getNavSectionIcon, navigation } from "@/lib/docs/nav"
 import { ThemeToggle } from "./theme-toggle"
 import { SiteLogo } from "./site-logo"
-import { JavaScriptIcon, ReactIcon } from "@/components/icons/sdk-icons"
 import {
   Collapsible,
   CollapsibleContent,
@@ -22,19 +21,8 @@ interface MobileNavProps {
   onOpenChange: (open: boolean) => void
 }
 
-function getSectionIcon(title: string) {
-  if (title === "React SDK") {
-    return <ReactIcon className="h-4 w-4" />
-  }
-  if (title === "JavaScript SDK") {
-    return <JavaScriptIcon className="h-4 w-4" />
-  }
-  return null
-}
-
 export function MobileNav({ open, onOpenChange }: MobileNavProps) {
   const pathname = usePathname()
-  const [sectionOpen, setSectionOpen] = useState(false)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {}
     navigation.forEach((section) => {
@@ -44,8 +32,6 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
     })
     return initial
   })
-
-  const currentSection = topNavigation.find((item) => pathname.startsWith(item.href)) || topNavigation[0]
 
   const toggleSection = (title: string) => {
     setOpenSections((prev) => ({
@@ -76,43 +62,10 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
             </div>
           </div>
 
-          {/* Section dropdown */}
-          <div className="px-4 py-3 border-b border-border">
-            <div className="relative">
-              <button
-                className="flex w-full items-center justify-between rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm"
-                onClick={() => setSectionOpen(!sectionOpen)}
-              >
-                <span>{currentSection?.title || "Documentation"}</span>
-                <ChevronDown className={cn("h-4 w-4 transition-transform", sectionOpen && "rotate-180")} />
-              </button>
-              {sectionOpen && (
-                <div className="absolute left-0 right-0 top-full mt-1 z-10 rounded-lg border border-border bg-background shadow-lg">
-                  {topNavigation.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={cn(
-                        "flex w-full items-center px-4 py-2.5 text-sm hover:bg-secondary transition-colors",
-                        pathname.startsWith(item.href) && "text-accent",
-                      )}
-                      onClick={() => {
-                        setSectionOpen(false)
-                        onOpenChange(false)
-                      }}
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Navigation sections */}
           <nav className="overflow-y-auto flex-1 px-4 py-3">
             {navigation.map((section) => {
-              const customIcon = getSectionIcon(section.title)
+              const SectionIcon = getNavSectionIcon(section.title) ?? section.icon
               const isCollapsible = section.collapsible
               const isOpen = openSections[section.title] ?? true
 
@@ -126,7 +79,7 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
                   >
                     <CollapsibleTrigger className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-sm font-medium text-foreground hover:bg-secondary/50 transition-colors">
                       <div className="flex items-center gap-2">
-                        {customIcon || (section.icon && <section.icon className="h-4 w-4" aria-hidden="true" />)}
+                        {SectionIcon && <SectionIcon className="h-4 w-4" aria-hidden="true" />}
                         {section.title}
                       </div>
                       <ChevronDown
@@ -140,19 +93,27 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
                       <ul className="mt-1 space-y-0.5 border-l border-border/50 ml-3 pl-3">
                         {section.items.map((item) => {
                           const isActive = pathname === item.href
+                          const ItemIcon = item.icon
                           return (
                             <li key={item.href}>
                               <Link
                                 href={item.href}
                                 onClick={() => onOpenChange(false)}
                                 className={cn(
-                                  "flex items-center rounded-lg px-3 py-2 text-sm transition-colors",
+                                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
                                   isActive
                                     ? "bg-primary/10 text-accent-light font-medium"
                                     : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                                 )}
                               >
-                                {item.title}
+                                {ItemIcon && <ItemIcon className="h-4 w-4 shrink-0" />}
+                                {item.isCode ? (
+                                  <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono text-primary">
+                                    {item.title}
+                                  </code>
+                                ) : (
+                                  item.title
+                                )}
                               </Link>
                             </li>
                           )
@@ -166,25 +127,33 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
               return (
                 <div key={section.title} className="mb-4">
                   <div className="mb-2 flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-foreground">
-                    {section.icon && <section.icon className="h-4 w-4" />}
+                    {SectionIcon && <SectionIcon className="h-4 w-4" aria-hidden="true" />}
                     {section.title}
                   </div>
                   <ul className="space-y-0.5">
                     {section.items.map((item) => {
                       const isActive = pathname === item.href
+                      const ItemIcon = item.icon
                       return (
                         <li key={item.href}>
                           <Link
                             href={item.href}
                             onClick={() => onOpenChange(false)}
                             className={cn(
-                              "flex items-center rounded-lg px-3 py-2 text-sm transition-colors",
+                              "flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
                               isActive
                                 ? "bg-primary/10 text-accent-light font-medium"
                                 : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                             )}
                           >
-                            {item.title}
+                            {ItemIcon && <ItemIcon className="h-4 w-4 shrink-0" />}
+                            {item.isCode ? (
+                              <code className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono text-primary">
+                                {item.title}
+                              </code>
+                            ) : (
+                              item.title
+                            )}
                           </Link>
                         </li>
                       )
