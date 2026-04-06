@@ -339,7 +339,7 @@ function AssistantLogoVideo() {
           aria-hidden
           onLoadedData={() => setIsLoaded(true)}
         >
-          <source src="/ai.webm" type="video/webm" />
+          <source src="https://cdn.adkit.dev/logo.webm" type="video/webm" />
         </video>
       ) : null}
     </div>
