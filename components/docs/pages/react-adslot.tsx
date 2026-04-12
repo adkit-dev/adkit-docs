@@ -97,9 +97,9 @@ export function ReactAdSlotPage() {
                 <tr className="border-b border-border/50">
                   <td className="py-2 pr-4 font-mono text-xs">price</td>
                   <td className="py-2 pr-4 font-mono text-xs">number</td>
-                  <td className="py-2 pr-4">No</td>
+                  <td className="py-2 pr-4">Yes</td>
                   <td className="py-2 pr-4">—</td>
-                  <td className="py-2">Daily price in cents displayed in the placeholder (e.g. <code className="text-xs bg-muted px-1 py-0.5 rounded">2500</code> = $25/day). The server authoritative price is always used at checkout.</td>
+                  <td className="py-2">Daily price in cents (e.g. <code className="text-xs bg-muted px-1 py-0.5 rounded">2500</code> = $25/day). Set on first mount. If the slot is later mounted with a different price, you receive a dashboard notification and email to approve the change.</td>
                 </tr>
                 <tr className="border-b border-border/50">
                   <td className="py-2 pr-4 font-mono text-xs">size</td>

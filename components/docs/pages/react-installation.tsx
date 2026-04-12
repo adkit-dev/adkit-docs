@@ -140,18 +140,19 @@ export default function App() {
           </p>
 
           {framework === "html" ? (
-            <CodePreview 
+            <CodePreview
               language="html"
               filename="index.html"
               code={`<div
   data-adkit-site="your-site-id"
   data-adkit-slot="sidebar"
   data-adkit-aspect-ratio="4:3"
-></div>`} 
+  data-adkit-price="2500"
+></div>`}
             />
           ) : (
-            <CodePreview 
-              language="tsx" 
+            <CodePreview
+              language="tsx"
               filename={framework === "nextjs" ? "app/components/sidebar.tsx" : "src/components/Sidebar.tsx"}
               code={`import { AdSlot } from "adkit-react"
 
@@ -159,13 +160,13 @@ export function Sidebar() {
   return (
     <aside className="w-64 p-4 border-l">
       <nav>...</nav>
-      
+
       <div className="mt-8">
-        <AdSlot slot="sidebar" aspectRatio="4:3" />
+        <AdSlot slot="sidebar" aspectRatio="4:3" price={2500} />
       </div>
     </aside>
   )
-}`} 
+}`}
             />
           )}
 
