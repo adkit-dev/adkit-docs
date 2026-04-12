@@ -324,11 +324,11 @@ function AssistantLogoVideo() {
   }, [])
 
   return (
-    <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-2xl">
+    <div className="mx-auto mb-4 h-24 w-24 bg-transparent">
       {shouldLoad ? (
         <video
           className={cn(
-            "size-full object-cover transition-opacity duration-300",
+            "size-full object-contain transition-opacity duration-300 bg-transparent",
             isLoaded ? "opacity-100" : "opacity-0"
           )}
           autoPlay
