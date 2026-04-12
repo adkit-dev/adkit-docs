@@ -121,13 +121,12 @@ export function PublisherCreatingSlotsPage() {
             immediately bookable.
           </p>
           <p className="text-muted-foreground mb-4">
-            Price increases apply immediately on the next page load. You can also change prices directly in the
-            dashboard on the slot detail page.
+            You can also change prices directly in the dashboard on the slot detail page.
           </p>
-          <Callout variant="warning" title="Price decreases require confirmation">
-            When you lower a slot's price, you'll receive a notification in the dashboard and an email. Until you
-            confirm, the price stays at its current value. This protects against accidental or unauthorized price
-            reductions.
+          <Callout variant="warning" title="Price changes require confirmation">
+            If the same slot is ever mounted with a different price, you'll receive a notification in the dashboard
+            and an email. Until you confirm, the price stays at its current value. This protects against accidental
+            or unauthorized price changes.
           </Callout>
         </section>
 

@@ -108,9 +108,10 @@ totalOriginalPrice   = amountPaid + discountCents`}
         <section>
           <h2 className="text-xl font-semibold mb-4">Price changes</h2>
           <p className="text-muted-foreground mb-4">
-            Publishers can change the price of a slot at any time. Increases apply immediately on the next page load.
-            Decreases require publisher confirmation — until confirmed, the price stays at its current value. This
-            protects against accidental or unauthorized price reductions on active slots.
+            The price is set the first time a slot mounts based on the prop value. If the same slot is ever mounted
+            with a different price, you receive a notification in the dashboard and an email to approve the change.
+            Until approved, the price stays at its current value. This protects against accidental or unauthorized
+            price changes on active slots.
           </p>
         </section>
       </div>
