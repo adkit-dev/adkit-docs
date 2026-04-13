@@ -40,7 +40,6 @@ export function Topbar({ onSearchClick, onMenuClick }: TopbarProps) {
         </div>
       </div>
 
-      {/* Desktop navigation (center) */}
       <div className="ml-auto hidden md:flex items-center gap-1">
         <nav className="flex items-center gap-1" aria-label="Main navigation">
           {topNavigation.map((item) => (
@@ -56,7 +55,7 @@ export function Topbar({ onSearchClick, onMenuClick }: TopbarProps) {
             </Link>
           ))}
         </nav>
-        <Link href="/docs/quickstart" className="ml-2">
+        <Link href="/quickstart" className="ml-2">
           <ShimmerButton
             shimmerColor="hsl(270 70% 75%)"
             background="hsl(270 70% 45%)"

@@ -3,9 +3,7 @@ import {
   Rocket,
   LayoutDashboard,
   ShoppingCart,
-  Server,
   Lightbulb,
-  BookOpen,
   FastForward,
 } from "lucide-react"
 import {
@@ -27,22 +25,22 @@ export const siteConfig = {
 }
 
 export const topNavigation = [
-  { title: "Documentation", href: "/docs" },
-  { title: "Guides", href: "/docs/quickstart" },
-  { title: "API Reference", href: "/docs/api/serve" },
-  { title: "Changelog", href: "/docs/changelog" },
+  { title: "Documentation", href: "/" },
+  { title: "Publisher Guide", href: "/publisher/overview" },
+  { title: "Advertiser Guide", href: "/advertiser/overview" },
+  { title: "Changelog", href: "/changelog" },
 ]
 
 export const footerLinks = {
   explore: [
-    { title: "Documentation", href: "/docs" },
-    { title: "React SDK", href: "/docs/react/installation" },
-    { title: "JavaScript SDK", href: "/docs/js/installation" },
+    { title: "Documentation", href: "/" },
+    { title: "React SDK", href: "/react/installation" },
+    { title: "JavaScript SDK", href: "/js/installation" },
   ],
   resources: [
-    { title: "Publisher Guide", href: "/docs/publisher/dashboard" },
-    { title: "Advertiser Guide", href: "/docs/advertiser/booking" },
-    { title: "API Reference", href: "/docs/api/serve" },
+    { title: "Publisher Guide", href: "/publisher/dashboard" },
+    { title: "Advertiser Guide", href: "/advertiser/booking" },
+    { title: "Changelog", href: "/changelog" },
   ],
   company: [
     { title: "GitHub", href: "https://github.com/adkit-dev" },
@@ -77,8 +75,8 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Introduction", href: "/docs" },
-      { title: "How It Works", href: "/docs/how-it-works" },
+      { title: "Introduction", href: "/" },
+      { title: "How It Works", href: "/how-it-works" },
     ],
   },
   {
@@ -87,12 +85,12 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "JavaScript", href: "/docs/quickstart/javascript", icon: JavaScriptIcon },
-      { title: "React", href: "/docs/quickstart/react", icon: ReactIcon },
-      { title: "Next.js", href: "/docs/quickstart/nextjs", icon: NextJSIcon },
-      { title: "Astro", href: "/docs/quickstart/astro", icon: AstroIcon },
-      { title: "WordPress", href: "/docs/quickstart/wordpress", icon: WordPressIcon },
-      { title: "Webflow", href: "/docs/quickstart/webflow", icon: WebflowIcon },
+      { title: "JavaScript", href: "/quickstart/javascript", icon: JavaScriptIcon },
+      { title: "React", href: "/quickstart/react", icon: ReactIcon },
+      { title: "Next.js", href: "/quickstart/nextjs", icon: NextJSIcon },
+      { title: "Astro", href: "/quickstart/astro", icon: AstroIcon },
+      { title: "WordPress", href: "/quickstart/wordpress", icon: WordPressIcon },
+      { title: "Webflow", href: "/quickstart/webflow", icon: WebflowIcon },
     ],
   },
   {
@@ -100,13 +98,13 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Installation", href: "/docs/react/installation" },
-      { title: "<AdkitProvider />", href: "/docs/react/provider", isCode: true },
-      { title: "<AdSlot />", href: "/docs/react/adslot", isCode: true },
-      { title: "<BookingModal />", href: "/docs/react/booking-modal", isCode: true },
-      { title: "useAdkit()", href: "/docs/react/use-adkit", isCode: true },
-      { title: "Theming", href: "/docs/react/theming" },
-      { title: "Custom Styling", href: "/docs/react/custom-styling" },
+      { title: "Installation", href: "/react/installation" },
+      { title: "<AdkitProvider />", href: "/react/provider", isCode: true },
+      { title: "<AdSlot />", href: "/react/adslot", isCode: true },
+      { title: "<BookingModal />", href: "/react/booking-modal", isCode: true },
+      { title: "useAdkit()", href: "/react/use-adkit", isCode: true },
+      { title: "Theming", href: "/react/theming" },
+      { title: "Custom Styling", href: "/react/custom-styling" },
     ],
   },
   {
@@ -114,11 +112,11 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Installation", href: "/docs/js/installation" },
-      { title: "Data Attributes", href: "/docs/js/data-attributes" },
-      { title: "JavaScript API", href: "/docs/js/api" },
-      { title: "Theming", href: "/docs/js/theming" },
-      { title: "Custom Styling", href: "/docs/js/custom-styling" },
+      { title: "Installation", href: "/js/installation" },
+      { title: "Data Attributes", href: "/js/data-attributes" },
+      { title: "JavaScript API", href: "/js/api" },
+      { title: "Theming", href: "/js/theming" },
+      { title: "Custom Styling", href: "/js/custom-styling" },
     ],
   },
   {
@@ -127,13 +125,14 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Dashboard Overview", href: "/docs/publisher/dashboard" },
-      { title: "Creating Slots", href: "/docs/publisher/creating-slots" },
-      { title: "Approving Ads", href: "/docs/publisher/approvals" },
-      { title: "Analytics", href: "/docs/publisher/analytics" },
-      { title: "Discounts", href: "/docs/publisher/discounts" },
-      { title: "Payouts", href: "/docs/publisher/payouts" },
-      { title: "Settings", href: "/docs/publisher/settings" },
+      { title: "Overview", href: "/publisher/overview" },
+      { title: "Dashboard", href: "/publisher/dashboard" },
+      { title: "Creating Slots", href: "/publisher/creating-slots" },
+      { title: "Approving Ads", href: "/publisher/approvals" },
+      { title: "Analytics", href: "/publisher/analytics" },
+      { title: "Discounts", href: "/publisher/discounts" },
+      { title: "Payouts", href: "/publisher/payouts" },
+      { title: "Settings", href: "/publisher/settings" },
     ],
   },
   {
@@ -142,9 +141,11 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Booking an Ad", href: "/docs/advertiser/booking" },
-      { title: "Campaign Management", href: "/docs/advertiser/campaigns" },
-      { title: "Billing", href: "/docs/advertiser/billing" },
+      { title: "Overview", href: "/advertiser/overview" },
+      { title: "Booking an Ad", href: "/advertiser/booking" },
+      { title: "Campaign Management", href: "/advertiser/campaigns" },
+      { title: "Billing", href: "/advertiser/billing" },
+      { title: "Settings", href: "/advertiser/settings" },
     ],
   },
   {
@@ -153,28 +154,9 @@ export const navigation: NavSection[] = [
     collapsible: true,
     defaultOpen: true,
     items: [
-      { title: "Pricing Model", href: "/docs/concepts/pricing" },
-      { title: "Slot Identity", href: "/docs/concepts/slot-identity" },
-      { title: "Event Tracking", href: "/docs/concepts/event-tracking" },
-    ],
-  },
-  {
-    title: "API Reference",
-    icon: Server,
-    collapsible: true,
-    defaultOpen: true,
-    items: [
-      { title: "Serve API", href: "/docs/api/serve" },
-      { title: "Events API", href: "/docs/api/events" },
-    ],
-  },
-  {
-    title: "Changelog",
-    icon: BookOpen,
-    collapsible: true,
-    defaultOpen: true,
-    items: [
-      { title: "Changelog", href: "/docs/changelog" },
+      { title: "Pricing Model", href: "/concepts/pricing" },
+      { title: "Slot Identity", href: "/concepts/slot-identity" },
+      { title: "Event Tracking", href: "/concepts/event-tracking" },
     ],
   },
 ]
@@ -192,7 +174,7 @@ export function getNavSectionIcon(title: string): NavIcon | undefined {
 }
 
 export function getDocIcon(slug: string): NavIcon | undefined {
-  const href = slug ? `/docs/${slug}` : "/docs"
+  const href = slug ? `/${slug}` : "/"
 
   for (const section of navigation) {
     const item = section.items.find((entry) => entry.href === href)

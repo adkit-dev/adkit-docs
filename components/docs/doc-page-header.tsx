@@ -11,15 +11,23 @@ interface DocPageHeaderProps {
   breadcrumbItems?: { label: string; href?: string }[]
   slug?: string
   headerClassName?: string
+  isCodeTitle?: boolean
 }
 
-export function DocPageHeader({ title, description, breadcrumbItems = [], slug, headerClassName = "mb-8" }: DocPageHeaderProps) {
+export function DocPageHeader({
+  title,
+  description,
+  breadcrumbItems = [],
+  slug,
+  headerClassName = "mb-8",
+  isCodeTitle = false,
+}: DocPageHeaderProps) {
   const { copied, copy } = useCopyToClipboard()
 
   const copyLink = () => {
     const url = typeof window !== "undefined" && slug
-      ? `${window.location.origin}/docs/${slug}`
-      : `/docs/${slug ?? ""}`
+      ? `${window.location.origin}/${slug}`
+      : slug ? `/${slug}` : "/"
     copy(url)
   }
 
@@ -52,7 +60,9 @@ export function DocPageHeader({ title, description, breadcrumbItems = [], slug, 
         </div>
       )}
       <header className={headerClassName}>
-        <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">{title}</h1>
+        <h1 className={`mb-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl ${isCodeTitle ? "font-mono" : ""}`}>
+          {title}
+        </h1>
         <p className="text-base text-muted-foreground sm:text-lg">{description}</p>
       </header>
     </>

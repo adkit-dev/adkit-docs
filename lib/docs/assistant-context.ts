@@ -6,7 +6,7 @@ export const DOCS_CONTEXT = `
 === ADKIT DOCUMENTATION ===
 
 --- Quickstart: JavaScript ---
-Path: /docs/quickstart/javascript
+Path: /quickstart/javascript
 Add Adkit to any website using a single script tag — no build step required.
 
 Step 1: Add the script tag to your HTML <head>:
@@ -36,7 +36,7 @@ Programmatic refresh (SPA use):
   window.Adkit.refreshAll()
 
 --- Quickstart: React ---
-Path: /docs/quickstart/react
+Path: /quickstart/react
 
 Step 1: Install the package:
   npm install adkit-react
@@ -67,7 +67,7 @@ Providerless usage (pass siteId directly to AdSlot):
   <AdSlot slot="sidebar" siteId="your-site-id" aspectRatio="4:3" />
 
 --- Quickstart: Next.js ---
-Path: /docs/quickstart/nextjs
+Path: /quickstart/nextjs
 
 Step 1: Install:
   npm install adkit-react
@@ -121,7 +121,7 @@ SPA route change refresh (App Router):
   }
 
 --- Quickstart: Astro ---
-Path: /docs/quickstart/astro
+Path: /quickstart/astro
 
 Step 1: Add script to src/layouts/Layout.astro:
   <head>
@@ -157,7 +157,7 @@ Using adkit-react in React islands:
   // or client:visible for below-the-fold slots
 
 --- Quickstart: WordPress ---
-Path: /docs/quickstart/wordpress
+Path: /quickstart/wordpress
 
 Method 1 — Custom HTML Block (no coding required):
   1. Install "Insert Headers and Footers" plugin
@@ -178,7 +178,7 @@ Method 3 — Child Theme (recommended for longevity):
   In child functions.php, enqueue parent styles and adkit script.
 
 --- Quickstart: Webflow ---
-Path: /docs/quickstart/webflow
+Path: /quickstart/webflow
 Requires Webflow paid plan (Basic or above).
 
 Step 1: Project Settings → Custom Code → Footer Code:
@@ -195,7 +195,7 @@ Step 3: Set Embed element width in the Designer. Do NOT set fixed height.
 Step 4: Publish and verify on live site (NOT in Designer preview — scripts don't run in preview).
 
 --- React SDK: AdkitProvider ---
-Path: /docs/react/provider
+Path: /react/provider
 
 Props:
   - siteId (string, required): Your Adkit site ID
@@ -213,7 +213,7 @@ Notes:
   - All AdSlot components must be descendants of AdkitProvider
 
 --- React SDK: AdSlot ---
-Path: /docs/react/adslot
+Path: /react/adslot
 
 Props:
   - slot (string, required): Unique slot identifier
@@ -227,7 +227,7 @@ Example:
 Good slot names: "header-banner", "sidebar", "in-content-1", "footer-leaderboard"
 
 --- React SDK: useAdkit Hook ---
-Path: /docs/react/use-adkit
+Path: /react/use-adkit
 
   import { useAdkit } from "adkit-react"
 
@@ -239,7 +239,7 @@ Path: /docs/react/use-adkit
 Return values: siteId, theme, slots (Map), refresh()
 
 --- React SDK: Theming ---
-Path: /docs/react/theming
+Path: /react/theming
 
   <AdkitProvider siteId="..." theme="dark">
 
@@ -257,13 +257,13 @@ Or override CSS variables:
   }
 
 --- JavaScript SDK: Data Attributes ---
-Path: /docs/js/data-attributes
+Path: /js/data-attributes
 
 Required: data-adkit-site, data-adkit-slot
 Optional: data-adkit-aspect-ratio, data-adkit-theme, data-adkit-lazy, data-adkit-price
 
 --- JavaScript SDK: JS API ---
-Path: /docs/js/api
+Path: /js/api
 
   window.Adkit.refresh("sidebar")    // reload specific slot
   window.Adkit.refreshAll()          // reload all slots
@@ -272,7 +272,7 @@ Path: /docs/js/api
   window.Adkit.on("click", cb)
 
 --- How It Works ---
-Path: /docs/how-it-works
+Path: /how-it-works
 
 Publishers set fixed daily prices for ad slots. Advertisers book directly through your site.
 Revenue split: Publisher 85%, Adkit 15% (vs AdSense ~68% to publishers).
@@ -286,7 +286,7 @@ Flow:
   6. Publisher receives payout via Stripe
 
 --- Publisher: Creating Slots ---
-Path: /docs/publisher/creating-slots
+Path: /publisher/creating-slots
 
   1. Dashboard → Slots → New Slot
   2. Enter unique identifier (e.g. "sidebar")
@@ -296,27 +296,27 @@ Path: /docs/publisher/creating-slots
 Best practices: use descriptive names, price based on traffic/visibility, start lower and raise.
 
 --- Publisher: Approvals ---
-Path: /docs/publisher/approvals
+Path: /publisher/approvals
 
 When an advertiser books, their submission appears in your approval queue.
 Actions: Approve / Reject (advertiser refunded) / Request Changes.
 Review: creative quality, destination URL safety, brand alignment.
 
 --- Publisher: Payouts ---
-Path: /docs/publisher/payouts
+Path: /publisher/payouts
 
 Connect Stripe in Settings → Payouts.
 Payouts processed weekly on Mondays for the prior week's earnings.
 You receive 85% of each booking. If your site has downtime, advertisers get prorated refunds.
 
 --- Publisher: Analytics ---
-Path: /docs/publisher/analytics
+Path: /publisher/analytics
 
 Metrics: Impressions, Clicks, CTR, Revenue, Fill Rate.
 Date filters: Today, Last 7 days, Last 30 days, Custom range.
 
 --- Advertiser: Booking ---
-Path: /docs/advertiser/booking
+Path: /advertiser/booking
 
   1. Click an empty slot placeholder on a publisher's site
   2. Select dates
@@ -325,27 +325,15 @@ Path: /docs/advertiser/booking
   5. Submit for publisher approval
 
 --- Concepts: Server-Authoritative Pricing ---
-Path: /docs/concepts/pricing
+Path: /concepts/pricing
 
 Prices are stored on Adkit servers and validated at checkout.
 The client NEVER controls the price — prevents any client-side manipulation.
 
 --- Concepts: Slot Identity ---
-Path: /docs/concepts/slot-identity
+Path: /concepts/slot-identity
 
 Slot IDs: unique per site, descriptive, case-sensitive, no spaces.
 Use the same ID across all pages for consistent pricing/analytics.
 
---- API Reference: Serve ---
-Path: /docs/api/serve
-
-GET https://api.adkit.dev/v1/serve?site=SITE_ID&slot=SLOT_NAME
-Response: { status: "filled" | "empty", creative: { imageUrl, destinationUrl, impressionId } }
-
---- API Reference: Events ---
-Path: /docs/api/events
-
-POST https://api.adkit.dev/v1/events/impression
-POST https://api.adkit.dev/v1/events/click
-Body: { impressionId: string, timestamp: string }
 `

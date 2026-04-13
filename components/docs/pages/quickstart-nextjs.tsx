@@ -5,7 +5,7 @@ import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-import { ArrowRight } from "lucide-react"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function QuickstartNextjsPage() {
   const [router, setRouter] = useState<"app" | "pages">("app")
@@ -15,7 +15,7 @@ export function QuickstartNextjsPage() {
       <DocPageHeader
         title="Next.js Quickstart"
         description="Install adkit-react and add slots to your Next.js app. Supports both App Router (Next.js 13+) and Pages Router."
-        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "Next.js" }]}
+        breadcrumbItems={[{ label: "Quickstarts", href: "/quickstart" }, { label: "Next.js" }]}
         slug="quickstart/nextjs"
       />
 
@@ -220,13 +220,10 @@ export default function BlogPost() {
             </div>
             <h2 className="text-xl font-semibold m-0">Verify it works</h2>
           </div>
-          <p className="text-muted-foreground">
-            Run <code className="text-sm bg-muted px-1.5 py-0.5 rounded">next dev</code> and open the page. You should
-            see a dashed-border placeholder with "Rent this spot" and your price. If the slot doesn't appear, check the
-            browser console — misconfigured slots log a{" "}
-            <code className="text-sm bg-muted px-1.5 py-0.5 rounded">console.error</code> and render nothing without
-            crashing the tree.
+          <p className="text-sm text-muted-foreground mb-4">
+            Run <code className="text-sm bg-muted px-1.5 py-0.5 rounded">next dev</code> and open the page. The slot should match this banner placeholder. If it doesn't appear, check the browser console — misconfigured slots log a <code className="text-sm bg-muted px-1.5 py-0.5 rounded">console.error</code> without crashing the tree.
           </p>
+          <SlotVerifyPreview variant="react" />
         </section>
 
         {/* SPA refresh pattern */}
@@ -263,43 +260,6 @@ export function AdRefresher() {
               layout, nested inside the provider.
             </Callout>
           )}
-        </section>
-
-        {/* Next steps */}
-        <section className="pt-8 border-t border-border">
-          <h2 className="text-xl font-semibold mb-4">Next steps</h2>
-          <div className="grid gap-3">
-            <a
-              href="/docs/react/adslot"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">&lt;AdSlot /&gt; Reference</p>
-                <p className="text-sm text-muted-foreground">All props: size, theme, custom styles, and more</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/react/provider"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">&lt;AdkitProvider /&gt; Reference</p>
-                <p className="text-sm text-muted-foreground">Provider configuration and the refresh API</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/publisher/dashboard"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Publisher Dashboard</p>
-                <p className="text-sm text-muted-foreground">Manage slots, review ad submissions, and track revenue</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-          </div>
         </section>
       </div>
     </article>

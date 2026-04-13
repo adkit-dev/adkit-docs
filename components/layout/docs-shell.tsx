@@ -57,13 +57,17 @@ export function DocsShell({ children }: DocsShellProps) {
         onSearchClick={() => setSearchOpen(true)}
         onMenuClick={() => setMobileNavOpen(true)}
       />
-      <div className="flex flex-1">
+      <div className={cn("flex flex-1", assistantExpanded && "h-[calc(100vh-3.5rem)] overflow-hidden")}>
         <div className="hidden lg:block">
           <div className="sticky top-14 h-[calc(100vh-3.5rem)]">
             <Sidebar onSearchClick={() => setSearchOpen(true)} />
           </div>
         </div>
-        <main id="main-content" className="relative flex-1 overflow-hidden" tabIndex={-1}>
+        <main
+          id="main-content"
+          className={cn("relative flex-1 overflow-hidden", assistantExpanded && "h-[calc(100vh-3.5rem)]")}
+          tabIndex={-1}
+        >
           <div
             className={cn("relative z-0", assistantExpanded && "pointer-events-none")}
             aria-hidden={assistantExpanded ? "true" : undefined}

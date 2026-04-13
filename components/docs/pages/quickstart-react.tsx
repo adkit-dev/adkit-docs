@@ -4,7 +4,7 @@ import { CodePreview } from "@/components/docs/code-preview"
 import { CommandBlock } from "@/components/docs/command-block"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-import { ArrowRight } from "lucide-react"
+import { SlotVerifyPreview } from "@/components/docs/slot-verify-preview"
 
 export function QuickstartReactPage() {
   return (
@@ -12,7 +12,7 @@ export function QuickstartReactPage() {
       <DocPageHeader
         title="React Quickstart"
         description="Install adkit-react and drop ad slots into your React app. Works with Vite, Create React App, and any React 17+ project."
-        breadcrumbItems={[{ label: "Quickstarts", href: "/docs/quickstart" }, { label: "React" }]}
+        breadcrumbItems={[{ label: "Quickstarts", href: "/quickstart" }, { label: "React" }]}
         slug="quickstart/react"
       />
 
@@ -113,12 +113,10 @@ export function Sidebar() {
             </div>
             <h2 className="text-xl font-semibold m-0">Verify it works</h2>
           </div>
-          <p className="text-muted-foreground">
-            Run your app and navigate to the page with the slot. You should see a dashed-border placeholder with "Rent
-            this spot" and your price. If it doesn't appear, check the console — misconfigured slots log a{" "}
-            <code className="text-sm bg-muted px-1.5 py-0.5 rounded">console.error</code> and render nothing without
-            crashing the component tree.
+          <p className="text-sm text-muted-foreground mb-4">
+            Run your dev server and open the page. The slot should match this banner placeholder.
           </p>
+          <SlotVerifyPreview variant="react" />
         </section>
 
         {/* Secondary pattern */}
@@ -150,43 +148,6 @@ export function Banner() {
             The <code>refresh()</code> API from <code>useAdkit()</code> is only available inside a provider. For SPA
             route changes, use the provider approach.
           </Callout>
-        </section>
-
-        {/* Next steps */}
-        <section className="pt-8 border-t border-border">
-          <h2 className="text-xl font-semibold mb-4">Next steps</h2>
-          <div className="grid gap-3">
-            <a
-              href="/docs/react/adslot"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">&lt;AdSlot /&gt; Reference</p>
-                <p className="text-sm text-muted-foreground">All props: size, theme, custom styles, and more</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/react/use-adkit"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">useAdkit()</p>
-                <p className="text-sm text-muted-foreground">Programmatic refresh and slot registry</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-            <a
-              href="/docs/react/theming"
-              className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div>
-                <p className="font-medium text-foreground">Theming</p>
-                <p className="text-sm text-muted-foreground">Light, dark, and auto themes with custom color overrides</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
-            </a>
-          </div>
         </section>
       </div>
     </article>

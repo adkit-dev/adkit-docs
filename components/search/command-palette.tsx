@@ -62,7 +62,7 @@ export function CommandPalette({ open, onOpenChange, onAskAi }: CommandPalettePr
   const handleSelect = (slug: string) => {
     onOpenChange(false)
     setSearch("")
-    router.push(slug ? `/docs/${slug}` : "/docs")
+    router.push(slug ? `/${slug}` : "/")
   }
 
   const handleAskAi = (query: string) => {
