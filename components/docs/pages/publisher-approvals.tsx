@@ -1,15 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
 
 export function PublisherApprovalsPage() {
   return (
@@ -35,7 +28,6 @@ export function PublisherApprovalsPage() {
               rejected, filterable by status.
             </li>
           </ul>
-          <ImagePlaceholder caption="Approvals page showing Action required tab with pending items and amber badge" />
         </section>
 
         <section>
@@ -52,7 +44,13 @@ export function PublisherApprovalsPage() {
             </li>
             <li>A timeline showing when the ad goes live and when it ends</li>
           </ul>
-          <ImagePlaceholder caption="Booking detail page showing ad creative, destination link, and Approve/Reject buttons" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZzMcHqYjiX4RSQ2H7nv5rLDOj6AbIqGJfhaEx"
+            alt="Booking detail page showing ad creative, destination link, and Approve/Reject buttons"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>
@@ -88,11 +86,10 @@ export function PublisherApprovalsPage() {
             <li>Broken/unsafe destination link</li>
             <li>Other (free text)</li>
           </ul>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             A reason is required. Once rejected, the advertiser receives a rejection email with your reason,
             improvement tips, and a full refund. The refund is processed automatically.
           </p>
-          <ImagePlaceholder caption="Rejection panel showing reason options with radio buttons" />
         </section>
 
         <section>

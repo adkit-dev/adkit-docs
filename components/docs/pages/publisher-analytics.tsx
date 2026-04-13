@@ -2,14 +2,6 @@
 
 import { DocPageHeader } from "@/components/docs/doc-page-header"
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
-
 export function PublisherAnalyticsPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
@@ -51,7 +43,6 @@ export function PublisherAnalyticsPage() {
           <p className="text-muted-foreground mb-4">
             All filters combine. "Clear filters" appears when any non-date filter is active.
           </p>
-          <ImagePlaceholder caption="Analytics page header showing date range presets, slot filter, device filter, and country filter dropdowns" />
         </section>
 
         <section>
@@ -102,7 +93,6 @@ export function PublisherAnalyticsPage() {
               </tbody>
             </table>
           </div>
-          <ImagePlaceholder caption="Analytics KPI bar showing all six metrics" />
         </section>
 
         <section>
@@ -111,7 +101,6 @@ export function PublisherAnalyticsPage() {
             A composed chart with revenue as an area on the left axis and impressions as a dashed line on the right
             axis. Hover any point for a tooltip showing revenue, impressions, clicks, and CTR for that period.
           </p>
-          <ImagePlaceholder caption="Revenue and impressions chart with tooltip visible" />
         </section>
 
         <section>
@@ -144,7 +133,6 @@ export function PublisherAnalyticsPage() {
             A ranked list of up to 5 pages by impression count, showing the path, impression count, and CTR. Click the
             external link icon next to any path to open that page on your site.
           </p>
-          <ImagePlaceholder caption="Top pages list showing paths with impression counts and CTR values" />
         </section>
 
         <section>

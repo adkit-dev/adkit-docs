@@ -2,14 +2,6 @@
 
 import { DocPageHeader } from "@/components/docs/doc-page-header"
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
-
 export function PublisherDashboardPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
@@ -23,12 +15,11 @@ export function PublisherDashboardPage() {
       <div className="space-y-12">
         <section>
           <h2 className="text-xl font-semibold mb-4">Selecting a site</h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             You can have multiple sites under one account. Use the site selector in the top-left sidebar to switch
             between them. Everything on the dashboard — metrics, activity, suggested items — reflects the currently
             selected site.
           </p>
-          <ImagePlaceholder caption="Site selector dropdown in sidebar showing multiple sites with favicons" />
         </section>
 
         <section>
@@ -76,41 +67,37 @@ export function PublisherDashboardPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             Each metric has a tooltip explaining it. Hover the info icon to see it.
           </p>
-          <ImagePlaceholder caption="KPI bar showing all five metrics with tooltips visible" />
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Revenue, Clicks &amp; Impressions chart</h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             A composed chart showing the last 30 days of data. Revenue is shown as an area chart on the left axis.
             Impressions are shown as a dashed line on the right axis. Clicks are shown as a solid line on the right
             axis. The chart legend explains which line is which.
           </p>
-          <ImagePlaceholder caption="Overview chart showing revenue area and impression/click lines" />
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Suggested</h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             A row of up to 5 cards showing recently updated bookings, slots, and discounts. The dashboard prioritizes
             items that need action — pending bookings appear first, then paused or pending slots, then discounts
             expiring within 30 days. After that, recently updated items fill any remaining spots. Click any card to
             navigate directly to that item.
           </p>
-          <ImagePlaceholder caption="Suggested section showing booking cards with ad creative thumbnails" />
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Live activity</h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             The 5 most recent ad events across your slots — impressions and clicks. Each row shows a flag for the
             visitor's country, a device icon (desktop/mobile/tablet), an action icon (eye for view, cursor for click),
             a plain-English description, and a relative timestamp.
           </p>
-          <ImagePlaceholder caption="Live activity list showing rows of events with flags and device icons" />
         </section>
       </div>
     </article>

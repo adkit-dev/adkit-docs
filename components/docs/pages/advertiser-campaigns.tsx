@@ -1,15 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
 
 export function AdvertiserCampaignsPage() {
   return (
@@ -33,7 +26,6 @@ export function AdvertiserCampaignsPage() {
           <p className="text-muted-foreground mb-4">
             If you have no campaigns yet, example cards are shown to illustrate what the page will look like.
           </p>
-          <ImagePlaceholder caption="Campaigns grid showing several campaign cards in different states" />
         </section>
 
         <section>
@@ -130,7 +122,13 @@ export function AdvertiserCampaignsPage() {
             the estimated refund amount in amber. A "View invoice" button opens the Stripe receipt.
           </p>
 
-          <ImagePlaceholder caption="Campaign detail page showing status banner, timeline, summary card, and performance chart" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZ9aj6Iy7b5fTnZWCidPkKE6Ax1VI0ut3LBGND"
+            alt="Campaign detail page showing status banner, timeline, summary card, and performance chart"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>

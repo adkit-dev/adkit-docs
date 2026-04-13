@@ -3,14 +3,6 @@
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
-
 export function AdvertiserBillingPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
@@ -32,7 +24,6 @@ export function AdvertiserBillingPage() {
           <Callout variant="note">
             Your payment method is managed by Stripe. Adkit never stores your card details.
           </Callout>
-          <ImagePlaceholder caption="Billing page showing payment method card widget and Manage button" />
         </section>
 
         <section>
@@ -82,11 +73,10 @@ export function AdvertiserBillingPage() {
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Pagination</h2>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground">
             Results are paginated. The default page size is 10 rows. A per-page selector lets you choose 10, 25, or 50
             rows. Previous/Next buttons navigate between pages. The current page and total result count are shown.
           </p>
-          <ImagePlaceholder caption="Billing page showing invoice table with filters, status badges, and pagination" />
         </section>
       </div>
     </article>

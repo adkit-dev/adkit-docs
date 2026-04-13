@@ -1,16 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import { Callout } from "@/components/docs/callout"
 import { CodePreview } from "@/components/docs/code-preview"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
 
 export function AdvertiserBookingPage() {
   return (
@@ -56,7 +49,13 @@ export function AdvertiserBookingPage() {
             If the slot has no available dates or is currently inactive, you'll see a message explaining that bookings
             are paused.
           </p>
-          <ImagePlaceholder caption="Booking page step 1 showing calendar with some dates grayed out, date range selected, and price summary" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZl3pizvuKdfzIUKon1T4M3qAY0ugJHy5N7rDc"
+            alt="Booking calendar showing date range selection with price summary"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>
@@ -136,8 +135,13 @@ export function AdvertiserBookingPage() {
             Your company name is visible to the publisher and appears on your invoices. It is not shown on the ad
             itself.
           </p>
-
-          <ImagePlaceholder caption="Booking page step 2 showing upload area, live ad preview, destination URL field, and guidelines panel" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZKnRyOXxiIJQF9HqGEvU3tLp0OewBNM7hkRoz"
+            alt="Creative upload step showing file upload area, guidelines, destination URL field, and company name input"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>
@@ -169,8 +173,13 @@ export function AdvertiserBookingPage() {
           <Callout variant="note">
             Payment is processed by Stripe. Your card details never touch Adkit's servers.
           </Callout>
-
-          <ImagePlaceholder caption="Booking page step 3 showing booking summary card, promo code field, payment button" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZkZeeqLW9UfHZSzoJB24KInC1WdD8Y7MwP3Nc"
+            alt="Review step showing ad preview, promo code input, booking summary with dates and pricing"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>

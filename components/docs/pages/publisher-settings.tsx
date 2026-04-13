@@ -3,14 +3,6 @@
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
-
 export function PublisherSettingsPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
@@ -54,11 +46,10 @@ export function PublisherSettingsPage() {
             </div>
           </div>
 
-          <ImagePlaceholder caption="Site Identity section showing name, domain, and timezone fields" />
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-4">Booking Rules</h2>
+          <h2 className="text-xl font-semibold mb-4">Booking rules</h2>
           <p className="text-muted-foreground mb-6">
             Two settings that control how advertisers can book your slots:
           </p>
@@ -95,8 +86,6 @@ export function PublisherSettingsPage() {
             A warning is shown when you disable manual review. Ads will appear on your site without any preview or
             approval step.
           </Callout>
-
-          <ImagePlaceholder caption="Booking Rules section showing buffer period dropdown and manual review toggle" />
         </section>
 
         <section>
@@ -125,8 +114,6 @@ export function PublisherSettingsPage() {
             Deleting a site is permanent. All slots, bookings, analytics, and payout records are removed and cannot be
             recovered.
           </Callout>
-
-          <ImagePlaceholder caption="Danger zone showing Delete Site button and confirmation dialog with DELETE input" />
         </section>
       </div>
     </article>

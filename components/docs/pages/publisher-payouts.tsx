@@ -1,15 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
-
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
 
 export function PublisherPayoutsPage() {
   return (
@@ -59,7 +52,13 @@ export function PublisherPayoutsPage() {
             If you have unclaimed earnings before connecting, a banner at the top of the page shows the amount and a
             "Claim now" button. Connecting Stripe triggers automatic processing of any pending payouts.
           </p>
-          <ImagePlaceholder caption="Payouts page disconnected state showing Connect with Stripe button and unclaimed earnings banner" />
+          <Image
+            src="https://cjo9byig3a.ufs.sh/f/gu2Lzg6JSemZR0wQJdp5GcAtE6dlZBFJwNUehO0Su9yx7pkr"
+            alt="Payouts page disconnected state showing Connect with Stripe button and unclaimed earnings banner"
+            width={800}
+            height={450}
+            className="rounded-lg border border-border object-cover mb-4"
+          />
         </section>
 
         <section>
@@ -161,7 +160,6 @@ export function PublisherPayoutsPage() {
               </tbody>
             </table>
           </div>
-          <ImagePlaceholder caption="Transaction history table showing multiple bookings with gross/fee/net columns" />
         </section>
 
         <section>

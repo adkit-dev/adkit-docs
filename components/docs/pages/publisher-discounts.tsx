@@ -3,14 +3,6 @@
 import { Callout } from "@/components/docs/callout"
 import { DocPageHeader } from "@/components/docs/doc-page-header"
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border bg-muted/30 aspect-video flex items-center justify-center mb-4">
-      <p className="text-sm text-muted-foreground text-center px-8 leading-relaxed">{caption}</p>
-    </div>
-  )
-}
-
 export function PublisherDiscountsPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-8 py-8 sm:py-16">
@@ -80,7 +72,6 @@ export function PublisherDiscountsPage() {
             </div>
           </div>
 
-          <ImagePlaceholder caption="Discount creation drawer showing type selection step with all four types" />
         </section>
 
         <section>
@@ -102,7 +93,6 @@ export function PublisherDiscountsPage() {
               preview of what advertisers will see.
             </li>
           </ol>
-          <ImagePlaceholder caption="Discount configuration step showing slot selector, value type toggle, and live preview" />
         </section>
 
         <section>
@@ -178,8 +168,6 @@ export function PublisherDiscountsPage() {
             Pausing a discount is non-destructive — usage counts and expiry dates are preserved. Deleting a discount
             is permanent and cannot be undone.
           </Callout>
-
-          <ImagePlaceholder caption="Discount card grid showing multiple discount types with status badges and action buttons" />
         </section>
       </div>
     </article>
